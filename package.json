@@ -1,0 +1,24 @@
+{
+  "name": "@nxus/docs",
+  "version": "2.3.0",
+  "description": "Nxus Documentation",
+  "main": "index.js",
+  "scripts": {
+    "build-docs": "export VERSION=`npm view @nxus/core version`; documentation build ../modules/**/src/*.js -f html -o ./ --name 'Nxus Documentation' --project-version $VERSION",
+    "start": "./node_modules/http-server/bin/http-server ./",
+    "update-docs": "npm run build-docs && git add ./ && git commit -m 'Updated docs to latest' && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nxus/docs.git"
+  },
+  "author": "mjreich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nxus/docs/issues"
+  },
+  "homepage": "https://github.com/nxus/docs#readme",
+  "dependencies": {
+    "http-server": "^0.8.5"
+  }
+}
