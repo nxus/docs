@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>@nxus/rest-api 2.3.0 | Documentation</title>
+  <title>@nxus/base-ui 2.3.2 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -13,8 +13,8 @@
     <div class='clearfix md-mxn2'>
       <div class='fixed md-show fix-3 overflow-auto max-height-100'>
         <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>@nxus/rest-api</h3>
-          <div class='mb1'><code>2.3.0</code></div>
+          <h3 class='mb0 no-anchor'>@nxus/base-ui</h3>
+          <div class='mb1'><code>2.3.2</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -22,9 +22,9 @@
             type='text' />
           <div id='toc'>
               <a
-                href='#RestAPI'
+                href='#BaseUI'
                 class='block bold'>
-                RestAPI
+                BaseUI
               </a>
           </div>
         </div>
@@ -32,23 +32,19 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
-  <h2 id='RestAPI' class='mt0'>
-    RestAPI<span class='gray'></span>
+  <h2 id='BaseUI' class='mt0'>
+    BaseUI<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/rest-api/blob/89cc3a71f1a724de6d4b225960d905f8beee4cc7/src/index.js#L18-L95'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/7587223dd3f40ae234de45d2af8c9133811f1271/src/index.js#L15-L37'><code>src/index.js</code></a></p>
   
   
   
   
   
-  <p>Exposes a REST API for Nxus models
-e.g. GET /api/todo, POST /api/todo, GET /api/todo/1, etc</p>
+  <p>Base UI pages including 404 and 500</p>
 
     <h4>Examples</h4>
-<pre class='overflow-auto'>Configuration (defaults):
-{restapi: {
-  url_path: <span class="hljs-string">'/api'</span>
-}}</pre>
+<pre class='overflow-auto'>app.get(<span class="hljs-string">'templater'</span>).template(<span class="hljs-string">'404'</span>, <span class="hljs-string">'ejs'</span>, <span class="hljs-string">'path/to/my/404template.ejs'</span>)</pre><pre class='overflow-auto'>app.get(<span class="hljs-string">'templater'</span>).template(<span class="hljs-string">'500'</span>, <span class="hljs-string">'ejs'</span>, <span class="hljs-string">'path/to/my/500template.ejs'</span>)</pre>
 </section>
 </div>
         </div>
