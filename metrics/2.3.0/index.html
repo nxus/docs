@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>@nxus/metrics 2.3.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>@nxus/metrics</h3>
+          <div class='mb1'><code>2.3.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#Metrics'
+                class='block bold'>
+                Metrics
+              </a>
+                <a
+                  href='#Metrics.capture'
+                  class='regular block'>
+                  #capture
+                </a>
+                <a
+                  href='#Metrics.getMetrics'
+                  class='regular block'>
+                  #getMetrics
+                </a>
+                <a
+                  href='#Metrics.metric'
+                  class='regular block'>
+                  #metric
+                </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='Metrics' class='mt0'>
+    Metrics<span class='gray'></span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>The Metrics module captures arbitrary data about events (a metric) for storage and querying later.</p>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Metrics.capture'>
+          <a href='#Metrics.capture'>
+            <code>
+              #capture<span class='gray'>(model, [events])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Captures metric data about a specified @nxus/storage Model</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Metrics.capture' class='mt0'>
+    capture<span class='gray'>(model, [events])</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Captures metric data about a specified @nxus/storage Model</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>model</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the model to capture. Must be a Storage/BaseModel class.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+=
+(default ['create', 'update', 'destroy'])
+ <strong>events</strong>
+          :
+          <div class='force-inline'>
+            <p>Optional. An array of model events to capture. Defaults to 'create', 'update', 'destroy'.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Metrics.getMetrics'>
+          <a href='#Metrics.getMetrics'>
+            <code>
+              #getMetrics<span class='gray'>(name, [query])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns metrics for the specified name, optionally using the query to filter returned values.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Metrics.getMetrics' class='mt0'>
+    getMetrics<span class='gray'>(name, [query])</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Returns metrics for the specified name, optionally using the query to filter returned values.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>the name of the metrics to return</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+=
+(default {})
+ <strong>query</strong>
+          :
+          <div class='force-inline'>
+            <p>Optional.  The Waterline compatible query object to filter results by.</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A promise for the result set.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Metrics.metric'>
+          <a href='#Metrics.metric'>
+            <code>
+              #metric<span class='gray'>(name, data)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Record a new metric value</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Metrics.metric' class='mt0'>
+    metric<span class='gray'>(name, data)</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Record a new metric value</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The metric name to use.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+ <strong>data</strong>
+          :
+          <div class='force-inline'>
+            <p>An arbitrary object to record as as the data payload for the metric.</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A promise that is fulfilled when the metric has been saved successfully.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

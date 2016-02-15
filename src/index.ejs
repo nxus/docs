@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title><%= title %></title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'><%= title %></h3>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+          <% for (module of modules) { %>
+            <h3><%=module.name %></h3>
+            <ul>
+              <% for (version of module.versions) { %>
+                <li><a href="<%= module.module %>/<%=version%>/"><%=version%></a></li>
+              <% } %>
+            </ul>
+            <p> <%=module.package.description %></p>
+            <p> Homepage: <a href="<%= module.package.homepage %>"><%=module.package.homepage %></a></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

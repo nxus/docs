@@ -1,0 +1,369 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>@nxus/pipeliner 2.3.1 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>@nxus/pipeliner</h3>
+          <div class='mb1'><code>2.3.1</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#Pipeliner'
+                class='block bold'>
+                Pipeliner
+              </a>
+                <a
+                  href='#Pipeliner.getPipeline'
+                  class='regular block'>
+                  #getPipeline
+                </a>
+                <a
+                  href='#Pipeliner.getPipelines'
+                  class='regular block'>
+                  #getPipelines
+                </a>
+                <a
+                  href='#Pipeliner.pipeline'
+                  class='regular block'>
+                  #pipeline
+                </a>
+                <a
+                  href='#Pipeliner.run'
+                  class='regular block'>
+                  #run
+                </a>
+                <a
+                  href='#Pipeliner.stages'
+                  class='regular block'>
+                  #stages
+                </a>
+                <a
+                  href='#Pipeliner.task'
+                  class='regular block'>
+                  #task
+                </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='Pipeliner' class='mt0'>
+    Pipeliner<span class='gray'></span>
+  </h2>
+  
+  
+  
+  
+  
+  
+    <h4>Examples</h4>
+<pre class='overflow-auto'><span class="hljs-keyword">let</span> myTask = (data) =&gt; {
+  data.word.toUpperCase()
+}
+<span class="hljs-keyword">let</span> data = {word: <span class="hljs-string">'hello'</span>}
+
+<span class="hljs-keyword">let</span> pipeliner = app.get(<span class="hljs-string">'pipeliner'</span>)
+
+pipeliner.pipeline(<span class="hljs-string">'capitalize'</span>)
+pipeliner.task(<span class="hljs-string">'capitalize'</span>, <span class="hljs-string">'process'</span>, myTask)
+pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data'</span>) <span class="hljs-comment">// {word: 'HELLO'}</span>
+})</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Pipeliner.getPipeline'>
+          <a href='#Pipeliner.getPipeline'>
+            <code>
+              #getPipeline<span class='gray'>(pipeline)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns a specific pipeline</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Pipeliner.getPipeline' class='mt0'>
+    getPipeline<span class='gray'>(pipeline)</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Returns a specific pipeline</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>pipeline</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of a pipeline to return.</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>The pipeline object.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Pipeliner.getPipelines'>
+          <a href='#Pipeliner.getPipelines'>
+            <code>
+              #getPipelines<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns all pipelines which have been defined</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Pipeliner.getPipelines' class='mt0'>
+    getPipelines<span class='gray'></span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Returns all pipelines which have been defined</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A hash of the pipelines.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Pipeliner.pipeline'>
+          <a href='#Pipeliner.pipeline'>
+            <code>
+              #pipeline<span class='gray'>(pipeline)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Create a new pipeline.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Pipeliner.pipeline' class='mt0'>
+    pipeline<span class='gray'>(pipeline)</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Create a new pipeline.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>pipeline</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the pipeline to create</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Pipeliner.run'>
+          <a href='#Pipeliner.run'>
+            <code>
+              #run<span class='gray'>(pipeline, args)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Runs the specified pipeline, passing the arguments to each task.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Pipeliner.run' class='mt0'>
+    run<span class='gray'>(pipeline, args)</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Runs the specified pipeline, passing the arguments to each task.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>pipeline</strong>
+          :
+          <div class='force-inline'>
+            <p>the pipeline to run</p>
+
+          </div>
+        </li>
+        <li>...
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>Arguments to pass to the pipeline tasks</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A promise that is executed when the pipeline completes.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Pipeliner.stages'>
+          <a href='#Pipeliner.stages'>
+            <code>
+              #stages<span class='gray'>(stages, pipeline)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Define stages for a pipeline</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Pipeliner.stages' class='mt0'>
+    stages<span class='gray'>(stages, pipeline)</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Define stages for a pipeline</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>
+ <strong>stages</strong>
+          :
+          <div class='force-inline'>
+            <p>An array of strings, each string being the name of a stage. Stages are executed in the order in the array.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>pipeline</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the pipeline to use the stages.</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>[
+type
+]
+</code>
+      :
+      <div class='force-inline'>
+        <p>[description]</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Pipeliner.task'>
+          <a href='#Pipeliner.task'>
+            <code>
+              #task<span class='gray'>(pipeline, stage, job)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Defintes a task for a pipeline and a stage.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Pipeliner.task' class='mt0'>
+    task<span class='gray'>(pipeline, stage, job)</span>
+  </h2>
+  
+  
+  
+  
+  
+  <p>Defintes a task for a pipeline and a stage.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>pipeline</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the pipeline</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>stage</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the string</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+ <strong>job</strong>
+          :
+          <div class='force-inline'>
+            <p>A function which accepts data</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
