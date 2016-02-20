@@ -1,0 +1,440 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>@nxus/base-ui 2.3.5 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>@nxus/base-ui</h3>
+          <div class='mb1'><code>2.3.5</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#ViewBase'
+                class='block bold'>
+                ViewBase
+              </a>
+                <a
+                  href='#ViewBase.base'
+                  class='regular block'>
+                  #base
+                </a>
+                <a
+                  href='#ViewBase.displayName'
+                  class='regular block'>
+                  #displayName
+                </a>
+                <a
+                  href='#ViewBase.ignore'
+                  class='regular block'>
+                  #ignore
+                </a>
+                <a
+                  href='#ViewBase.model'
+                  class='regular block'>
+                  #model
+                </a>
+                <a
+                  href='#ViewBase.model_populate'
+                  class='regular block'>
+                  #model_populate
+                </a>
+                <a
+                  href='#ViewBase.templateDir'
+                  class='regular block'>
+                  #templateDir
+                </a>
+                <a
+                  href='#ViewBase.templatePrefix'
+                  class='regular block'>
+                  #templatePrefix
+                </a>
+                <a
+                  href='#ViewBase.titleField'
+                  class='regular block'>
+                  #titleField
+                </a>
+              <a
+                href='#viewModel'
+                class='block bold'>
+                viewModel
+              </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='ViewBase' class='mt0'>
+    ViewBase<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L24-L174'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The ViewBase class provides a helper module for defining Base-UI based pages.</p>
+
+    <h4>Examples</h4>
+<pre class='overflow-auto'><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ViewBase</span> </span>{
+ base () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'/todo'</span>
+  }
+ model () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'todo'</span>
+  }
+ templateDir () {
+    <span class="hljs-keyword">return</span> __dirname+<span class="hljs-string">'/views'</span>
+  }
+}</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='ViewBase.base'>
+          <a href='#ViewBase.base'>
+            <code>
+              #base<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The base url for the UI pages.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.base' class='mt0'>
+    base<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L63-L65'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The base url for the UI pages.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to <code>/<models></code></p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.displayName'>
+          <a href='#ViewBase.displayName'>
+            <code>
+              #displayName<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The display name for the model to use in the  UI</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.displayName' class='mt0'>
+    displayName<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L87-L89'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The display name for the model to use in the  UI</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to <code><model></code></p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.ignore'>
+          <a href='#ViewBase.ignore'>
+            <code>
+              #ignore<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Fields in the model to ignore in the UI</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.ignore' class='mt0'>
+    ignore<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L47-L49'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Fields in the model to ignore in the UI</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.model'>
+          <a href='#ViewBase.model'>
+            <code>
+              #model<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Define the primary model for this view module</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.model' class='mt0'>
+    model<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L95-L98'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Define the primary model for this view module</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.model_populate'>
+          <a href='#ViewBase.model_populate'>
+            <code>
+              #model_populate<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Define any populated relationships for the model</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.model_populate' class='mt0'>
+    model_populate<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L104-L106'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Define any populated relationships for the model</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.templateDir'>
+          <a href='#ViewBase.templateDir'>
+            <code>
+              #templateDir<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The directory to find the templates.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.templateDir' class='mt0'>
+    templateDir<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L71-L73'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The directory to find the templates.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to null.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.templatePrefix'>
+          <a href='#ViewBase.templatePrefix'>
+            <code>
+              #templatePrefix<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The prefix to use for the templates. Defaults to <code>view-<model>-</code></p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.templatePrefix' class='mt0'>
+    templatePrefix<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L79-L81'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The prefix to use for the templates. Defaults to <code>view-<model>-</code></p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ViewBase.titleField'>
+          <a href='#ViewBase.titleField'>
+            <code>
+              #titleField<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Fields in the model to use for the instance title</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ViewBase.titleField' class='mt0'>
+    titleField<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L55-L57'><code>src/viewBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Fields in the model to use for the instance title</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='viewModel' class='mt0'>
+    viewModel<span class='gray'>(model, opts)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/index.js#L50-L67'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Creates a List and Detail UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of ViewBase</li>
+<li>a class which is a subclass of ViewBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/<base></code>: list page </li>
+<li><code>/<base>/:id</code>: detail page</li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>view-<model>-list</code>: the list page view</li>
+<li><code>view-<model>-detail</code>: the detail page view</li>
+</ul>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the paths are created. For example, '/users'.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>view-<model></code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>['id', 'createdAt', 'updatedAt']</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the UI. Defaults to <code>model</code>.</li>
+<li><code>instanceTitle</code>: attribute of instance to use for title and link</li>
+</ul>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+|
+class
+)
+ <strong>model</strong>
+          :
+          <div class='force-inline'>
+            <p>Can either be a model name, a path to a file or an ViewBase Subclass.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+ <strong>opts</strong>
+          :
+          <div class='force-inline'>
+            <p>An options hash, wich is used to configure the UI.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
