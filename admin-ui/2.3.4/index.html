@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#AdminBase'
                 class='block bold'>
                 AdminBase
@@ -92,10 +97,187 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/index.js#L241-L241'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/admin-ui"><img src="https://travis-ci.org/nxus/admin-ui.svg?branch=master" alt="Build Status"></a></p>
+<p>An Admin UI Framework for Nxus Apps.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/admin-ui --save
+</code></pre>
+<h2>Module Configuration</h2>
+<ul>
+<li>basePath: the base path, defaults to /admin</li>
+<li>adminTemplate: the admin template to use, defaults to 'admin'</li>
+</ul>
+<h2>Usage</h2>
+<p>The Admin Interface is made up of pages and routes. Pages are rendered content displayed in the Admin Interface. Routes are callbacks that don't render anything, but perform application logic (like a save handler).</p>
+<h3>Admin Pages</h3>
+<p>You can define pages in three ways using the <code>adminPage</code> provider.</p>
+<h4>A partial</h4>
+<p>If you supply a valid filepath, the Admin interface will use that partial to render the page content for display.</p>
+<pre><code>admin.adminPage('Page Title', '/partial', {iconClass: 'fa fa-file'}, __dirname+"/views/page.ejs")
+</code></pre>
+<h4>A string</h4>
+<p>If you provide a string, the string will be passed to the admin page template as is.</p>
+<pre><code>admin.adminPage('Page Title', '/content', {iconClass: 'fa fa-file'}, (req, res) => {
+  return "this is handler content"
+})
+</code></pre>
+<h4>A callback</h4>
+<p>If you provide a callback, the return should either a string or a Promise for a string.</p>
+<pre><code>admin.adminPage('Page Title', '/function', (req, res) => {
+  return Promise.resolve('Some text');
+})
+</code></pre>
+<h4>Page Configuration Options</h4>
+<ul>
+<li>class: string</li>
+<li>iconClass: string</li>
+<li>nav: boolean</li>
+<li>order: integer</li>
+</ul>
+<h3>Admin Routes</h3>
+<h4>A handler function</h4>
+<pre><code>admin.adminRoute('get', '/redirect', (req, res) => {
+  res.redirect('/admin')
+})
+</code></pre>
+<h2>API</h2>
+<h3>AdminBase</h3>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L30-L238" title="Source code on GitHub">src/adminBase.js:30-238</a></p>
+<p>The AdminBase class provides a set of helper CRUD classes for defining Admin-UI based admin pages.</p>
+<p><strong>Examples</strong></p>
+<pre><code class="language-javascript">class TodoAdmin extends AdminBase {
+ base () {
+    return '/todo'
+  }
+ model () {
+    return 'todo'
+  }
+ templateDir () {
+    return __dirname+'/views'
+  }
+}
+</code></pre>
+<h4>base</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L64-L66" title="Source code on GitHub">src/adminBase.js:64-66</a></p>
+<p>The base url for the Admin CRUD UI.</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Defaults to <code>/<models></code></p>
+<h4>displayName</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L96-L98" title="Source code on GitHub">src/adminBase.js:96-98</a></p>
+<p>The display name for the model to use in the Admin UI</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Defaults to <code><model></code></p>
+<h4>iconClass</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L72-L74" title="Source code on GitHub">src/adminBase.js:72-74</a></p>
+<p>The class to use for the nav icon.</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Defaults to <code>fa fa-file</code></p>
+<h4>ignore</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L56-L58" title="Source code on GitHub">src/adminBase.js:56-58</a></p>
+<p>Fields in the model to ignore in the UI</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></p>
+<h4>model</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L104-L107" title="Source code on GitHub">src/adminBase.js:104-107</a></p>
+<p>Define the primary model for this admin module</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></p>
+<h4>model_populate</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L113-L115" title="Source code on GitHub">src/adminBase.js:113-115</a></p>
+<p>Define any populated relationships for the model</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></strong></p>
+<h4>templateDir</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L80-L82" title="Source code on GitHub">src/adminBase.js:80-82</a></p>
+<p>The directory to find the templates.</p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong> Defaults to null.</p>
+<h4>templatePrefix</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/adminBase.js#L88-L90" title="Source code on GitHub">src/adminBase.js:88-90</a></p>
+<p>The prefix to use for the templates. Defaults to <code>admin-<model>-</code></p>
+<p>Returns <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></strong></p>
+<h3>AdminUI</h3>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/index.js#L33-L200" title="Source code on GitHub">src/index.js:33-200</a></p>
+<p>The AdminUI module provides default templates and nav for an administrative section of your site.
+If the @nxus/users module is installed, the admin section will require admin-level authentication.</p>
+<p><strong>Examples</strong></p>
+<pre><code class="language-javascript">Configuration (defaults):
+ {adminUI: {
+   basePath: '/admin',    # urls registered for admin will start with this path
+   adminTemplate: 'admin' # name of the main admin template to use
+ }}
+</code></pre>
+<h4>adminModel</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/index.js#L154-L170" title="Source code on GitHub">src/index.js:154-170</a></p>
+<p>Creates a CRUD UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of AdminBase</li>
+<li>a class which is a subclass of AdminBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/admin/<base></code>: list page </li>
+<li><code>/admin/<base>/create</code>: create new instance </li>
+<li><code>/admin/<base>/edit/:id</code>: edit existing instance </li>
+<li><code>/admin/<base>/destroy/:id</code>: destroy existing instance </li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>admin-<model>-form</code>: the create/edit form</li>
+<li><code>admin-<model>-list</code>: the list page view</li>
+</ul>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the CRUD paths are created. For example, '/users'.</li>
+<li><code>iconClass</code>: the icon class to use in the Nav. Used in <i> tag.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>admin-<model></code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>['id', 'createdAt', 'updatedAt']</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the Admin UI. Defaults to <code>model</code>.</li>
+</ul>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><code>model</code> <strong>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>|class)</strong> Can either be a model name, a path to a file or an AdminBase Subclass.</li>
+<li><code>opts</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>=(default {})</strong> An options hash, wich is used to configure the CRUD UI.</li>
+</ul>
+<h4>adminPage</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/index.js#L95-L106" title="Source code on GitHub">src/index.js:95-106</a></p>
+<p>Register a page for inclusion in the admin site and navigation
+Page template will receive (and can set in opts):</p>
+<ul>
+<li>class: string</li>
+<li>iconClass: string</li>
+<li>nav: boolean</li>
+<li>order: integer</li>
+</ul>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><code>title</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></strong> The title of the page, and navigation link</li>
+<li><code>path</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></strong> The url path for the page</li>
+<li><code>opts</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></strong> Additional options for the rendering of this page</li>
+<li><code>handler</code> <strong>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>|template-partial|<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</strong> for rendering this page</li>
+</ul>
+<h4>adminRoute</h4>
+<p><a href="https://github.com/nxus/admin-ui/blob/78544627466ff7646d67e38bf687ab53422fa971/src/index.js#L114-L125" title="Source code on GitHub">src/index.js:114-125</a></p>
+<p>Register a raw route for inclusion in the admin site</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><code>method</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></strong> The HTTP method to handle</li>
+<li><code>path</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></strong> The url path for the page</li>
+<li><code>handler</code> <strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a></strong> for rendering this page</li>
+</ul>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='AdminBase' class='mt0'>
     AdminBase<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L30-L238'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L30-L238'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -131,7 +313,7 @@
   <h2 id='AdminBase.base' class='mt0'>
     base<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L64-L66'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L64-L66'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -165,7 +347,7 @@
   <h2 id='AdminBase.displayName' class='mt0'>
     displayName<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L96-L98'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L96-L98'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -199,7 +381,7 @@
   <h2 id='AdminBase.iconClass' class='mt0'>
     iconClass<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L72-L74'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L72-L74'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -233,7 +415,7 @@
   <h2 id='AdminBase.ignore' class='mt0'>
     ignore<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L56-L58'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L56-L58'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -266,7 +448,7 @@
   <h2 id='AdminBase.model' class='mt0'>
     model<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L104-L107'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L104-L107'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -299,7 +481,7 @@
   <h2 id='AdminBase.model_populate' class='mt0'>
     model_populate<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L113-L115'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L113-L115'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -332,7 +514,7 @@
   <h2 id='AdminBase.templateDir' class='mt0'>
     templateDir<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L80-L82'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L80-L82'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -366,7 +548,7 @@
   <h2 id='AdminBase.templatePrefix' class='mt0'>
     templatePrefix<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/adminBase.js#L88-L90'><code>src/adminBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/adminBase.js#L88-L90'><code>src/adminBase.js</code></a></p>
   
   
   
@@ -389,7 +571,7 @@
   <h2 id='AdminUI' class='mt0'>
     AdminUI<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/index.js#L33-L200'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/index.js#L267-L434'><code>src/index.js</code></a></p>
   
   
   
@@ -446,7 +628,7 @@ If the @nxus/users module is installed, the admin section will require admin-lev
   <h2 id='AdminUI.adminModel' class='mt0'>
     adminModel<span class='gray'>(model, [opts])</span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/index.js#L154-L170'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/index.js#L388-L404'><code>src/index.js</code></a></p>
   
   
   
@@ -530,7 +712,7 @@ Page template will receive (and can set in opts):</p>
   <h2 id='AdminUI.adminPage' class='mt0'>
     adminPage<span class='gray'>(title, path, opts, handler)</span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/index.js#L95-L106'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/index.js#L329-L340'><code>src/index.js</code></a></p>
   
   
   
@@ -604,7 +786,7 @@ template-partial
   <h2 id='AdminUI.adminRoute' class='mt0'>
     adminRoute<span class='gray'>(method, path, handler)</span>
   </h2>
-    <p><a href='https://github.com/nxus/admin-ui/blob/ef65a7ae31ee839ad04df7978fae11fdf2173f5c/src/index.js#L114-L125'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/admin-ui/blob/36d6429b1a3a0ad66e25437fba7978769be49a7c/src/index.js#L348-L359'><code>src/index.js</code></a></p>
   
   
   
