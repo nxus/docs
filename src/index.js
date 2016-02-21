@@ -29,7 +29,7 @@ Promise.map(modules, function(m) {
     return semver.gt(a, b) ? -1 : 1
   })
   fs.symlinkSync(versions[0], mod_doc_dir+"/latest", 'dir')
-  var versions = fs.readdirSync(mod_doc_dir).reverse()
+  versions.unshift('latest')
   return {
     module: m,
     name: name,
