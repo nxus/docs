@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#Users'
                 class='block bold'>
                 Users
@@ -32,10 +37,79 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/users/blob/f4e21ab9ee3731c032bef299b8908e5df858a058/src/index.js#L85-L85'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/users"><img src="https://travis-ci.org/nxus/users.svg?branch=master" alt="Build Status"></a></p>
+<p>User management module for Nxus apps.  Users provides a complete framework for managing users, authenticating routes and sessions.</p>
+<h2>Install</h2>
+<pre><code>> npm install @nxus/users --save
+</code></pre>
+<h2>Quickstart</h2>
+<p>Once Users is installed in your app, you are ready to go.  It includes the following components:</p>
+<ul>
+<li>user/team models</li>
+<li>login/logout routes</li>
+<li>authentication/session middleware</li>
+</ul>
+<h2>Models</h2>
+<p>Uses defines a set of common models you can use to build your application, using the @nxus/storage module (which uses Waterline to provide common ORM functionality).</p>
+<h3>User</h3>
+<p>Accessing the user model:</p>
+<pre><code>app.get('storage').getModel('user').then((User) => {
+  ...
+});
+</code></pre>
+<p><strong>Fields</strong></p>
+<ul>
+<li>email: string</li>
+<li>password: string</li>
+<li>nameFirst: string</li>
+<li>nameLast: string</li>
+<li>position: string</li>
+<li>enabled: boolean</li>
+<li>admin: boolean</li>
+<li>lastLogin: datetime</li>
+<li>metadata: JSON</li>
+<li>team: relation to Team model</li>
+</ul>
+<p><strong>Convenience Methods</strong></p>
+<ul>
+<li>name(): first + last name</li>
+<li>isAdmin(): boolean if user is an Admin</li>
+<li>validPassword(pass): returns true if the password is valid</li>
+</ul>
+<h2>Templates</h2>
+<p>Users defines a set of common templates you can use in your app</p>
+<h3>login</h3>
+<p>A login form preconfigured to work with the login/logout routes. Markup supports basic Bootstrap 3 CSS.</p>
+<pre><code>app.get('templater').render('users-login').then((content) => {
+  ...
+}
+</code></pre>
+<h2>Routes</h2>
+<p>The Users module defines some convience routes for handling basic user functionality.</p>
+<h3>/login</h3>
+<p><strong>Params</strong>
+Expects to recieve a POSTed form with the values <code>username</code>, <code>password</code> and <code>redirect</code>. <code>redirect</code> should be a url to redirect the user to on success.  On login failure, the user will be redirected back to /login.</p>
+<h3>/logout</h3>
+<p><strong>Params</strong>
+Expects to recieve a GET request with the param <code>redirect</code>, which is a url where the user will be redirected on successful logout.</p>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='Users' class='mt0'>
     Users<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/users/blob/a4bf0ac325220dbcf3828b43cb6e47020b640812/src/index.js#L26-L81'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/users/blob/f4e21ab9ee3731c032bef299b8908e5df858a058/src/index.js#L103-L158'><code>src/index.js</code></a></p>
   
   
   

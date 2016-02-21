@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#Metrics'
                 class='block bold'>
                 Metrics
@@ -47,10 +52,49 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/metrics/blob/aa151c391bac3df6aa48b0f68efe066a53110e9e/src/index.js#L54-L54'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/metrics"><img src="https://travis-ci.org/nxus/metrics.svg?branch=master" alt="Build Status"></a></p>
+<p>A module for capturing and querying arbitrary events, called metrics.</p>
+<p>A metric has a <code>name</code>, like 'pageViews', and arbitrary <code>data</code>, which can be any object.  For example, your 'pageViews' metric might have an entry like:</p>
+<pre><code class="language-javascript">{
+  name: 'pageViews',
+  data: {
+    browser: 'Safari',
+    location: [...]
+    ...
+  }
+}
+</code></pre>
+<h2>Installation</h2>
+<pre><code class="language-bash">> npm install @nxus/metrics --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Saving a metric value</h3>
+<p>Metrics provides a method for recording new metrics.</p>
+<pre><code class="language-javascript">app.get('metrics').metric('someName', {some: 'data'});
+</code></pre>
+<h3>Capturing metrics for models</h3>
+<p>You can also have Metrics capture all events from a model and save new values accordingly.</p>
+<pre><code class="language-javascript">app.get('metrics').capture('myModel')
+</code></pre>
+<p>Now, whenenver an instance of the model is created, updated or destroyed, there will be a corresponding metric captured.  For example, 'myModelCreated', where the data is the latest instance of the model.</p>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='Metrics' class='mt0'>
     Metrics<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/metrics/blob/1adb865afc525cbc5d7373539fa278b14a95df47/src/index.js#L14-L71'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/metrics/blob/aa151c391bac3df6aa48b0f68efe066a53110e9e/src/index.js#L61-L118'><code>src/index.js</code></a></p>
   
   
   
@@ -74,7 +118,7 @@
   <h2 id='Metrics.capture' class='mt0'>
     capture<span class='gray'>(model, [events])</span>
   </h2>
-    <p><a href='https://github.com/nxus/metrics/blob/1adb865afc525cbc5d7373539fa278b14a95df47/src/index.js#L31-L38'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/metrics/blob/aa151c391bac3df6aa48b0f68efe066a53110e9e/src/index.js#L78-L85'><code>src/index.js</code></a></p>
   
   
   
@@ -121,7 +165,7 @@
   <h2 id='Metrics.getMetrics' class='mt0'>
     getMetrics<span class='gray'>(name, [query])</span>
   </h2>
-    <p><a href='https://github.com/nxus/metrics/blob/1adb865afc525cbc5d7373539fa278b14a95df47/src/index.js#L59-L64'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/metrics/blob/aa151c391bac3df6aa48b0f68efe066a53110e9e/src/index.js#L106-L111'><code>src/index.js</code></a></p>
   
   
   
@@ -176,7 +220,7 @@
   <h2 id='Metrics.metric' class='mt0'>
     metric<span class='gray'>(name, data)</span>
   </h2>
-    <p><a href='https://github.com/nxus/metrics/blob/1adb865afc525cbc5d7373539fa278b14a95df47/src/index.js#L46-L51'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/metrics/blob/aa151c391bac3df6aa48b0f68efe066a53110e9e/src/index.js#L93-L98'><code>src/index.js</code></a></p>
   
   
   

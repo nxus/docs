@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#Router'
                 class='block bold'>
                 Router
@@ -72,10 +77,51 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L49-L49'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/router"><img src="https://travis-ci.org/nxus/router.svg?branch=master" alt="Build Status"></a></p>
+<p>The Nxus router is an Express compatible web server and router for Nxus applications.</p>
+<h2>Installation</h2>
+<p>In your Nxus application:</p>
+<pre><code>> npm install @nxus/router --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Defining a route</h3>
+<pre><code>app.get('router').route('/', (req, res) => {
+  res.send('Hello World')
+})
+</code></pre>
+<p>Alternatively, you can specify a HTTP method:</p>
+<pre><code>app.get('router').route('GET', '/', (req, res) => {
+  res.send('Hello World')
+})
+</code></pre>
+<h3>Adding Express/connect middleware</h3>
+<pre><code>app.get('router').middleware((req, res) => {
+  res.status(404).send('Nothing to see here');
+})
+</code></pre>
+<h3>Adding static files/directories</h3>
+<pre><code>app.get('router').static("my-prefix", myPath)
+</code></pre>
+<p>For example, <code>myFile.txt</code> in <code>myPath</code> is then available at the url <code>/my-prefix/myFile.txt</code></p>
+<p>Sometimes its good to have a static assets folder where all your assets live. For that reason, you can use the <code>assets</code> gatherer.</p>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='Router' class='mt0'>
     Router<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L21-L178'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L63-L220'><code>src/index.js</code></a></p>
   
   
   
@@ -98,7 +144,7 @@
   <h2 id='Router.constructor' class='mt0'>
     constructor<span class='gray'>(app)</span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L26-L55'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L68-L97'><code>src/index.js</code></a></p>
   
   
   
@@ -133,7 +179,7 @@
   <h2 id='Router.getExpressApp' class='mt0'>
     getExpressApp<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L121-L123'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L163-L165'><code>src/index.js</code></a></p>
   
   
   
@@ -167,7 +213,7 @@
   <h2 id='Router.getRoutes' class='mt0'>
     getRoutes<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L113-L115'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L155-L157'><code>src/index.js</code></a></p>
   
   
   
@@ -201,7 +247,7 @@
   <h2 id='Router.launch' class='mt0'>
     launch<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L94-L97'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L136-L139'><code>src/index.js</code></a></p>
   
   
   
@@ -227,7 +273,7 @@
   <h2 id='Router.setMiddleware' class='mt0'>
     setMiddleware<span class='gray'>(route, handler, method)</span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L130-L132'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L172-L174'><code>src/index.js</code></a></p>
   
   
   
@@ -279,7 +325,7 @@
   <h2 id='Router.setRoute' class='mt0'>
     setRoute<span class='gray'>(method, route, handler)</span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L140-L150'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L182-L192'><code>src/index.js</code></a></p>
   
   
   
@@ -332,7 +378,7 @@
   <h2 id='Router.setStatic' class='mt0'>
     setStatic<span class='gray'>(prefix, path)</span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L157-L160'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L199-L202'><code>src/index.js</code></a></p>
   
   
   
@@ -377,7 +423,7 @@
   <h2 id='Router.stop' class='mt0'>
     stop<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/router/blob/f98ea67063dc2a12eaabbc757ec77d1dbc03952a/src/index.js#L102-L107'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/router/blob/1df4b858220ce64d8dfd46aec613e1103c774f57/src/index.js#L144-L149'><code>src/index.js</code></a></p>
   
   
   

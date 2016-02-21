@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#Pipeliner'
                 class='block bold'>
                 Pipeliner
@@ -62,10 +67,51 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L51-L51'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/pipeliner"><img src="https://travis-ci.org/nxus/pipeliner.svg?branch=master" alt="Build Status"></a></p>
+<p>A framework for creating and running data pipelines.  Data pipelines have stages, which are made of an arbitrary number of tasks.  Stages and tasks are run in serial: once a task completes, the next task in the pipeline is executed.</p>
+<p>Pipelines take a data object as input, and each task operates on the object in some way.</p>
+<p>For an example of the Pipeliner in action, checkout the <a href="https://github.com/seabourne/nxus-static-site">nxus-static-site</a> module.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/pipeliner --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Step 1: Define a pipeline</h3>
+<pre><code>app.get('pipeliner').pipeline('my-pipeline')
+</code></pre>
+<h3>Step 1a: Define stages</h3>
+<p>By default, every pipeline is pre-configured with three stages: 'collect', 'process', 'generate'.  However, you can define your own stages:</p>
+<pre><code>app.get('pipliner').stages('my-pipeline', ['stage1', 'stage2', 'stage3'])
+</code></pre>
+<h3>Step 2: Define tasks</h3>
+<p>A task is a javascript function that accepts any objects passed into the pipeline when it is run.</p>
+<pre><code>let myTask = (word) => {
+  word.toUpperCase();
+}
+
+app.get('pipeliner').task('my-pipeline', 'process', myTask)
+</code></pre>
+<h3>Step 3: Run a pipeline</h3>
+<p>Once all the tasks for a pipeline have been defined, the last step is to run the pipeline.</p>
+<pre><code>app.get('pipeliner').run('my-pipeline', someData)
+</code></pre>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='Pipeliner' class='mt0'>
     Pipeliner<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L31-L118'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L75-L162'><code>src/index.js</code></a></p>
   
   
   
@@ -101,7 +147,7 @@ pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt;
   <h2 id='Pipeliner.getPipeline' class='mt0'>
     getPipeline<span class='gray'>(pipeline)</span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L99-L101'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L143-L145'><code>src/index.js</code></a></p>
   
   
   
@@ -146,7 +192,7 @@ pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt;
   <h2 id='Pipeliner.getPipelines' class='mt0'>
     getPipelines<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L90-L92'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L134-L136'><code>src/index.js</code></a></p>
   
   
   
@@ -180,7 +226,7 @@ pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt;
   <h2 id='Pipeliner.pipeline' class='mt0'>
     pipeline<span class='gray'>(pipeline)</span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L52-L60'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L96-L104'><code>src/index.js</code></a></p>
   
   
   
@@ -217,7 +263,7 @@ pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt;
   <h2 id='Pipeliner.run' class='mt0'>
     run<span class='gray'>(pipeline, args)</span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L109-L117'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L153-L161'><code>src/index.js</code></a></p>
   
   
   
@@ -271,7 +317,7 @@ pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt;
   <h2 id='Pipeliner.stages' class='mt0'>
     stages<span class='gray'>(stages, pipeline)</span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L68-L71'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L112-L115'><code>src/index.js</code></a></p>
   
   
   
@@ -326,7 +372,7 @@ type
   <h2 id='Pipeliner.task' class='mt0'>
     task<span class='gray'>(pipeline, stage, job)</span>
   </h2>
-    <p><a href='https://github.com/nxus/pipeliner/blob/fdc21ddc8d8d70cea5ca9cf3338442bf473fd46e/src/index.js#L79-L84'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/pipeliner/blob/c1ef2c55258ab48614360bdf13d2e171c459f0c6/src/index.js#L123-L128'><code>src/index.js</code></a></p>
   
   
   

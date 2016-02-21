@@ -8,6 +8,7 @@ var module_path = '../modules/'
 var modules = fs.readdirSync(module_path)
 
 Promise.map(modules, function(m) {
+  if(m && m[0] == ".") return
   console.log(m)
   var mod_doc_dir = './'+m
   var mod_package = JSON.parse(fs.readFileSync(module_path+m+'/package.json'))

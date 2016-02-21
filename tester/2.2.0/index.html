@@ -21,12 +21,53 @@
             class='col12 block field'
             type='text' />
           <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
           </div>
         </div>
       </div>
       <div class='fix-margin-3'>
         <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/tester/blob/4741187ea7087d4922beba275007ae6336822421/src/index.js#L40-L40'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/tester"><img src="https://travis-ci.org/nxus/tester.svg?branch=master" alt="Build Status"></a></p>
+<p>A test management framework for Nxus applications.  The tester module provides some helper functions for funtionally testing a Nxus app.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/tester --save-dev
+</code></pre>
+<h2>Configuration</h2>
+<p>In order to spin up the test server, add the following lines to your package.json <code>scripts</code>.</p>
+<pre><code>"pretest": "./node_modules/forever/bin/forever stopall && NODE_ENV=test PORT=3001 ./node_modules/forever/bin/forever start index.js && sleep 15"
 
+"posttest": "./node_modules/forever/bin/forever stop index.js"
+</code></pre>
+<h2>Usage</h2>
+<h3>Running tests</h3>
+<pre><code>> npm test
+</code></pre>
+<h3>Requests</h3>
+<pre><code>import {request} from '@nxus/tester'
+
+request.get({url: '/'}, (err, res, body) => {
+  res.statusCode.should.equal(200)
+})
+</code></pre>
+<h1>API</h1>
+<hr>
+
+</section>
+</div>
         </div>
       </div>
     </div>

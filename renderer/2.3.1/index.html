@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#Renderer'
                 class='block bold'>
                 Renderer
@@ -47,10 +52,43 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/renderer/blob/180192a6ca187e8e26a166f63199a2c09548000a/src/Renderer.js#L40-L40'><code>src/Renderer.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/renderer"><img src="https://travis-ci.org/nxus/renderer.svg?branch=master" alt="Build Status"></a></p>
+<p>A rendering framework for Nxus applications.</p>
+<h2>Installation</h2>
+<p>In your Nxus application:</p>
+<pre><code>> npm install @nxus/renderer --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Defining a renderer</h3>
+<pre><code>app.get('renderer').renderer(type, handler);
+</code></pre>
+<p>Where <code>type</code> is usually the filename extension and <code>handler</code> returns the rendered text when called with contents to render and an optional <code>opts</code> object.</p>
+<h3>Rendering a string</h3>
+<pre><code>app.get('renderer').render(type, text).then((renderedText) => {});
+</code></pre>
+<p>You can pass an optional arugment <code>opts</code> for options to pass to the renderer.</p>
+<h3>Rendering a file</h3>
+<pre><code>app.get('renderer').renderFile(type, filename).then((renderedText) => {});
+</code></pre>
+<p>You can pass an optional arugment <code>opts</code> for options to pass to the renderer.</p>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='Renderer' class='mt0'>
     Renderer<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/renderer/blob/013630a9ed9a4644f614fd81b790c000071404d4/src/Renderer.js#L18-L68'><code>src/Renderer.js</code></a></p>
+    <p><a href='https://github.com/nxus/renderer/blob/180192a6ca187e8e26a166f63199a2c09548000a/src/Renderer.js#L51-L101'><code>src/Renderer.js</code></a></p>
   
   
   
@@ -74,7 +112,7 @@
   <h2 id='Renderer.render' class='mt0'>
     render<span class='gray'>(type, content, opts)</span>
   </h2>
-    <p><a href='https://github.com/nxus/renderer/blob/013630a9ed9a4644f614fd81b790c000071404d4/src/Renderer.js#L46-L49'><code>src/Renderer.js</code></a></p>
+    <p><a href='https://github.com/nxus/renderer/blob/180192a6ca187e8e26a166f63199a2c09548000a/src/Renderer.js#L79-L82'><code>src/Renderer.js</code></a></p>
   
   
   
@@ -135,7 +173,7 @@
   <h2 id='Renderer.renderer' class='mt0'>
     renderer<span class='gray'>(type, handler)</span>
   </h2>
-    <p><a href='https://github.com/nxus/renderer/blob/013630a9ed9a4644f614fd81b790c000071404d4/src/Renderer.js#L34-L37'><code>src/Renderer.js</code></a></p>
+    <p><a href='https://github.com/nxus/renderer/blob/180192a6ca187e8e26a166f63199a2c09548000a/src/Renderer.js#L67-L70'><code>src/Renderer.js</code></a></p>
   
   
   
@@ -180,7 +218,7 @@
   <h2 id='Renderer.renderFile' class='mt0'>
     renderFile<span class='gray'>(filename, opts)</span>
   </h2>
-    <p><a href='https://github.com/nxus/renderer/blob/013630a9ed9a4644f614fd81b790c000071404d4/src/Renderer.js#L57-L66'><code>src/Renderer.js</code></a></p>
+    <p><a href='https://github.com/nxus/renderer/blob/180192a6ca187e8e26a166f63199a2c09548000a/src/Renderer.js#L90-L99'><code>src/Renderer.js</code></a></p>
   
   
   

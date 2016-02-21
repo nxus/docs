@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
                 href='#ViewBase'
                 class='block bold'>
                 ViewBase
@@ -77,10 +82,64 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/index.js#L62-L62'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/base-ui"><img src="https://travis-ci.org/nxus/base-ui.svg?branch=master" alt="Build Status"></a></p>
+<p>Base UI pages including 404 and error page handlers.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/base-ui --save
+</code></pre>
+<h2>Usage</h2>
+<p>The module registers two handlers:</p>
+<ol>
+<li>404: If no other handler responds the route, the module will render the <code>404</code> template and return the rendered content.</li>
+<li><code>/error</code>: On a 50x error, the router will redirecto to <code>/error</code> and the module will render the <code>500</code> template and return the rendered content.</li>
+</ol>
+<h2>Model View helpers</h2>
+<p>The module provides a helper for generating list/detail views from a model:</p>
+<pre><code>app.get('base-ui').modelView('user', {base: '/users', titleField: 'email'})
+</code></pre>
+<p>You may pass in an options object, as in this example, or subclass of ViewBase, or a string path to a subclass of ViewBase.</p>
+<pre><code>import {ViewBase} from '@nxus/base-ui'
+
+class UserView extends ViewBase {
+  model() {
+    return 'user'
+  }
+  base() {
+    return '/users'
+  }
+  titleField() {
+    return 'email
+  }
+}
+
+app.get('base-ui').modelView(UserView)
+</code></pre>
+<h2>Customizing</h2>
+<p>If you want to provide your own 404 or 500 page, define the relevant new template. Base-ui will use these to handle the routes above.</p>
+<h3>404 Page Template</h3>
+<pre><code>app.get('templater').template('404', 'ejs', 'path/to/my/404template.ejs')
+</code></pre>
+<h3>500 Page Template</h3>
+<pre><code>app.get('templater').template('500', 'ejs', 'path/to/my/500template.ejs')
+</code></pre>
+<h2>API</h2>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='ViewBase' class='mt0'>
     ViewBase<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L24-L174'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L24-L174'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -116,7 +175,7 @@
   <h2 id='ViewBase.base' class='mt0'>
     base<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L63-L65'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L63-L65'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -150,7 +209,7 @@
   <h2 id='ViewBase.displayName' class='mt0'>
     displayName<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L87-L89'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L87-L89'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -184,7 +243,7 @@
   <h2 id='ViewBase.ignore' class='mt0'>
     ignore<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L47-L49'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L47-L49'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -217,7 +276,7 @@
   <h2 id='ViewBase.model' class='mt0'>
     model<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L95-L98'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L95-L98'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -250,7 +309,7 @@
   <h2 id='ViewBase.model_populate' class='mt0'>
     model_populate<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L104-L106'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L104-L106'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -283,7 +342,7 @@
   <h2 id='ViewBase.templateDir' class='mt0'>
     templateDir<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L71-L73'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L71-L73'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -317,7 +376,7 @@
   <h2 id='ViewBase.templatePrefix' class='mt0'>
     templatePrefix<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L79-L81'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L79-L81'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -350,7 +409,7 @@
   <h2 id='ViewBase.titleField' class='mt0'>
     titleField<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/viewBase.js#L55-L57'><code>src/viewBase.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/viewBase.js#L55-L57'><code>src/viewBase.js</code></a></p>
   
   
   
@@ -373,7 +432,7 @@
   <h2 id='viewModel' class='mt0'>
     viewModel<span class='gray'>(model, opts)</span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/28cac4202a664912f622d85a185baf700f5021aa/src/index.js#L50-L67'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/index.js#L105-L122'><code>src/index.js</code></a></p>
   
   
   

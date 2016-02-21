@@ -21,12 +21,78 @@
             class='col12 block field'
             type='text' />
           <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#RestAPI'
+                class='block bold'>
+                RestAPI
+              </a>
           </div>
         </div>
       </div>
       <div class='fix-margin-3'>
         <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/rest-api/blob/6db260e46d097a61277b8f91c652beebe766fca3/src/index.js#L39-L39'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/rest-api"><img src="https://travis-ci.org/nxus/rest-api.svg?branch=master" alt="Build Status"></a></p>
+<p>Exposes Nxus Storage models as a REST API.</p>
+<h2>Installation</h2>
+<p>In your Nxus application:</p>
+<pre><code>> npm install @nxus/rest-api --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Configuration</h3>
+<p>In package.json:</p>
+<pre><code> "config": {
+   "restapi": {
+     "url_path": "/api"
+    }
+ }
+ 
+</code></pre>
+<h3>Routes</h3>
+<pre><code>GET /api/:model
+POST /api/:model
+GET /api/:model/:id
+PUT /api/:model/:id
+DELETE /api/:model/:id
+</code></pre>
+<h1>API</h1>
+<hr>
 
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='RestAPI' class='mt0'>
+    RestAPI<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/rest-api/blob/6db260e46d097a61277b8f91c652beebe766fca3/src/index.js#L48-L130'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Exposes a REST API for Nxus models
+e.g. GET /api/todo, POST /api/todo, GET /api/todo/1, etc</p>
+
+    <h4>Examples</h4>
+<pre class='overflow-auto'>Configuration (defaults):
+{restapi: {
+  url_path: <span class="hljs-string">'/api'</span>
+}}</pre>
+</section>
+</div>
         </div>
       </div>
     </div>

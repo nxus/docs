@@ -22,6 +22,11 @@
             type='text' />
           <div id='toc'>
               <a
+                href='#_'
+                class='block bold'>
+                _
+              </a>
+              <a
                 href='#Application'
                 class='block bold'>
                 Application
@@ -212,6 +217,72 @@
       <div class='fix-margin-3'>
         <div class='px2'>
 <div class='py1'><section class='py2 clearfix'>
+  <h2 id='_' class='mt0'>
+    _<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L84-L84'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/core"><img src="https://travis-ci.org/nxus/core.svg?branch=master" alt="Build Status"></a></p>
+<p>The Nxus Core package includes the basic Application framework for building a Nxus app.</p>
+<h2>Introduction</h2>
+<p>You'll probably find the following resources useful background and help in building Nxus applcations.</p>
+<ul>
+<li><a href="">Getting Started</a> (TODO)</li>
+<li><a href="">Design Patterns</a> (TODO)</li>
+<li><a href="">Nxus Modules</a> (TODO)</li>
+<li><a href="">Recipes</a> (TODO)</li>
+<li><a href="">Developing a </a> (TODO)</li>
+</ul>
+<h2>Documentation</h2>
+<p>The full set of Nxus docs is available at <a href="http://docs.gonxus.org">http://docs.gonxus.org</a>.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/core --save
+</code></pre>
+<h2>Usage</h2>
+<p>In your root application, create a new Application instance:</p>
+<pre><code>import {Application} from '@nxus/core'
+
+let app = new Application(options)
+
+app.start()
+
+export default app
+</code></pre>
+<h3>Events</h3>
+<p>Nxus is built around the concept of a boot cycle.  The application dispatches events in the following order:</p>
+<ol>
+<li><code>init</code>: indicates the application is starting up and initializing modules.  Other modules are not gauranteed to be available at this phase.</li>
+<li><code>load</code>: modules are initialized and loading. This is the place to do any internal setup (outside of the constructor). Other modules are not gauranteed to be available at this phase.</li>
+<li><code>startup</code>: all modules have been loaded and are available. This is the place to do any setup that requires data/input from other modules (like Storage).</li>
+<li><code>launch</code>: the application is launching and all services have been started. Routes are accessible. Use onceAfter('launch') to gaurantee execution after the application has completely launched.</li>
+</ol>
+<h3>Module Loading</h3>
+<p>By defaul the Application will look for other Nxus modules in the following order:</p>
+<ol>
+<li>@nxus namespaced npm modules in your <code>package.json</code> file.</li>
+<li>Any packages that match the 'namespace-' pattern passed in the <code>namespace</code> application config option.</li>
+<li>folders in the ./modules folder in the root of your project</li>
+<li>any modules specified in the <em>modules</em> option passed into Application on instantiation.</li>
+</ol>
+<h3>Module Access</h3>
+<p>In order to access module commands, use the Application.get() method.</p>
+<pre><code>let router = Application.get('router')
+</code></pre>
+<h3>Application Configuration Options</h3>
+<p>Available options are:</p>
+<p><em>appDir</em>: the location to use to load the default 'package.json' file.</p>
+<p><em>namespace</em>: any additional namespaces to use to load modules in the node_modules folder. Can be a string or array of strings.</p>
+<p><em>modules</em>: an array of paths to require into the application</p>
+<p><em>debug</em>: Boolean to display debug messages, including startup banner</p>
+<p><em>script</em>: Boolean to indicate the application is a CLI script, silences all logging/output messages except for explicit console.log calls</p>
+<h2>API</h2>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
   <h2 id='Application' class='mt0'>
     Application<span class='gray'>(opts)</span>
   </h2>
@@ -219,7 +290,7 @@
       Extends
         <a href="#Dispatcher">Dispatcher</a>
     </p>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L45-L280'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L121-L356'><code>src/Application.js</code></a></p>
   
   
   
@@ -260,7 +331,7 @@ app.start()
   <h2 id='Application.boot' class='mt0'>
     boot<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L135-L142'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L211-L218'><code>src/Application.js</code></a></p>
   
   
   
@@ -294,7 +365,7 @@ app.start()
   <h2 id='Application.get' class='mt0'>
     get<span class='gray'>(name)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L107-L110'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L183-L186'><code>src/Application.js</code></a></p>
   
   
   
@@ -339,7 +410,7 @@ app.start()
   <h2 id='Application.init' class='mt0'>
     init<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L119-L126'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L195-L202'><code>src/Application.js</code></a></p>
   
   
   
@@ -373,7 +444,7 @@ app.start()
   <h2 id='Application.restart' class='mt0'>
     restart<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L174-L180'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L250-L256'><code>src/Application.js</code></a></p>
   
   
   
@@ -406,7 +477,7 @@ app.start()
   <h2 id='Application.start' class='mt0'>
     start<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L163-L167'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L239-L243'><code>src/Application.js</code></a></p>
   
   
   
@@ -439,7 +510,7 @@ app.start()
   <h2 id='Application.stop' class='mt0'>
     stop<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Application.js#L149-L156'><code>src/Application.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Application.js#L225-L232'><code>src/Application.js</code></a></p>
   
   
   
@@ -462,7 +533,7 @@ app.start()
   <h2 id='PluginManager' class='mt0'>
     PluginManager<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L23-L213'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L23-L213'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -491,7 +562,7 @@ app.start()
   <h2 id='PluginManager.accumulatePackage' class='mt0'>
     accumulatePackage<span class='gray'>(packages, directory)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L77-L84'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L77-L84'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -544,7 +615,7 @@ app.start()
   <h2 id='PluginManager.arrayify' class='mt0'>
     arrayify<span class='gray'>(el)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L44-L47'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L44-L47'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -589,7 +660,7 @@ app.start()
   <h2 id='PluginManager.getDeps' class='mt0'>
     getDeps<span class='gray'>(pkg)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L64-L69'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L64-L69'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -634,7 +705,7 @@ app.start()
   <h2 id='PluginManager.getPluginPackageJson' class='mt0'>
     getPluginPackageJson<span class='gray'>(path)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L54-L57'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L54-L57'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -679,7 +750,7 @@ app.start()
   <h2 id='PluginManager.loadCustomPlugins' class='mt0'>
     loadCustomPlugins<span class='gray'>(options, packages)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L172-L193'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L172-L193'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -724,7 +795,7 @@ app.start()
   <h2 id='PluginManager.loadPackage' class='mt0'>
     loadPackage<span class='gray'>(name, directory, packages)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L92-L123'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L92-L123'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -777,7 +848,7 @@ app.start()
   <h2 id='PluginManager.loadPackages' class='mt0'>
     loadPackages<span class='gray'>(options, packages)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L130-L165'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L130-L165'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -822,7 +893,7 @@ app.start()
   <h2 id='PluginManager.loadPassedPlugins' class='mt0'>
     loadPassedPlugins<span class='gray'>(options, packages)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/PluginManager.js#L200-L212'><code>src/PluginManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/PluginManager.js#L200-L212'><code>src/PluginManager.js</code></a></p>
   
   
   
@@ -861,7 +932,7 @@ app.start()
       Extends
         EventEmitter
     </p>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L22-L125'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L22-L125'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -891,7 +962,7 @@ modified results or nothing.</p>
   <h2 id='Dispatcher.after' class='mt0'>
     after<span class='gray'>(event, listener)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L74-L76'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L74-L76'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -938,7 +1009,7 @@ modified arguments or nothing.</p>
   <h2 id='Dispatcher.before' class='mt0'>
     before<span class='gray'>(event, listener)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L64-L66'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L64-L66'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -984,7 +1055,7 @@ modified arguments or nothing.</p>
   <h2 id='Dispatcher.emit' class='mt0'>
     emit<span class='gray'>(event, args)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L106-L124'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L106-L124'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -1038,7 +1109,7 @@ Any
   <h2 id='Dispatcher.once' class='mt0'>
     once<span class='gray'>(event, [listener])</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L34-L56'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L34-L56'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -1093,7 +1164,7 @@ modified results or nothing.</p>
   <h2 id='Dispatcher.onceAfter' class='mt0'>
     onceAfter<span class='gray'>(event, listener)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L96-L98'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L96-L98'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -1148,7 +1219,7 @@ modified arguments or nothing.</p>
   <h2 id='Dispatcher.onceBefore' class='mt0'>
     onceBefore<span class='gray'>(event, listener)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Dispatcher.js#L85-L87'><code>src/Dispatcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Dispatcher.js#L85-L87'><code>src/Dispatcher.js</code></a></p>
   
   
   
@@ -1192,7 +1263,7 @@ modified arguments or nothing.</p>
   <h2 id='ConfigurationManager' class='mt0'>
     ConfigurationManager<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/ConfigurationManager.js#L20-L93'><code>src/ConfigurationManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/ConfigurationManager.js#L20-L93'><code>src/ConfigurationManager.js</code></a></p>
   
   
   
@@ -1221,7 +1292,7 @@ modified arguments or nothing.</p>
   <h2 id='ConfigurationManager.getConfig' class='mt0'>
     getConfig<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/ConfigurationManager.js#L81-L92'><code>src/ConfigurationManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/ConfigurationManager.js#L81-L92'><code>src/ConfigurationManager.js</code></a></p>
   
   
   
@@ -1255,7 +1326,7 @@ modified arguments or nothing.</p>
   <h2 id='ConfigurationManager.getEnvironmentVariables' class='mt0'>
     getEnvironmentVariables<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/ConfigurationManager.js#L65-L75'><code>src/ConfigurationManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/ConfigurationManager.js#L65-L75'><code>src/ConfigurationManager.js</code></a></p>
   
   
   
@@ -1289,7 +1360,7 @@ modified arguments or nothing.</p>
   <h2 id='ConfigurationManager.getNodeEnv' class='mt0'>
     getNodeEnv<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/ConfigurationManager.js#L34-L36'><code>src/ConfigurationManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/ConfigurationManager.js#L34-L36'><code>src/ConfigurationManager.js</code></a></p>
   
   
   
@@ -1323,7 +1394,7 @@ modified arguments or nothing.</p>
   <h2 id='ConfigurationManager.getPackageJSONConfig' class='mt0'>
     getPackageJSONConfig<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/ConfigurationManager.js#L42-L59'><code>src/ConfigurationManager.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/ConfigurationManager.js#L42-L59'><code>src/ConfigurationManager.js</code></a></p>
   
   
   
@@ -1351,7 +1422,7 @@ modified arguments or nothing.</p>
       Extends
         <a href="#Dispatcher">Dispatcher</a>
     </p>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L23-L148'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L23-L148'><code>src/Module.js</code></a></p>
   
   
   
@@ -1379,7 +1450,7 @@ The main advantage of this proxy class is that missing modules won't cause excep
   <h2 id='Module.gather' class='mt0'>
     gather<span class='gray'>(name, handler)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L117-L126'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L117-L126'><code>src/Module.js</code></a></p>
   
   
   
@@ -1424,7 +1495,7 @@ The main advantage of this proxy class is that missing modules won't cause excep
   <h2 id='Module.provide' class='mt0'>
     provide<span class='gray'>(name, args)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L84-L92'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L84-L92'><code>src/Module.js</code></a></p>
   
   
   
@@ -1478,7 +1549,7 @@ Any
   <h2 id='Module.provideAfter' class='mt0'>
     provideAfter<span class='gray'>(name, args)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L101-L108'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L101-L108'><code>src/Module.js</code></a></p>
   
   
   
@@ -1532,7 +1603,7 @@ Any
   <h2 id='Module.provideBefore' class='mt0'>
     provideBefore<span class='gray'>(name, args)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L68-L75'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L68-L75'><code>src/Module.js</code></a></p>
   
   
   
@@ -1586,7 +1657,7 @@ Any
   <h2 id='Module.request' class='mt0'>
     request<span class='gray'>(name, args)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L135-L137'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L135-L137'><code>src/Module.js</code></a></p>
   
   
   
@@ -1640,7 +1711,7 @@ Any
   <h2 id='Module.respond' class='mt0'>
     respond<span class='gray'>(name, handler)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L145-L147'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L145-L147'><code>src/Module.js</code></a></p>
   
   
   
@@ -1685,7 +1756,7 @@ Any
   <h2 id='Module.use' class='mt0'>
     use<span class='gray'>(instance)</span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Module.js#L41-L59'><code>src/Module.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Module.js#L41-L59'><code>src/Module.js</code></a></p>
   
   
   
@@ -1710,7 +1781,7 @@ Any
   <h2 id='Watcher' class='mt0'>
     Watcher<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/core/blob/9b807e974d27ccda479d21b0abff6ac2656ef59a/src/Watcher.js#L14-L53'><code>src/Watcher.js</code></a></p>
+    <p><a href='https://github.com/nxus/core/blob/32914944559d154ef9e8af1b86301c8a63377436/src/Watcher.js#L14-L53'><code>src/Watcher.js</code></a></p>
   
   
   

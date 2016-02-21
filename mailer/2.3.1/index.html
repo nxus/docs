@@ -21,12 +21,132 @@
             class='col12 block field'
             type='text' />
           <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#Mailer'
+                class='block bold'>
+                Mailer
+              </a>
+                <a
+                  href='#Mailer.service'
+                  class='regular block'>
+                  #service
+                </a>
+              <a
+                href='#MandrillSerivce'
+                class='block bold'>
+                MandrillSerivce
+              </a>
           </div>
         </div>
       </div>
       <div class='fix-margin-3'>
         <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/mailer/blob/1d3c74efb80e35cfa20fd677d0c2d14d0376645b/src/index.js#L42-L42'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/mailer"><img src="https://travis-ci.org/nxus/mailer.svg?branch=master" alt="Build Status"></a></p>
+<p>A Nxus module for sending emails through different services.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/mailer --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Register a mail service</h3>
+<pre><code>app.get('mailer').service(myService)
+</code></pre>
+<p>Each service is expected to implement a method called <code>sendMessage</code> with the signature</p>
+<pre><code>sendMessage(to, from, subject, content, opts) {
+...
+}
+</code></pre>
+<h3>Send an email using a service</h3>
+<pre><code>app.get('mailer').send('to@address', 'from@address', "My subject", "Body content", {some: opts})
+</code></pre>
+<h4>Opts</h4>
+<p>The opts hash can be used to send service specific opts back to the mail handler.  For example:</p>
+<pre><code>// Mandrill opts
+app.get('mailer').send('to@address', 'from@address', "My subject", "Body content", { async: true })
+</code></pre>
+<h1>API</h1>
+<hr>
 
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Mailer' class='mt0'>
+    Mailer<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/mailer/blob/1d3c74efb80e35cfa20fd677d0c2d14d0376645b/src/index.js#L49-L68'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The main Mailer class.</p>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Mailer.service'>
+          <a href='#Mailer.service'>
+            <code>
+              #service<span class='gray'>(service)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Register a service.  See MandrillService for an example.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Mailer.service' class='mt0'>
+    service<span class='gray'>(service)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/mailer/blob/1d3c74efb80e35cfa20fd677d0c2d14d0376645b/src/index.js#L65-L67'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Register a service.  See MandrillService for an example.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+ <strong>service</strong>
+          :
+          <div class='force-inline'>
+            <p>a Class or callable that implements a method called <code>sendMessage</code>.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='MandrillSerivce' class='mt0'>
+    MandrillSerivce<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/mailer/blob/1d3c74efb80e35cfa20fd677d0c2d14d0376645b/src/MandrillService.js#L20-L43'><code>src/MandrillService.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>A default service for mailing with Mandrill.</p>
+
+</section>
+</div>
         </div>
       </div>
     </div>
