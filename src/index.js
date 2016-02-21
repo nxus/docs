@@ -2,6 +2,8 @@ var Promise = require('bluebird')
 var fs = Promise.promisifyAll(require('fs'))
 var child = require('child_process')
 var ejs = require('ejs')
+var _ = require('underscore')
+var semver = require('semver')
 
 var index_only = process.env.INDEX_ONLY | false
 var module_path = '../modules/'
@@ -23,6 +25,9 @@ Promise.map(modules, function(m) {
     fs.unlinkSync(mod_doc_dir+"/latest")
   } catch(e) {}
   var versions = fs.readdirSync(mod_doc_dir).reverse()
+  versions = versions.sort(function(a, b) {
+    return semver.gt(a, b) ? -1 : 1
+  })
   fs.symlinkSync(versions[0], mod_doc_dir+"/latest", 'dir')
   var versions = fs.readdirSync(mod_doc_dir).reverse()
   return {
@@ -33,6 +38,7 @@ Promise.map(modules, function(m) {
   }
 })
 .then(function(modules) {
+  modules = _.compact(modules)
   var template_file = __dirname+'/index.ejs'
   fs.readFileAsync(template_file).then(function(content) {
     var rendered = ejs.render(content.toString(), {

@@ -14,6 +14,11 @@
       <div class='fixed md-show fix-3 overflow-auto max-height-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'><%= title %></h3>
+          <% for (module of modules) { %>
+            <a href="<%= module.module %>/latest/" class="block bold">
+                <%= module.name %>
+              </a>
+          <% } %>
         </div>
       </div>
       <div class='fix-margin-3'>
