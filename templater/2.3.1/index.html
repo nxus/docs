@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>@nxus/templater 2.3.1 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>@nxus/templater</h3>
+          <div class='mb1'><code>2.3.1</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#Templater'
+                class='block bold'>
+                Templater
+              </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/344a630e123716c3f6a2b8ea3519b01a380597d2/src/index.js#L77-L77'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/templater"><img src="https://travis-ci.org/nxus/templater.svg?branch=master" alt="Build Status"></a></p>
+<p>Templates are markup (html, ejs, etc) that Nxus modules can use to render a UX.  The Templater module provides a common API for defining and accessing templates.  Specifically, you can use partials and templates defined by other modules, meaning you write less code for common components.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/templater --save
+</code></pre>
+<h2>Parsers</h2>
+<p>Templater supports EJS and HTML as default template types.  If you'd like to add in additional parsers, check out the @nxus/renderer documentation.</p>
+<h2>Namespacing</h2>
+<p>All templates share a single namespace, so its a good idea to add a prefix to your template names to avoid conflicts.  For example <code>mymodule-mytemplate</code>.</p>
+<h2>Usage</h2>
+<h3>Register a Template</h3>
+<p>If you would like to register a single template, you can use the template provider and specify a file:</p>
+<pre><code>app.get('templater').template('default', 'ejs', 'path/to/some/file')
+</code></pre>
+<p>You can also pass in a handler method instead of a file path. Templater expects that this handler returns a string with the template content, or a Promise that resolves to a string. The handler will be passed in the name of the template requested, as well as any render options specified.</p>
+<pre><code>var handler = function(name, args) {
+  return "<html>.....";
+}
+app.get('templater').template('default', 'ejs', handler)
+</code></pre>
+<h3>Registering a Template Directory</h3>
+<p>Alternatively, you can register a directory. Templater will define a new template for every file in the directory with the specified type extension.</p>
+<pre><code>app.get('templater').templateDir('ejs', 'path/to/some/dir')
+</code></pre>
+<p>For example, given the following directory structure:</p>
+<pre><code>- /templates
+  |- my-template.ejs
+</code></pre>
+<p>Templater will expose <code>my-template</code> as a new template.</p>
+<h3>Render content using a Template</h3>
+<pre><code>let opts = {content: "some content"}
+
+app.get('templater').render('default', opts).then((content) => {
+  console.log('rendered content', content)
+})
+</code></pre>
+<h3>Render a partial using a Template</h3>
+<p>If you've defined a partial you would like wrapped in another template, use the <code>renderPartial</code> request and specify a template in which the partial will be wrapped.</p>
+<pre><code>app.get('templater').renderPartial('path/to/my/partial', 'wrapper-template', opts).then((content) => {
+  console.log('rendered partial content', content)l
+})
+</code></pre>
+<p>Alternatively, you can specify a previously defined template as your partial:</p>
+<pre><code>app.get('templater').renderPartial('partial-template', 'wrapper-template', opts).then((content) => {
+  console.log('rendered partial content', content)l
+})
+</code></pre>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Templater' class='mt0'>
+    Templater<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/344a630e123716c3f6a2b8ea3519b01a380597d2/src/index.js#L91-L159'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Templater provides a template layer, built on top of the Nxus Renderer</p>
+
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

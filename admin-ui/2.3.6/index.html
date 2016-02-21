@@ -1,0 +1,716 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>@nxus/admin-ui 2.3.6 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>@nxus/admin-ui</h3>
+          <div class='mb1'><code>2.3.6</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#AdminBase'
+                class='block bold'>
+                AdminBase
+              </a>
+                <a
+                  href='#AdminBase.base'
+                  class='regular block'>
+                  #base
+                </a>
+                <a
+                  href='#AdminBase.displayName'
+                  class='regular block'>
+                  #displayName
+                </a>
+                <a
+                  href='#AdminBase.iconClass'
+                  class='regular block'>
+                  #iconClass
+                </a>
+                <a
+                  href='#AdminBase.ignore'
+                  class='regular block'>
+                  #ignore
+                </a>
+                <a
+                  href='#AdminBase.model'
+                  class='regular block'>
+                  #model
+                </a>
+                <a
+                  href='#AdminBase.model_populate'
+                  class='regular block'>
+                  #model_populate
+                </a>
+                <a
+                  href='#AdminBase.templateDir'
+                  class='regular block'>
+                  #templateDir
+                </a>
+                <a
+                  href='#AdminBase.templatePrefix'
+                  class='regular block'>
+                  #templatePrefix
+                </a>
+              <a
+                href='#AdminUI'
+                class='block bold'>
+                AdminUI
+              </a>
+                <a
+                  href='#AdminUI.adminModel'
+                  class='regular block'>
+                  #adminModel
+                </a>
+                <a
+                  href='#AdminUI.adminPage'
+                  class='regular block'>
+                  #adminPage
+                </a>
+                <a
+                  href='#AdminUI.adminRoute'
+                  class='regular block'>
+                  #adminRoute
+                </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/index.js#L69-L69'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/admin-ui"><img src="https://travis-ci.org/nxus/admin-ui.svg?branch=master" alt="Build Status"></a></p>
+<p>An Admin UI Framework for Nxus Apps.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/admin-ui --save
+</code></pre>
+<h2>Module Configuration</h2>
+<ul>
+<li>basePath: the base path, defaults to /admin</li>
+<li>adminTemplate: the admin template to use, defaults to 'admin'</li>
+</ul>
+<h2>Usage</h2>
+<p>The Admin Interface is made up of pages and routes. Pages are rendered content displayed in the Admin Interface. Routes are callbacks that don't render anything, but perform application logic (like a save handler).</p>
+<h3>Admin Pages</h3>
+<p>You can define pages in three ways using the <code>adminPage</code> provider.</p>
+<h4>A partial</h4>
+<p>If you supply a valid filepath, the Admin interface will use that partial to render the page content for display.</p>
+<pre><code>admin.adminPage('Page Title', '/partial', {iconClass: 'fa fa-file'}, __dirname+"/views/page.ejs")
+</code></pre>
+<h4>A string</h4>
+<p>If you provide a string, the string will be passed to the admin page template as is.</p>
+<pre><code>admin.adminPage('Page Title', '/content', {iconClass: 'fa fa-file'}, (req, res) => {
+  return "this is handler content"
+})
+</code></pre>
+<h4>A callback</h4>
+<p>If you provide a callback, the return should either a string or a Promise for a string.</p>
+<pre><code>admin.adminPage('Page Title', '/function', (req, res) => {
+  return Promise.resolve('Some text');
+})
+</code></pre>
+<h4>Page Configuration Options</h4>
+<ul>
+<li>class: string</li>
+<li>iconClass: string</li>
+<li>nav: boolean</li>
+<li>order: integer</li>
+</ul>
+<h3>Admin Routes</h3>
+<h4>A handler function</h4>
+<pre><code>admin.adminRoute('get', '/redirect', (req, res) => {
+  res.redirect('/admin')
+})
+</code></pre>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='AdminBase' class='mt0'>
+    AdminBase<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L30-L236'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The AdminBase class provides a set of helper CRUD classes for defining Admin-UI based admin pages.</p>
+
+    <h4>Examples</h4>
+<pre class='overflow-auto'><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoAdmin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AdminBase</span> </span>{
+ base () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'/todo'</span>
+  }
+ model () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'todo'</span>
+  }
+ templateDir () {
+    <span class="hljs-keyword">return</span> __dirname+<span class="hljs-string">'/views'</span>
+  }
+}</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='AdminBase.base'>
+          <a href='#AdminBase.base'>
+            <code>
+              #base<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The base url for the Admin CRUD UI.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.base' class='mt0'>
+    base<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L64-L66'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The base url for the Admin CRUD UI.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to <code>/<models></code></p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.displayName'>
+          <a href='#AdminBase.displayName'>
+            <code>
+              #displayName<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The display name for the model to use in the Admin UI</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.displayName' class='mt0'>
+    displayName<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L96-L98'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The display name for the model to use in the Admin UI</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to <code><model></code></p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.iconClass'>
+          <a href='#AdminBase.iconClass'>
+            <code>
+              #iconClass<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The class to use for the nav icon.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.iconClass' class='mt0'>
+    iconClass<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L72-L74'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The class to use for the nav icon.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to <code>fa fa-file</code></p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.ignore'>
+          <a href='#AdminBase.ignore'>
+            <code>
+              #ignore<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Fields in the model to ignore in the UI</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.ignore' class='mt0'>
+    ignore<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L56-L58'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Fields in the model to ignore in the UI</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.model'>
+          <a href='#AdminBase.model'>
+            <code>
+              #model<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Define the primary model for this admin module</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.model' class='mt0'>
+    model<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L104-L107'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Define the primary model for this admin module</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.model_populate'>
+          <a href='#AdminBase.model_populate'>
+            <code>
+              #model_populate<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Define any populated relationships for the model</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.model_populate' class='mt0'>
+    model_populate<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L113-L115'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Define any populated relationships for the model</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.templateDir'>
+          <a href='#AdminBase.templateDir'>
+            <code>
+              #templateDir<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The directory to find the templates.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.templateDir' class='mt0'>
+    templateDir<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L80-L82'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The directory to find the templates.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Defaults to null.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminBase.templatePrefix'>
+          <a href='#AdminBase.templatePrefix'>
+            <code>
+              #templatePrefix<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>The prefix to use for the templates. Defaults to <code>admin-<model>-</code></p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminBase.templatePrefix' class='mt0'>
+    templatePrefix<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/adminBase.js#L88-L90'><code>src/adminBase.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The prefix to use for the templates. Defaults to <code>admin-<model>-</code></p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='AdminUI' class='mt0'>
+    AdminUI<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/index.js#L95-L262'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The AdminUI module provides default templates and nav for an administrative section of your site.
+If the @nxus/users module is installed, the admin section will require admin-level authentication.</p>
+
+    <h4>Examples</h4>
+<pre class='overflow-auto'>Configuration (defaults):
+ {adminUI: {
+   basePath: '/admin',    # urls registered for admin will start with this path
+   adminTemplate: 'admin' # name of the main admin template to use
+ }}</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='AdminUI.adminModel'>
+          <a href='#AdminUI.adminModel'>
+            <code>
+              #adminModel<span class='gray'>(model, [opts])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Creates a CRUD UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of AdminBase</li>
+<li>a class which is a subclass of AdminBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/admin/<base></code>: list page </li>
+<li><code>/admin/<base>/create</code>: create new instance </li>
+<li><code>/admin/<base>/edit/:id</code>: edit existing instance </li>
+<li><code>/admin/<base>/destroy/:id</code>: destroy existing instance </li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>admin-<model>-form</code>: the create/edit form</li>
+<li><code>admin-<model>-list</code>: the list page view</li>
+</ul>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the CRUD paths are created. For example, '/users'.</li>
+<li><code>iconClass</code>: the icon class to use in the Nav. Used in <i> tag.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>admin-<model></code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>['id', 'createdAt', 'updatedAt']</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the Admin UI. Defaults to <code>model</code>.</li>
+</ul>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminUI.adminModel' class='mt0'>
+    adminModel<span class='gray'>(model, [opts])</span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/index.js#L216-L232'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Creates a CRUD UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of AdminBase</li>
+<li>a class which is a subclass of AdminBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/admin/<base></code>: list page </li>
+<li><code>/admin/<base>/create</code>: create new instance </li>
+<li><code>/admin/<base>/edit/:id</code>: edit existing instance </li>
+<li><code>/admin/<base>/destroy/:id</code>: destroy existing instance </li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>admin-<model>-form</code>: the create/edit form</li>
+<li><code>admin-<model>-list</code>: the list page view</li>
+</ul>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the CRUD paths are created. For example, '/users'.</li>
+<li><code>iconClass</code>: the icon class to use in the Nav. Used in <i> tag.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>admin-<model></code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>['id', 'createdAt', 'updatedAt']</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the Admin UI. Defaults to <code>model</code>.</li>
+</ul>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+|
+class
+)
+ <strong>model</strong>
+          :
+          <div class='force-inline'>
+            <p>Can either be a model name, a path to a file or an AdminBase Subclass.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+=
+(default {})
+ <strong>opts</strong>
+          :
+          <div class='force-inline'>
+            <p>An options hash, wich is used to configure the CRUD UI.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminUI.adminPage'>
+          <a href='#AdminUI.adminPage'>
+            <code>
+              #adminPage<span class='gray'>(title, path, opts, handler)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Register a page for inclusion in the admin site and navigation
+Page template will receive (and can set in opts):</p>
+<ul>
+<li>class: string</li>
+<li>iconClass: string</li>
+<li>nav: boolean</li>
+<li>order: integer</li>
+</ul>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminUI.adminPage' class='mt0'>
+    adminPage<span class='gray'>(title, path, opts, handler)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/index.js#L157-L168'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Register a page for inclusion in the admin site and navigation
+Page template will receive (and can set in opts):</p>
+<ul>
+<li>class: string</li>
+<li>iconClass: string</li>
+<li>nav: boolean</li>
+<li>order: integer</li>
+</ul>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>title</strong>
+          :
+          <div class='force-inline'>
+            <p>The title of the page, and navigation link</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>path</strong>
+          :
+          <div class='force-inline'>
+            <p>The url path for the page</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+ <strong>opts</strong>
+          :
+          <div class='force-inline'>
+            <p>Additional options for the rendering of this page</p>
+
+          </div>
+        </li>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+|
+template-partial
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+)
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>for rendering this page</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='AdminUI.adminRoute'>
+          <a href='#AdminUI.adminRoute'>
+            <code>
+              #adminRoute<span class='gray'>(method, path, handler)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Register a raw route for inclusion in the admin site</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='AdminUI.adminRoute' class='mt0'>
+    adminRoute<span class='gray'>(method, path, handler)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/admin-ui/blob/1c1080ff49e7aa49ef5eccd2a4124e23897ab832/src/index.js#L176-L187'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Register a raw route for inclusion in the admin site</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>method</strong>
+          :
+          <div class='force-inline'>
+            <p>The HTTP method to handle</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>path</strong>
+          :
+          <div class='force-inline'>
+            <p>The url path for the page</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>for rendering this page</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
