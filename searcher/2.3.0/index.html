@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>@nxus/searcher 2.3.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>@nxus/searcher</h3>
+          <div class='mb1'><code>2.3.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#Searcher'
+                class='block bold'>
+                Searcher
+              </a>
+                <a
+                  href='#Searcher.searchable'
+                  class='regular block'>
+                  #searchable
+                </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/searcher/blob/9e0bf86f17a82694f432cf231058fce5e6772a15/src/index.js#L80-L80'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The Searcher module enables easy searching of Nxus models using different adapters for Solr, ElasticSearch and others.</p>
+<h1>Installation</h1>
+<pre><code>> npm install @nxus/searcher --save
+</code></pre>
+<h1>Usage</h1>
+<h2>Configuration</h2>
+<p>The Searcher module depends on @nxus/storage.  The first step is adding and configuring the search adapter you'd like to use.
+For example, if we want to enable ElasticSearch, we first install the waterline-elasticsearch adapter, then setup the configuration
+options in the Storage config.</p>
+<blockquote>
+<p>npm install waterline-elasticsearch --save</p>
+</blockquote>
+<p>then add to package.json</p>
+<p>"storage": {
+"adapter": {
+...
+"searcher": "waterline-elasticsearch"
+},
+"connections": {
+...
+"searcher: {
+"adapter": "searcher",
+"host": "<host address>",
+"port": 920,
+"log": "warning",
+"index": "searcher"
+}
+}
+}</p>
+<h2>Register model</h2>
+<p>Now that the correct Storage adapters are configured, you'll need to tell Searcher which models you want to enable
+search using the <code>searchable</code> method. Searchable accepts an identity for a model which has already been registered.</p>
+<p>app.get('searcher').searchable('users')</p>
+<p>By default, Searcher will look for a field named <code>title</code> or <code>name</code> to use as the search field. You can specify different, or
+multiple fields to search by specifying a second options parameter, with the <code>fields</code> key:</p>
+<p>app.get('searcher').searchable('users', {fields: 'firstName'})
+app.get('searcher').searchable('users', {fields: ['firstName', 'lastName']})</p>
+<h2>Routes</h2>
+<p>Based on the model identify, Searcher will create the following routes</p>
+<pre><code>/<model>/search
+</code></pre>
+<p>which accepts a search parameter <code>q</code>. So to search for the term 'pizza':</p>
+<pre><code>/<model>/search?q=pizza
+</code></pre>
+<p>The search wil return a list of results using the views below.</p>
+<h2>Views</h2>
+<p>Searcher will automatically use the <code>@nxus/base-ui</code> views for any model that is searchable (if they exist).</p>
+<ol>
+<li>view-<model>-list: the list view used to display search results.</li>
+<li>view-<model>-detail: the detail view linked to from the list view.</li>
+</ol>
+<p>Alternatively, you can provide search specific views to be used instead:</p>
+<ol>
+<li>search-<model>-list: the list view for returned search results.</li>
+<li>search-<model>-detail: the detail view for an individual search result.</li>
+</ol>
+<h1>API</h1>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Searcher' class='mt0'>
+    Searcher<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/searcher/blob/9e0bf86f17a82694f432cf231058fce5e6772a15/src/index.js#L89-L172'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The Search class enables automated searching of models using different adapters.</p>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Searcher.searchable'>
+          <a href='#Searcher.searchable'>
+            <code>
+              #searchable<span class='gray'>(model, [opts])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Register a model to be searchable.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Searcher.searchable' class='mt0'>
+    searchable<span class='gray'>(model, [opts])</span>
+  </h2>
+    <p><a href='https://github.com/nxus/searcher/blob/9e0bf86f17a82694f432cf231058fce5e6772a15/src/index.js#L107-L120'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Register a model to be searchable.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>model</strong>
+          :
+          <div class='force-inline'>
+            <p>the model identity</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+=
+(default {})
+ <strong>opts</strong>
+          :
+          <div class='force-inline'>
+            <p>An optional hash of options.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

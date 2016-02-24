@@ -31,6 +31,26 @@
                 class='block bold'>
                 Templater
               </a>
+                <a
+                  href='#Templater.render'
+                  class='regular block'>
+                  #render
+                </a>
+                <a
+                  href='#Templater.renderPartial'
+                  class='regular block'>
+                  #renderPartial
+                </a>
+                <a
+                  href='#Templater.template'
+                  class='regular block'>
+                  #template
+                </a>
+                <a
+                  href='#Templater.templateDir'
+                  class='regular block'>
+                  #templateDir
+                </a>
           </div>
         </div>
       </div>
@@ -40,7 +60,7 @@
   <h2 id='' class='mt0'>
     <span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/templater/blob/344a630e123716c3f6a2b8ea3519b01a380597d2/src/index.js#L77-L77'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/templater/blob/829a7b91d3a38489c03d5ba35fb1837279fc41c5/src/index.js#L88-L88'><code>src/index.js</code></a></p>
   
   
   
@@ -75,6 +95,14 @@ app.get('templater').template('default', 'ejs', handler)
   |- my-template.ejs
 </code></pre>
 <p>Templater will expose <code>my-template</code> as a new template.</p>
+<p>Alternatively, you can supply a third argument that will be used to namespace the templates.</p>
+<pre><code>app.get('templater').templateDir('ejs', 'path/to/some/dir', 'custom')
+</code></pre>
+<p>For example, given the following directory structure:</p>
+<pre><code>- /templates
+  |- my-template.ejs
+</code></pre>
+<p>Templater will expose <code>custom-my-template</code> as a new template.</p>
 <h3>Render content using a Template</h3>
 <pre><code>let opts = {content: "some content"}
 
@@ -101,7 +129,7 @@ app.get('templater').render('default', opts).then((content) => {
   <h2 id='Templater' class='mt0'>
     Templater<span class='gray'></span>
   </h2>
-    <p><a href='https://github.com/nxus/templater/blob/344a630e123716c3f6a2b8ea3519b01a380597d2/src/index.js#L91-L159'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/templater/blob/829a7b91d3a38489c03d5ba35fb1837279fc41c5/src/index.js#L102-L195'><code>src/index.js</code></a></p>
   
   
   
@@ -109,6 +137,243 @@ app.get('templater').render('default', opts).then((content) => {
   
   <p>Templater provides a template layer, built on top of the Nxus Renderer</p>
 
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Templater.render'>
+          <a href='#Templater.render'>
+            <code>
+              #render<span class='gray'>(name, [args])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Renders a template</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Templater.render' class='mt0'>
+    render<span class='gray'>(name, [args])</span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/829a7b91d3a38489c03d5ba35fb1837279fc41c5/src/index.js#L183-L194'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Renders a template</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the registered template to render</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+=
+(default {})
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>The arguments to pass to the template</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A promise for the rendered content</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Templater.renderPartial'>
+          <a href='#Templater.renderPartial'>
+            <code>
+              #renderPartial<span class='gray'>(partial, filePath, baseName, [args])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Renders the specified template as a partial, rendering the content in a parent template.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Templater.renderPartial' class='mt0'>
+    renderPartial<span class='gray'>(partial, filePath, baseName, [args])</span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/829a7b91d3a38489c03d5ba35fb1837279fc41c5/src/index.js#L162-L175'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Renders the specified template as a partial, rendering the content in a parent template.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>partial</strong>
+          :
+          <div class='force-inline'>
+            <p>Either a template name or a path to a partial file</p>
+
+          </div>
+        </li>
+        <li> <strong>filePath</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>baseName</strong>
+          :
+          <div class='force-inline'>
+            <p>The parent template to use to render the partial</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+=
+(default {})
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>The arguments to pass to the partial and the template for rendering</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A promise for the rendered content.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Templater.template'>
+          <a href='#Templater.template'>
+            <code>
+              #template<span class='gray'>(name, type, handler)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Define a new template</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Templater.template' class='mt0'>
+    template<span class='gray'>(name, type, handler)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/829a7b91d3a38489c03d5ba35fb1837279fc41c5/src/index.js#L125-L128'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Define a new template</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>A name for the template</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>type</strong>
+          :
+          <div class='force-inline'>
+            <p>Templating engine used with the template. Should map to an installed <code>@nxus/renderer</code> type.</p>
+
+          </div>
+        </li>
+        <li>(
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+|
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+)
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>Either a filepath or a callback function which returns a promise that resolves to rendered content.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Templater.templateDir'>
+          <a href='#Templater.templateDir'>
+            <code>
+              #templateDir<span class='gray'>(type, dir, [namespace])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Convenience function to crawl a directory and register all matching files as a template.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Templater.templateDir' class='mt0'>
+    templateDir<span class='gray'>(type, dir, [namespace])</span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/829a7b91d3a38489c03d5ba35fb1837279fc41c5/src/index.js#L136-L153'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Convenience function to crawl a directory and register all matching files as a template.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>type</strong>
+          :
+          <div class='force-inline'>
+            <p>File extension of files to import as templates</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>dir</strong>
+          :
+          <div class='force-inline'>
+            <p>The directory to crawl</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+=
+(default "")
+ <strong>namespace</strong>
+          :
+          <div class='force-inline'>
+            <p>An optional namespace to append to the front of the template name</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
 </section>
 </div>
         </div>
