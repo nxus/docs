@@ -72,10 +72,15 @@
                   #titleField
                 </a>
               <a
-                href='#viewModel'
+                href='#BaseUI'
                 class='block bold'>
-                viewModel
+                BaseUI
               </a>
+                <a
+                  href='#BaseUI.viewModel'
+                  class='regular block'>
+                  #viewModel
+                </a>
           </div>
         </div>
       </div>
@@ -104,7 +109,7 @@
 </ol>
 <h2>Model View helpers</h2>
 <p>The module provides a helper for generating list/detail views from a model:</p>
-<pre><code>app.get('base-ui').modelView('user', {base: '/users', titleField: 'email'})
+<pre><code>app.get('base-ui').viewModel('user', {base: '/users', titleField: 'email'})
 </code></pre>
 <p>You may pass in an options object, as in this example, or subclass of ViewBase, or a string path to a subclass of ViewBase.</p>
 <pre><code>import {ViewBase} from '@nxus/base-ui'
@@ -121,7 +126,7 @@ class UserView extends ViewBase {
   }
 }
 
-app.get('base-ui').modelView(UserView)
+app.get('base-ui').viewModel(UserView)
 </code></pre>
 <h2>Customizing</h2>
 <p>If you want to provide your own 404 or 500 page, define the relevant new template. Base-ui will use these to handle the routes above.</p>
@@ -429,10 +434,58 @@ app.get('base-ui').modelView(UserView)
         </div>
 </section>
 </div><div class='py1'><section class='py2 clearfix'>
-  <h2 id='viewModel' class='mt0'>
+  <h2 id='BaseUI' class='mt0'>
+    BaseUI<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/index.js#L73-L151'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The base-ui module class.</p>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='BaseUI.viewModel'>
+          <a href='#BaseUI.viewModel'>
+            <code>
+              #viewModel<span class='gray'>(model, opts)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Creates a List and Detail UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of ViewBase</li>
+<li>a class which is a subclass of ViewBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/<base></code>: list page </li>
+<li><code>/<base>/:id</code>: detail page</li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>view-<model>-list</code>: the list page view</li>
+<li><code>view-<model>-detail</code>: the detail page view</li>
+</ul>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the paths are created. For example, '/users'.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>view-<model></code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>['id', 'createdAt', 'updatedAt']</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the UI. Defaults to <code>model</code>.</li>
+<li><code>instanceTitle</code>: attribute of instance to use for title and link</li>
+</ul>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='BaseUI.viewModel' class='mt0'>
     viewModel<span class='gray'>(model, opts)</span>
   </h2>
-    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/index.js#L105-L122'><code>src/index.js</code></a></p>
+    <p><a href='https://github.com/nxus/base-ui/blob/abff10a13db87bd5ec3e358a3803f5563c17c3be/src/index.js#L108-L125'><code>src/index.js</code></a></p>
   
   
   
@@ -487,6 +540,9 @@ class
           </div>
         </li>
     </ul>
+</section>
+          </div>
+        </div>
 </section>
 </div>
         </div>
