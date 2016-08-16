@@ -1,0 +1,522 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-dataset 3.0.0-1 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-dataset</h3>
+          <div class='mb1'><code>3.0.0-1</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#_processloaderdatarow'
+                  class="">
+                  _processLoaderDataRow
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#_preparedatarowindataset'
+                  class="">
+                  _prepareDataRowInDataSet
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#_buildintialdatatypes'
+                  class="">
+                  _buildIntialDataTypes
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#savedataupload'
+                  class="">
+                  saveDataUpload
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#removedatarowsforset'
+                  class="">
+                  removeDataRowsForSet
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#savedataset'
+                  class="">
+                  saveDataSet
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='_processloaderdatarow'>
+      _processLoaderDataRow
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/seabourne/nxus-dataset/blob/3725e137bee4f0e88670f7abeb676376ba7c9289/src/index.js#L68-L80'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Handler for data rows to clean up records; attached to loader&#x27;s &#x27;model.datarow&#x27;.</p>
+
+
+  <div class='pre p1 fill-light mt0'>_processLoaderDataRow(object: Any, row: Any)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>object</span> <code class='quiet'>(Any)</code> row is the row of data from CSV column-header keys
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>row</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='_preparedatarowindataset'>
+      _prepareDataRowInDataSet
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/seabourne/nxus-dataset/blob/3725e137bee4f0e88670f7abeb676376ba7c9289/src/index.js#L114-L131'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>clean up the datarow after storage,
+associating with the given dataset ID.</p>
+
+
+  <div class='pre p1 fill-light mt0'>_prepareDataRowInDataSet(row: [datarow], dataSetId: [type]): Any</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>row</span> <code class='quiet'>([datarow])</code> DataRow instance to put under given DataSet ID
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>dataSetId</span> <code class='quiet'>([type])</code> [description]
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>Any</code>:
+        the original row passed in, with some property modifications.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='_buildintialdatatypes'>
+      _buildIntialDataTypes
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/seabourne/nxus-dataset/blob/3725e137bee4f0e88670f7abeb676376ba7c9289/src/index.js#L138-L156'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>put in a data type for each field in uploaded datarow</p>
+
+
+  <div class='pre p1 fill-light mt0'>_buildIntialDataTypes(sample: [datarow]): [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>sample</span> <code class='quiet'>([datarow])</code> [representative row of data]
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>]</code>:
+        [map by datarow key of best estimate for the type]
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='savedataupload'>
+      saveDataUpload
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/seabourne/nxus-dataset/blob/3725e137bee4f0e88670f7abeb676376ba7c9289/src/index.js#L165-L213'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Save datarows uploaded from CSV,
+associating each datarow with the parent dataset
+and gathering summary field information about the collection of rows
+to store in the parent.</p>
+
+
+  <div class='pre p1 fill-light mt0'>saveDataUpload(req: Any, res: Any)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='removedatarowsforset'>
+      removeDataRowsForSet
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/seabourne/nxus-dataset/blob/3725e137bee4f0e88670f7abeb676376ba7c9289/src/index.js#L219-L238'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Action when a dataset is removed -
+removes the dataset and all child datarows.</p>
+
+
+  <div class='pre p1 fill-light mt0'>removeDataRowsForSet(req: Any, res: Any)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='savedataset'>
+      saveDataSet
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/seabourne/nxus-dataset/blob/3725e137bee4f0e88670f7abeb676376ba7c9289/src/index.js#L244-L291'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>handle POST response for edit existing
+or create new dataset</p>
+
+
+  <div class='pre p1 fill-light mt0'>saveDataSet(req: Any, res: Any)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(Any)</code> 
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

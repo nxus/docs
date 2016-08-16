@@ -1,0 +1,1522 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-base-ui 3.0.0-1 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-base-ui</h3>
+          <div class='mb1'><code>3.0.0-1</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#index'
+                  class="">
+                  index
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#viewmodel'
+                  class="">
+                  viewModel
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getviewmodel'
+                  class="">
+                  getViewModel
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getviewmodels'
+                  class="">
+                  getViewModels
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#viewbase'
+                  class="">
+                  viewBase
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#ignore'
+                  class="">
+                  ignore
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#idfield'
+                  class="">
+                  idField
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#display'
+                  class="">
+                  display
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#titlefield'
+                  class="">
+                  titleField
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#sortfield'
+                  class="">
+                  sortField
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#sortdirection'
+                  class="">
+                  sortDirection
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#base'
+                  class="">
+                  base
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#templatedir'
+                  class="">
+                  templateDir
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#listtemplate'
+                  class="">
+                  listTemplate
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#detailtemplate'
+                  class="">
+                  detailTemplate
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#templateprefix'
+                  class="">
+                  templatePrefix
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#displayname'
+                  class="">
+                  displayName
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#itemsperpage'
+                  class="">
+                  itemsPerPage
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#model'
+                  class="">
+                  model
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#modelpopulate'
+                  class="">
+                  modelPopulate
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/index.js#L82-L82'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/base-ui"><img src="https://travis-ci.org/nxus/base-ui.svg?branch=master" alt="Build Status"></a></p>
+<p>Base UI pages including 404 and error page handlers.</p>
+<h2>Installation</h2>
+<pre><code>&gt; npm install nxus-base-ui --save
+</code></pre>
+<h2>Usage</h2>
+<p>The module registers two handlers:</p>
+<ol>
+<li>404: If no other handler responds the route, the module will render the <code>404</code> template and return the rendered content.</li>
+<li><code>/error</code>: On a 50x error, the router will redirecto to <code>/error</code> and the module will render the <code>500</code> template and return the rendered content.</li>
+</ol>
+<h2>Model View helpers</h2>
+<p>The module provides a helper for generating list/detail views from a model:</p>
+<pre><code>app.get(&#x27;base-ui&#x27;).viewModel(&#x27;user&#x27;, {base: &#x27;/users&#x27;, titleField: &#x27;email&#x27;})
+</code></pre>
+<p>You may pass in an options object, as in this example, or subclass of ViewBase, or a string path to a subclass of ViewBase.</p>
+<pre><code>import {ViewBase} from &#x27;@nxus/base-ui&#x27;
+
+class UserView extends ViewBase {
+  model() {
+    return &#x27;user&#x27;
+  }
+  base() {
+    return &#x27;/users&#x27;
+  }
+  titleField() {
+    return &#x27;email
+  }
+}
+
+app.get(&#x27;base-ui&#x27;).viewModel(UserView)
+</code></pre>
+<h2>Customizing</h2>
+<p>If you want to provide your own 404 or 500 page, define the relevant new template. Base-ui will use these to handle the routes above.</p>
+<h3>404 Page Template</h3>
+<pre><code>app.get(&#x27;templater&#x27;).template(&#x27;path/to/my/404.ejs&#x27;)
+</code></pre>
+<h3>500 Page Template</h3>
+<pre><code>app.get(&#x27;templater&#x27;).template(&#x27;path/to/my/500.ejs&#x27;)
+</code></pre>
+<h3>List and Detail View</h3>
+<p>You can specify your own list view template to use instead of the default. The base-ui module looks for a template matching the following
+pattern: <code>view-&lt;model&gt;-list</code> and <code>view-&lt;model&gt;-detail</code>.</p>
+<p>Each template will be passed either a model instance (for detail view) or an array of models (for list view), using the model name.</p>
+<p>So using the examples above:</p>
+<pre><code>app.get(&#x27;templater&#x27;).template(&#x27;view-user-list&#x27;, (opts) =&gt; {
+  return app.get(&#x27;renderer&#x27;).render(&quot;&lt;% users.forEach(function(user){ .... }) %&gt;&quot;, opts)
+})
+
+app.get(&#x27;templater&#x27;).template(&#x27;view-user-detail&#x27;, (opts) =&gt; {
+  return app.get(&#x27;renderer&#x27;).render(&quot;&lt;%= user.email %&gt;&quot;, opts)
+})
+</code></pre>
+<h2>API</h2>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='index'>
+      index
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/index.js#L93-L203'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The base-ui module class.</p>
+
+
+  <div class='pre p1 fill-light mt0'>index</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='viewmodel'>
+      viewModel
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/index.js#L138-L160'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Creates a List and Detail UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of ViewBase</li>
+<li>a class which is a subclass of ViewBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/&lt;base&gt;</code>: list page </li>
+<li><code>/&lt;base&gt;/:id</code>: detail page</li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>view-&lt;model&gt;-list</code>: the list page view</li>
+<li><code>view-&lt;model&gt;-detail</code>: the detail page view</li>
+</ul>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the paths are created. For example, &#x27;/users&#x27;.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>view-&lt;model&gt;</code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>[&#x27;id&#x27;, &#x27;createdAt&#x27;, &#x27;updatedAt&#x27;]</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the UI. Defaults to <code>model</code>.</li>
+<li><code>instanceTitle</code>: attribute of instance to use for title and link</li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>viewModel(model: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | class), opts: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | class))</code> Can either be a model name, a path to a file or an ViewBase Subclass.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</code> An options hash, wich is used to configure the UI.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='getviewmodel'>
+      getViewModel
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/index.js#L167-L169'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Returns a viewModel, if it has been regsitered</p>
+
+
+  <div class='pre p1 fill-light mt0'>getViewModel(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): ViewBase</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> the name of the model to return
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>ViewBase</code>:
+        An instance of the viewModel
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='getviewmodels'>
+      getViewModels
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/index.js#L175-L177'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Returns all the registered viewModel instances</p>
+
+
+  <div class='pre p1 fill-light mt0'>getViewModels(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        An array of the viewModel/viewBase instances.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='viewbase'>
+      viewBase
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L24-L258'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The ViewBase class provides a helper module for defining Base-UI based pages.</p>
+
+
+  <div class='pre p1 fill-light mt0'>viewBase</div>
+
+  
+    <p>
+      Extends
+      
+        HasModels
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ViewBase</span> </span>{
+ base () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'/todo'</span>
+  }
+ model () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'todo'</span>
+  }
+ templateDir () {
+    <span class="hljs-keyword">return</span> __dirname+<span class="hljs-string">'/views'</span>
+  }
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='ignore'>
+      ignore
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L55-L57'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Fields in the model to ignore in the UI</p>
+
+
+  <div class='pre p1 fill-light mt0'>ignore(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='idfield'>
+      idField
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L63-L65'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The ID field to use to display a single itme</p>
+
+
+  <div class='pre p1 fill-light mt0'>idField(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='display'>
+      display
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L71-L73'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Fields in the model to show</p>
+
+
+  <div class='pre p1 fill-light mt0'>display(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='titlefield'>
+      titleField
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L79-L81'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Fields in the model to use for the instance title</p>
+
+
+  <div class='pre p1 fill-light mt0'>titleField(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='sortfield'>
+      sortField
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L87-L89'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Fields in the model to use for sorting the list</p>
+
+
+  <div class='pre p1 fill-light mt0'>sortField(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='sortdirection'>
+      sortDirection
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L95-L97'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>List sort direction</p>
+
+
+  <div class='pre p1 fill-light mt0'>sortDirection(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='base'>
+      base
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L103-L105'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The base url for the UI pages.</p>
+
+
+  <div class='pre p1 fill-light mt0'>base(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to 
+<code>/&lt;models&gt;</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='templatedir'>
+      templateDir
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L111-L113'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The directory to find the templates.</p>
+
+
+  <div class='pre p1 fill-light mt0'>templateDir(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to null.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='listtemplate'>
+      listTemplate
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L119-L121'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The template to use for the list partial. Defaults to &#x27;page&#x27;.</p>
+
+
+  <div class='pre p1 fill-light mt0'>listTemplate(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='detailtemplate'>
+      detailTemplate
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L127-L129'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The template to use to display the detail partial. Defaults to &#x27;page&#x27;.</p>
+
+
+  <div class='pre p1 fill-light mt0'>detailTemplate(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='templateprefix'>
+      templatePrefix
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L135-L137'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The prefix to use for the templates. Defaults to <code>view-&lt;model&gt;-</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>templatePrefix(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='displayname'>
+      displayName
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L143-L145'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The display name for the model to use in the  UI</p>
+
+
+  <div class='pre p1 fill-light mt0'>displayName(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to 
+<code>&lt;model&gt;</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='itemsperpage'>
+      itemsPerPage
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L151-L153'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The number of results to display per page</p>
+
+
+  <div class='pre p1 fill-light mt0'>itemsPerPage(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to 
+<code>&lt;model&gt;</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='model'>
+      model
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L159-L162'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Define the primary model for this view module</p>
+
+
+  <div class='pre p1 fill-light mt0'>model(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='modelpopulate'>
+      modelPopulate
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/base-ui/blob/d11e0e40b73079fe67cbf64251ff3d29f47d0c6d/src/viewBase.js#L168-L170'>
+      <span>src/viewBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Define any populated relationships for the model</p>
+
+
+  <div class='pre p1 fill-light mt0'>modelPopulate(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

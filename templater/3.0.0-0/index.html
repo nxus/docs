@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-templater 3.0.0-0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-templater</h3>
+          <div class='mb1'><code>3.0.0-0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#Templater'
+                class='block bold'>
+                Templater
+              </a>
+                <a
+                  href='#Templater.getTemplate'
+                  class='regular block'>
+                  #getTemplate
+                </a>
+                <a
+                  href='#Templater.getTemplates'
+                  class='regular block'>
+                  #getTemplates
+                </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/fe38aece942eb6ef66ea5e3a9672cca2ef41cd8c/src/index.js#L121-L121'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/templater"><img src="https://travis-ci.org/nxus/templater.svg?branch=master" alt="Build Status"></a></p>
+<p>Templates are markup (html, ejs, etc) that Nxus modules can use to render a UX.  The Templater module provides a common API for defining and accessing templates.  Specifically, you can use partials and templates defined by other modules, meaning you write less code for common components.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/templater --save
+</code></pre>
+<h2>Parsers</h2>
+<p>Templater supports EJS and HTML as default template types.  If you'd like to add in additional parsers, check out the @nxus/renderer documentation.</p>
+<h2>Namespacing</h2>
+<p>All templates share a single namespace, so its a good idea to add a prefix to your template names to avoid conflicts.  For example <code>mymodule-mytemplate</code>.</p>
+<h2>Usage</h2>
+<h3>Register a Template</h3>
+<p>There are three types of templates you can register.</p>
+<h4>Template File</h4>
+<p>If you would like to register a single template, you can use the template provider and specify a file:</p>
+<pre><code>app.get('templater').template('path/to/some/file.ejs')
+</code></pre>
+<p>Based on the filename, the template will be given the name <code>file</code> and rendered using the EJS renderer.</p>
+<p>Optionally, you can specify another template to wrap the output (for partial style templates).</p>
+<pre><code>app.get('templater').template('path/to/some/file.ejs', 'page')
+</code></pre>
+<h4>Template Directory</h4>
+<p>Alternatively, if you have a folder with all your templates, you can add them all using <code>templateDir</code>.</p>
+<p>For example, given the following directory structure:</p>
+<pre><code>- /templates
+  |- my-template.ejs
+</code></pre>
+<p>Templater will expose <code>my-template</code> as a new template.</p>
+<pre><code> app.get('templater').template('path/to/some/dir/')
+</code></pre>
+<p>Each template will be processed using the <code>template</code> function above.  You can also specify a wrapper template.</p>
+<pre><code> app.get('templater').template('path/to/some/dir/', 'page')
+</code></pre>
+<h4>Function</h4>
+<p>You can also pass in a handler method instead of a file path. Templater expects that this handler returns a string with the rendered content, or a Promise that resolves to a string.</p>
+<p>The handler will be passed in the name of the template requested, as well as any render options specified.</p>
+<pre><code>var handler = function(args, name) {
+  return "<html>.....";
+}
+app.get('templater').template('default', handler)
+</code></pre>
+<h3>Render content using a Template</h3>
+<pre><code>let opts = {content: "some content"}
+
+app.get('templater').render('default', opts).then((content) => {
+  console.log('rendered content', content)
+})
+</code></pre>
+<h3>Override the template wrapper</h3>
+<p>If you want to specify a different wrapper template than was originally set, you can add a <code>template</code> key to the opts object.</p>
+<pre><code>opts.template = 'new-template'
+app.get('templater').render('partial-template', opts).then((content) => {
+  console.log('rendered complete content', content)l
+})
+</code></pre>
+<h3>Render a partial from within a template</h3>
+<p>In place of EJS' <code>include</code> function for rendering sub-templates, you can use the <code>render</code> function to use a templater-registered template name within a template:</p>
+<p><%- render('app-nav`) %></p>
+<p>or with specific options</p>
+<p><%- render('app-nav', navItems) %></p>
+<h3>Provide additional context opts for rendering (scripts, etc)</h3>
+<p>Modules can provide additional context options to be available to templates. :</p>
+<pre><code>app.get('templater').on('renderContext', () => {return {username: 'Steve'}})
+</code></pre>
+<p>The event handler is passed the original template name and args, so if <code>req</code> or other is provided it is available to you, or if you want to only provide context for some templates, but you do not need to return the whole modified args:</p>
+<pre><code>app.get('templater').on('templateContext', (args, name) => {return {username: args.req ? args.req.user : '' }})
+</code></pre>
+<p>Templater will also fire a template specific event</p>
+<pre><code>app.get('templater').on('renderContext.my-template', () => {return {username: 'Steve'}}) 
+</code></pre>
+<p>Values that are arrays are concated rather than overwritten, so that for instance <code>scripts</code> can collect script URLs from many modules:</p>
+<pre><code>app.get('templater').on('renderContext', () => {return {scripts: ['/url/script.js']}})
+app.get('templater').on('renderContext', () => {return {scripts: ['/url/other.js']}})
+</code></pre>
+<p>Will result in <code>scripts</code> containing an array with both these values. The list will be filtered to only have unique values, so you can specify scripts in dependency order and not worry if other modules are asking for the same common js files repeatedly. The default set of templates provided by this module include rendering of this <code>scripts</code> variable automatically.</p>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Templater' class='mt0'>
+    Templater<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/fe38aece942eb6ef66ea5e3a9672cca2ef41cd8c/src/index.js#L138-L298'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Templater provides a template layer, built on top of the Nxus Renderer</p>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Templater.getTemplate'>
+          <a href='#Templater.getTemplate'>
+            <code>
+              #getTemplate<span class='gray'>(name)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns the specified template if it exists</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Templater.getTemplate' class='mt0'>
+    getTemplate<span class='gray'>(name)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/fe38aece942eb6ef66ea5e3a9672cca2ef41cd8c/src/index.js#L202-L204'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns the specified template if it exists</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the template.</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A template object, with <code>type</code> and <code>handler</code> attributes.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Templater.getTemplates'>
+          <a href='#Templater.getTemplates'>
+            <code>
+              #getTemplates<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns all registered templates</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Templater.getTemplates' class='mt0'>
+    getTemplates<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/templater/blob/fe38aece942eb6ef66ea5e3a9672cca2ef41cd8c/src/index.js#L210-L212'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns all registered templates</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>An array of template object, with <code>type</code> and <code>handler</code> attributes.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

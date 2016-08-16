@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-tester 3.0.0-0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-tester</h3>
+          <div class='mb1'><code>3.0.0-0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#fixture'
+                  class="">
+                  fixture
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/tester/blob/4ee2ac9b886d96e9db1d56d3a61ef0aa52059836/src/index.js#L48-L48'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/tester"><img src="https://travis-ci.org/nxus/tester.svg?branch=master" alt="Build Status"></a></p>
+<p>A test management framework for Nxus applications.  The tester module provides some helper functions for funtionally testing a Nxus app.</p>
+<h2>Installation</h2>
+<pre><code>&gt; npm install nxus-tester --save-dev
+</code></pre>
+<h2>Configuration</h2>
+<p>In order to spin up the test server, add the following lines to your package.json <code>scripts</code>.</p>
+<pre><code>&quot;pretest&quot;: &quot;forever stopall &amp;&amp; NODE_ENV=test PORT=3002 forever start index.js &amp;&amp; sleep 15&quot;
+
+&quot;posttest&quot;: &quot;forever stop index.js&quot;
+</code></pre>
+<h2>Usage</h2>
+<h3>Running tests</h3>
+<pre><code>&gt; npm test
+</code></pre>
+<h3>Requests</h3>
+<pre><code>import {request} from &#x27;@nxus/tester&#x27;
+
+request.get({url: &#x27;/&#x27;}, (err, res, body) =&gt; {
+  res.statusCode.should.equal(200)
+})
+</code></pre>
+<h3>Fixtures</h3>
+<p>You can define fixtures (json or csv files with data to load during test startup) manually in your application modules:
+app.get(&#x27;tester&#x27;).fixture(&#x27;modelName&#x27;, &#x27;path/to/fixture.json&#x27;)</p>
+<p>Or by creating a top-level application <code>fixtures</code> directory with files named for the models they contain fixture data for.</p>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='fixture'>
+      fixture
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/tester/blob/4ee2ac9b886d96e9db1d56d3a61ef0aa52059836/src/index.js#L76-L83'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Import a data file as fixture data for tests. Only runs if config.env==test</p>
+
+
+  <div class='pre p1 fill-light mt0'>fixture(modelId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, options: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>modelId</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The identity of the model to import
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The path to a file
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Options to pass to data-loader.importFile
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

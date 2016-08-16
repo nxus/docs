@@ -17,7 +17,7 @@ Promise.map(modules, function(m) {
   var name = mod_package.name
   if (!index_only) {
     var version = mod_package.version
-    var cmd = "documentation build ../modules/"+m+"/src/*.js --github -f html -o "+mod_doc_dir+"/"+version+" --name '"+name+"' --project-version "+version
+    var cmd = "./node_modules/.bin/documentation build ../modules/"+m+"/src/*.js --github -f html -o "+mod_doc_dir+"/"+version+" --name '"+name+"' --project-version "+version
     console.log(cmd)
     child.execSync(cmd)
   }

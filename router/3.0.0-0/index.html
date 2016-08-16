@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-router 3.0.0-0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-router</h3>
+          <div class='mb1'><code>3.0.0-0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#'
+                class='block bold'>
+                
+              </a>
+              <a
+                href='#Router'
+                class='block bold'>
+                Router
+              </a>
+                <a
+                  href='#Router.constructor'
+                  class='regular block'>
+                  #constructor
+                </a>
+                <a
+                  href='#Router.getExpressApp'
+                  class='regular block'>
+                  #getExpressApp
+                </a>
+                <a
+                  href='#Router.getRoutes'
+                  class='regular block'>
+                  #getRoutes
+                </a>
+                <a
+                  href='#Router.launch'
+                  class='regular block'>
+                  #launch
+                </a>
+                <a
+                  href='#Router.setMiddleware'
+                  class='regular block'>
+                  #setMiddleware
+                </a>
+                <a
+                  href='#Router.setRoute'
+                  class='regular block'>
+                  #setRoute
+                </a>
+                <a
+                  href='#Router.setStatic'
+                  class='regular block'>
+                  #setStatic
+                </a>
+                <a
+                  href='#Router.stop'
+                  class='regular block'>
+                  #stop
+                </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='' class='mt0'>
+    <span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L49-L49'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/router"><img src="https://travis-ci.org/nxus/router.svg?branch=master" alt="Build Status"></a></p>
+<p>The Nxus router is an Express compatible web server and router for Nxus applications.</p>
+<h2>Installation</h2>
+<p>In your Nxus application:</p>
+<pre><code>> npm install @nxus/router --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Defining a route</h3>
+<pre><code>app.get('router').route('/', (req, res) => {
+  res.send('Hello World')
+})
+</code></pre>
+<p>Alternatively, you can specify a HTTP method:</p>
+<pre><code>app.get('router').route('GET', '/', (req, res) => {
+  res.send('Hello World')
+})
+</code></pre>
+<h3>Adding Express/connect middleware</h3>
+<pre><code>app.get('router').middleware((req, res) => {
+  res.status(404).send('Nothing to see here');
+})
+</code></pre>
+<h3>Adding static files/directories</h3>
+<pre><code>app.get('router').static("my-prefix", myPath)
+</code></pre>
+<p>For example, <code>myFile.txt</code> in <code>myPath</code> is then available at the url <code>/my-prefix/myFile.txt</code></p>
+<p>Sometimes its good to have a static assets folder where all your assets live. For that reason, you can use the <code>assets</code> gatherer.</p>
+<h1>API</h1>
+<hr>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Router' class='mt0'>
+    Router<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L65-L224'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Router.constructor'>
+          <a href='#Router.constructor'>
+            <code>
+              #constructor<span class='gray'>(app)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Sets up the relevant gather/providers</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.constructor' class='mt0'>
+    constructor<span class='gray'>(app)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L70-L101'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Sets up the relevant gather/providers</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>app</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.getExpressApp'>
+          <a href='#Router.getExpressApp'>
+            <code>
+              #getExpressApp<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns the Express App instance.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.getExpressApp' class='mt0'>
+    getExpressApp<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L167-L169'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns the Express App instance.</p>
+
+      <h4>Returns</h4>
+      <code>Instance
+</code>
+      :
+      <div class='force-inline'>
+        <p>ExpressJs app instance.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.getRoutes'>
+          <a href='#Router.getRoutes'>
+            <code>
+              #getRoutes<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns the internal routing table.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.getRoutes' class='mt0'>
+    getRoutes<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L159-L161'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns the internal routing table.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>routes which have been registered</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.launch'>
+          <a href='#Router.launch'>
+            <code>
+              #launch<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Launches the Express app. Called by the app.load event.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.launch' class='mt0'>
+    launch<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L140-L143'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Launches the Express app. Called by the app.load event.</p>
+
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.setMiddleware'>
+          <a href='#Router.setMiddleware'>
+            <code>
+              #setMiddleware<span class='gray'>(route, handler, method)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Adds a middleware handler to the internal routing table passed to Express. Accessed with 'middleware' gather.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.setMiddleware' class='mt0'>
+    setMiddleware<span class='gray'>(route, handler, method)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L176-L178'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Adds a middleware handler to the internal routing table passed to Express. Accessed with 'middleware' gather.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>route</strong>
+          :
+          <div class='force-inline'>
+            <p>A URL route.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>An ExpressJs type callback to handle the route.</p>
+
+          </div>
+        </li>
+        <li> <strong>method</strong>
+            (default <code>&#x27;use&#x27;</code>)
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.setRoute'>
+          <a href='#Router.setRoute'>
+            <code>
+              #setRoute<span class='gray'>(method, route, handler)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Adds a route to the internal routing table passed to Express. Accessed with the 'route' gather.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.setRoute' class='mt0'>
+    setRoute<span class='gray'>(method, route, handler)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L186-L196'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Adds a route to the internal routing table passed to Express. Accessed with the 'route' gather.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>method</strong>
+          :
+          <div class='force-inline'>
+            <p>Either 'get', 'post', 'put' or 'delete'. Defaults to 'get'.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>route</strong>
+          :
+          <div class='force-inline'>
+            <p>A URL route.</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>An ExpressJs type callback to handle the route.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.setStatic'>
+          <a href='#Router.setStatic'>
+            <code>
+              #setStatic<span class='gray'>(prefix, path)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Adds a path to serve static files.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.setStatic' class='mt0'>
+    setStatic<span class='gray'>(prefix, path)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L203-L206'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Adds a path to serve static files.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>prefix</strong>
+          :
+          <div class='force-inline'>
+            <p>The path at which the static files will be accessible. For example: /js</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>path</strong>
+          :
+          <div class='force-inline'>
+            <p>A fully resolved path.</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Router.stop'>
+          <a href='#Router.stop'>
+            <code>
+              #stop<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Stops the express app. Called by the app.stop event.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Router.stop' class='mt0'>
+    stop<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/router/blob/607c96e785f66fdaf4d1e4c6fb1ffbef45663006/src/index.js#L148-L153'><code>src/index.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Stops the express app. Called by the app.stop event.</p>
+
+</section>
+          </div>
+        </div>
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

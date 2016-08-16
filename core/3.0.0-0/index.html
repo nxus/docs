@@ -1,0 +1,1802 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-core 3.0.0-0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='container'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed md-show fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-core</h3>
+          <div class='mb1'><code>3.0.0-0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block field'
+            type='text' />
+          <div id='toc'>
+              <a
+                href='#_'
+                class='block bold'>
+                _
+              </a>
+              <a
+                href='#Application'
+                class='block bold'>
+                Application
+              </a>
+                <a
+                  href='#Application.boot'
+                  class='regular block'>
+                  #boot
+                </a>
+                <a
+                  href='#Application.get'
+                  class='regular block'>
+                  #get
+                </a>
+                <a
+                  href='#Application.init'
+                  class='regular block'>
+                  #init
+                </a>
+                <a
+                  href='#Application.restart'
+                  class='regular block'>
+                  #restart
+                </a>
+                <a
+                  href='#Application.start'
+                  class='regular block'>
+                  #start
+                </a>
+                <a
+                  href='#Application.stop'
+                  class='regular block'>
+                  #stop
+                </a>
+              <a
+                href='#ConfigurationManager'
+                class='block bold'>
+                ConfigurationManager
+              </a>
+                <a
+                  href='#ConfigurationManager._rcConfig'
+                  class='regular block'>
+                  #_rcConfig
+                </a>
+                <a
+                  href='#ConfigurationManager.getConfig'
+                  class='regular block'>
+                  #getConfig
+                </a>
+                <a
+                  href='#ConfigurationManager.getEnvironmentVariables'
+                  class='regular block'>
+                  #getEnvironmentVariables
+                </a>
+                <a
+                  href='#ConfigurationManager.getNodeEnv'
+                  class='regular block'>
+                  #getNodeEnv
+                </a>
+              <a
+                href='#Dispatcher'
+                class='block bold'>
+                Dispatcher
+              </a>
+                <a
+                  href='#Dispatcher.after'
+                  class='regular block'>
+                  #after
+                </a>
+                <a
+                  href='#Dispatcher.before'
+                  class='regular block'>
+                  #before
+                </a>
+                <a
+                  href='#Dispatcher.emit'
+                  class='regular block'>
+                  #emit
+                </a>
+                <a
+                  href='#Dispatcher.once'
+                  class='regular block'>
+                  #once
+                </a>
+                <a
+                  href='#Dispatcher.onceAfter'
+                  class='regular block'>
+                  #onceAfter
+                </a>
+                <a
+                  href='#Dispatcher.onceBefore'
+                  class='regular block'>
+                  #onceBefore
+                </a>
+              <a
+                href='#PluginManager'
+                class='block bold'>
+                PluginManager
+              </a>
+                <a
+                  href='#PluginManager.arrayify'
+                  class='regular block'>
+                  #arrayify
+                </a>
+                <a
+                  href='#PluginManager.loadAdditionalModules'
+                  class='regular block'>
+                  #loadAdditionalModules
+                </a>
+                <a
+                  href='#PluginManager.loadNxusModules'
+                  class='regular block'>
+                  #loadNxusModules
+                </a>
+                <a
+                  href='#PluginManager.loadPassedPlugins'
+                  class='regular block'>
+                  #loadPassedPlugins
+                </a>
+                <a
+                  href='#PluginManager.loadPassedPlugins'
+                  class='regular block'>
+                  #loadPassedPlugins
+                </a>
+                <a
+                  href='#PluginManager.loadPassedPlugins'
+                  class='regular block'>
+                  #loadPassedPlugins
+                </a>
+                <a
+                  href='#PluginManager.loadPassedPlugins'
+                  class='regular block'>
+                  #loadPassedPlugins
+                </a>
+              <a
+                href='#Module'
+                class='block bold'>
+                Module
+              </a>
+                <a
+                  href='#Module.default'
+                  class='regular block'>
+                  #default
+                </a>
+                <a
+                  href='#Module.gather'
+                  class='regular block'>
+                  #gather
+                </a>
+                <a
+                  href='#Module.provide'
+                  class='regular block'>
+                  #provide
+                </a>
+                <a
+                  href='#Module.replace'
+                  class='regular block'>
+                  #replace
+                </a>
+                <a
+                  href='#Module.request'
+                  class='regular block'>
+                  #request
+                </a>
+                <a
+                  href='#Module.respond'
+                  class='regular block'>
+                  #respond
+                </a>
+                <a
+                  href='#Module.use'
+                  class='regular block'>
+                  #use
+                </a>
+              <a
+                href='#Watcher'
+                class='block bold'>
+                Watcher
+              </a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        <div class='px2'>
+<div class='py1'><section class='py2 clearfix'>
+  <h2 id='_' class='mt0'>
+    _<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L84-L84'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p><a href="https://travis-ci.org/nxus/core"><img src="https://travis-ci.org/nxus/core.svg?branch=master" alt="Build Status"></a></p>
+<p>The Nxus Core package includes the basic Application framework for building a Nxus app.</p>
+<h2>Introduction</h2>
+<p>You'll probably find the following resources useful background and help in building Nxus applcations.</p>
+<ul>
+<li><a href="">Getting Started</a> (TODO)</li>
+<li><a href="">Design Patterns</a> (TODO)</li>
+<li><a href="">Nxus Modules</a> (TODO)</li>
+<li><a href="">Recipes</a> (TODO)</li>
+<li><a href="">Developing a </a> (TODO)</li>
+</ul>
+<h2>Documentation</h2>
+<p>The full set of Nxus docs is available at <a href="http://docs.gonxus.org">http://docs.gonxus.org</a>.</p>
+<h2>Installation</h2>
+<pre><code>> npm install @nxus/core --save
+</code></pre>
+<h2>Usage</h2>
+<p>In your root application, create a new Application instance:</p>
+<pre><code>import {Application} from '@nxus/core'
+
+let app = new Application(options)
+
+app.start()
+
+export default app
+</code></pre>
+<h3>Events</h3>
+<p>Nxus is built around the concept of a boot cycle.  The application dispatches events in the following order:</p>
+<ol>
+<li><code>init</code>: indicates the application is starting up and initializing modules.  Other modules are not gauranteed to be available at this phase.</li>
+<li><code>load</code>: modules are initialized and loading. This is the place to do any internal setup (outside of the constructor). Other modules are not gauranteed to be available at this phase.</li>
+<li><code>startup</code>: all modules have been loaded and are available. This is the place to do any setup that requires data/input from other modules (like Storage).</li>
+<li><code>launch</code>: the application is launching and all services have been started. Routes are accessible. Use onceAfter('launch') to gaurantee execution after the application has completely launched.</li>
+</ol>
+<h3>Module Loading</h3>
+<p>By defaul the Application will look for other Nxus modules in the following order:</p>
+<ol>
+<li>@nxus namespaced npm modules in your <code>package.json</code> file.</li>
+<li>Any packages that match the 'namespace-' pattern passed in the <code>namespace</code> application config option.</li>
+<li>folders in the ./modules folder in the root of your project</li>
+<li>any modules specified in the <em>modules</em> option passed into Application on instantiation.</li>
+</ol>
+<h3>Module Access</h3>
+<p>In order to access module commands, use the Application.get() method.</p>
+<pre><code>let router = Application.get('router')
+</code></pre>
+<h3>Application Configuration Options</h3>
+<p>Available options are:</p>
+<p><em>appDir</em>: the location to use to load the default 'package.json' file.</p>
+<p><em>namespace</em>: any additional namespaces to use to load modules in the node_modules folder. Can be a string or array of strings.</p>
+<p><em>modules</em>: an array of paths to require into the application</p>
+<p><em>debug</em>: Boolean to display debug messages, including startup banner</p>
+<p><em>script</em>: Boolean to indicate the application is a CLI script, silences all logging/output messages except for explicit console.log calls</p>
+<h2>API</h2>
+
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Application' class='mt0'>
+    Application<span class='gray'>(opts)</span>
+  </h2>
+    <p>
+      Extends
+        <a href="#Dispatcher">Dispatcher</a>
+    </p>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L125-L416'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The Core Application class.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+ <strong>opts</strong>
+          :
+          <div class='force-inline'>
+            <p>the configuration options</p>
+
+          </div>
+        </li>
+    </ul>
+    <h4>Examples</h4>
+
+    <pre class='overflow-auto'><span class="hljs-keyword">import</span> {Application} <span class="hljs-keyword">from</span> <span class="hljs-string">'@nxus/core'</span>
+<span class="hljs-keyword">let</span> app = <span class="hljs-keyword">new</span> Application(options)
+app.start()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> app</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Application.boot'>
+          <a href='#Application.boot'>
+            <code>
+              #boot<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Boots the application, cycling through the internal boot stages.</p>
+<p><strong>Note</strong>: Should rarely be called directly. Instead use #start</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Application.boot' class='mt0'>
+    boot<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L246-L253'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Boots the application, cycling through the internal boot stages.</p>
+<p><strong>Note</strong>: Should rarely be called directly. Instead use #start</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Application.get'>
+          <a href='#Application.get'>
+            <code>
+              #get<span class='gray'>(name)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns an internal Module object for the given name.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Application.get' class='mt0'>
+    get<span class='gray'>(name)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L218-L221'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns an internal Module object for the given name.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the module to return</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://nodejs.org/api/modules.html">Module</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Application.init'>
+          <a href='#Application.init'>
+            <code>
+              #init<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Initializes the application by loading plugins, then booting the application.</p>
+<p><strong>Note</strong>: this should rarely be called directly. Instead use #start</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Application.init' class='mt0'>
+    init<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L230-L237'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Initializes the application by loading plugins, then booting the application.</p>
+<p><strong>Note</strong>: this should rarely be called directly. Instead use #start</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Application.restart'>
+          <a href='#Application.restart'>
+            <code>
+              #restart<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Restarts the Nxus application.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Application.restart' class='mt0'>
+    restart<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L285-L292'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Restarts the Nxus application.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Application.start'>
+          <a href='#Application.start'>
+            <code>
+              #start<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Starts the Nxus application.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Application.start' class='mt0'>
+    start<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L274-L278'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Starts the Nxus application.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Application.stop'>
+          <a href='#Application.stop'>
+            <code>
+              #stop<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Stops the currently running application, removing all event listeners.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Application.stop' class='mt0'>
+    stop<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Application.js#L260-L267'><code>src/Application.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Stops the currently running application, removing all event listeners.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      
+      <div class='force-inline'>
+        
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='ConfigurationManager' class='mt0'>
+    ConfigurationManager<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/ConfigurationManager.js#L21-L65'><code>src/ConfigurationManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>ConfigurationManager loads the internal app.config hash using the following order (each overwrites any values of the previous):</p>
+<ol>
+<li>Opts loaded into the application object.</li>
+<li>Opts in the <code>config</code> hash of the project package.json file</li>
+<li>Any environment variables</li>
+</ol>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='ConfigurationManager._rcConfig'>
+          <a href='#ConfigurationManager._rcConfig'>
+            <code>
+              #_rcConfig<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Gets the local package.json file and tries to find an internal <code>config</code> key</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ConfigurationManager._rcConfig' class='mt0'>
+    _rcConfig<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/ConfigurationManager.js#L39-L41'><code>src/ConfigurationManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Gets the local package.json file and tries to find an internal <code>config</code> key</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>the intenral <code>config</code> object or an empty object if it isn't defined.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ConfigurationManager.getConfig'>
+          <a href='#ConfigurationManager.getConfig'>
+            <code>
+              #getConfig<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns the final config option using the loading order described above.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ConfigurationManager.getConfig' class='mt0'>
+    getConfig<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/ConfigurationManager.js#L55-L64'><code>src/ConfigurationManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns the final config option using the loading order described above.</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>the final composed configuration object.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ConfigurationManager.getEnvironmentVariables'>
+          <a href='#ConfigurationManager.getEnvironmentVariables'>
+            <code>
+              #getEnvironmentVariables<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Extracts the currently avaiable environment variables</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ConfigurationManager.getEnvironmentVariables' class='mt0'>
+    getEnvironmentVariables<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/ConfigurationManager.js#L47-L49'><code>src/ConfigurationManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Extracts the currently avaiable environment variables</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>A hash of the current environment variables</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='ConfigurationManager.getNodeEnv'>
+          <a href='#ConfigurationManager.getNodeEnv'>
+            <code>
+              #getNodeEnv<span class='gray'></span>
+            </code>
+            <div class='force-inline'>
+              <p>Returns the current NODE_ENV</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='ConfigurationManager.getNodeEnv' class='mt0'>
+    getNodeEnv<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/ConfigurationManager.js#L31-L33'><code>src/ConfigurationManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Returns the current NODE_ENV</p>
+
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>the current NODE_ENV</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Dispatcher' class='mt0'>
+    Dispatcher<span class='gray'></span>
+  </h2>
+    <p>
+      Extends
+        EventEmitter
+    </p>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L23-L143'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The core Dispatcher class, which implements promisified</p>
+
+    <h4>Examples</h4>
+
+    <pre class='overflow-auto'><span class="hljs-keyword">import</span> { Dispatcher } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nxus/core'</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Dispatcher</span> </span>{
+  ...
+}</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Dispatcher.after'>
+          <a href='#Dispatcher.after'>
+            <code>
+              #after<span class='gray'>(event, listener)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Bind to after an event. Receives the event handlers results, should return
+modified results or nothing.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Dispatcher.after' class='mt0'>
+    after<span class='gray'>(event, listener)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L75-L77'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Bind to after an event. Receives the event handlers results, should return
+modified results or nothing.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>event</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the event to bind to</p>
+
+          </div>
+        </li>
+        <li>callable
+ <strong>listener</strong>
+          :
+          <div class='force-inline'>
+            <p>The after handler for the event</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Dispatcher.before'>
+          <a href='#Dispatcher.before'>
+            <code>
+              #before<span class='gray'>(event, listener)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Bind to before an event. Receives the event arguments, should return
+modified arguments or nothing.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Dispatcher.before' class='mt0'>
+    before<span class='gray'>(event, listener)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L65-L67'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Bind to before an event. Receives the event arguments, should return
+modified arguments or nothing.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>event</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the event to bind to</p>
+
+          </div>
+        </li>
+        <li>callable
+ <strong>listener</strong>
+          :
+          <div class='force-inline'>
+            <p>The before handler for the event</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Dispatcher.emit'>
+          <a href='#Dispatcher.emit'>
+            <code>
+              #emit<span class='gray'>(event, args)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Emits an event, calling all registered handlers.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Dispatcher.emit' class='mt0'>
+    emit<span class='gray'>(event, args)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L107-L133'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Emits an event, calling all registered handlers.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>event</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the event to emit.</p>
+
+          </div>
+        </li>
+        <li>...
+Any
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>Arguments to the event handlers</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns a promise that resolves when all handlers have completed, with any returned results as an array.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Dispatcher.once'>
+          <a href='#Dispatcher.once'>
+            <code>
+              #once<span class='gray'>(event, [listener])</span>
+            </code>
+            <div class='force-inline'>
+              <p>Bind to an event once</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Dispatcher.once' class='mt0'>
+    once<span class='gray'>(event, [listener])</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L35-L57'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Bind to an event once</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>event</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the event to bind to</p>
+
+          </div>
+        </li>
+        <li>callable
+=
+ <strong>listener</strong>
+          :
+          <div class='force-inline'>
+            <p>The handler for the event</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns a promise that resolves when the event fires</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Dispatcher.onceAfter'>
+          <a href='#Dispatcher.onceAfter'>
+            <code>
+              #onceAfter<span class='gray'>(event, listener)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Bind once to after an event. Receives the event handlers results, should return
+modified results or nothing.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Dispatcher.onceAfter' class='mt0'>
+    onceAfter<span class='gray'>(event, listener)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L97-L99'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Bind once to after an event. Receives the event handlers results, should return
+modified results or nothing.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>event</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the event to bind to</p>
+
+          </div>
+        </li>
+        <li>callable
+ <strong>listener</strong>
+          :
+          <div class='force-inline'>
+            <p>The after handler for the event</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns a promise that resolves when the event fires</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Dispatcher.onceBefore'>
+          <a href='#Dispatcher.onceBefore'>
+            <code>
+              #onceBefore<span class='gray'>(event, listener)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Bind once to before an event. Receives the event arguments, should return
+modified arguments or nothing.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Dispatcher.onceBefore' class='mt0'>
+    onceBefore<span class='gray'>(event, listener)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Dispatcher.js#L86-L88'><code>src/Dispatcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Bind once to before an event. Receives the event arguments, should return
+modified arguments or nothing.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>event</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the event to bind to</p>
+
+          </div>
+        </li>
+        <li>callable
+ <strong>listener</strong>
+          :
+          <div class='force-inline'>
+            <p>The before handler for the event</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Returns a promise that resolves when the event fires</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='PluginManager' class='mt0'>
+    PluginManager<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L23-L205'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The PluginManager handles all of the module loading.  Load order is as follows:</p>
+<ol>
+<li>Packages in node_modules that match the passed <code>namespace</code> config option, and packages in the <code>@nxus</code> namespace.</li>
+<li>Folders in the <appDir>/modules directory.</li>
+<li>Filepaths passed in the <code>modules</code> config option</li>
+</ol>
+
+      <h4>Instance members</h4>
+        <div class='collapsible' id='PluginManager.arrayify'>
+          <a href='#PluginManager.arrayify'>
+            <code>
+              #arrayify<span class='gray'>(el)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Helper method to ensure a passed variable is an array. Wraps the value in an array if it isn't already.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.arrayify' class='mt0'>
+    arrayify<span class='gray'>(el)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L44-L47'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Helper method to ensure a passed variable is an array. Wraps the value in an array if it isn't already.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>anything
+ <strong>el</strong>
+          :
+          <div class='force-inline'>
+            <p>the item to ensure is an array</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>either a new empty array, or el as is if its an array, or el wrapped in an array.</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='PluginManager.loadAdditionalModules'>
+          <a href='#PluginManager.loadAdditionalModules'>
+            <code>
+              #loadAdditionalModules<span class='gray'>(options, packages)</span>
+            </code>
+            <div class='force-inline'>
+              <p>[loadAdditionalModules description]</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.loadAdditionalModules' class='mt0'>
+    loadAdditionalModules<span class='gray'>(options, packages)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L68-L74'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>[loadAdditionalModules description]</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>[
+type
+]
+ <strong>options</strong>
+          :
+          <div class='force-inline'>
+            <p>[description]</p>
+
+          </div>
+        </li>
+        <li>[
+type
+]
+ <strong>packages</strong>
+          :
+          <div class='force-inline'>
+            <p>[description]</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>[
+type
+]
+</code>
+      :
+      <div class='force-inline'>
+        <p>[description]</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='PluginManager.loadNxusModules'>
+          <a href='#PluginManager.loadNxusModules'>
+            <code>
+              #loadNxusModules<span class='gray'>(options)</span>
+            </code>
+            <div class='force-inline'>
+              <p>[loadNxusModules description]</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.loadNxusModules' class='mt0'>
+    loadNxusModules<span class='gray'>(options)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L54-L60'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>[loadNxusModules description]</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li>[
+type
+]
+ <strong>options</strong>
+          :
+          <div class='force-inline'>
+            <p>[description]</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code>[
+type
+]
+</code>
+      :
+      <div class='force-inline'>
+        <p>[description]</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='PluginManager.loadPassedPlugins'>
+          <a href='#PluginManager.loadPassedPlugins'>
+            <code>
+              #loadPassedPlugins<span class='gray'>(options, packages)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Loads custom plugins in the <appDir>/<modulesDir> directory</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.loadPassedPlugins' class='mt0'>
+    loadPassedPlugins<span class='gray'>(options, packages)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L192-L204'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Loads custom plugins in the <appDir>/<modulesDir> directory</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+ <strong>options</strong>
+          :
+          <div class='force-inline'>
+            <p>configuration options</p>
+
+          </div>
+        </li>
+        <li>packages
+ <strong>packages</strong>
+          :
+          <div class='force-inline'>
+            <p>the array of packages currently loaded by Nxus</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='PluginManager.loadPassedPlugins'>
+          <a href='#PluginManager.loadPassedPlugins'>
+            <code>
+              #loadPassedPlugins<span class='gray'>(options, packages)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Loads manually passed in packages by path</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.loadPassedPlugins' class='mt0'>
+    loadPassedPlugins<span class='gray'>(options, packages)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L192-L204'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Loads manually passed in packages by path</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+ <strong>options</strong>
+          :
+          <div class='force-inline'>
+            <p>configuration options</p>
+
+          </div>
+        </li>
+        <li>packages
+ <strong>packages</strong>
+          :
+          <div class='force-inline'>
+            <p>the array of packages currently loaded by Nxus</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='PluginManager.loadPassedPlugins'>
+          <a href='#PluginManager.loadPassedPlugins'>
+            <code>
+              #loadPassedPlugins<span class='gray'>(name, directory, options, packages)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Loads a package</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.loadPassedPlugins' class='mt0'>
+    loadPassedPlugins<span class='gray'>(name, directory, options, packages)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L192-L204'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Loads a package</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the package</p>
+
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>directory</strong>
+          :
+          <div class='force-inline'>
+            <p>A path to the package</p>
+
+          </div>
+        </li>
+        <li> <strong>options</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>
+ <strong>packages</strong>
+          :
+          <div class='force-inline'>
+            <p>An array of the currently loaded packages</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='PluginManager.loadPassedPlugins'>
+          <a href='#PluginManager.loadPassedPlugins'>
+            <code>
+              #loadPassedPlugins<span class='gray'>(options, packages)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Loads all Nxus pacakges for an application</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='PluginManager.loadPassedPlugins' class='mt0'>
+    loadPassedPlugins<span class='gray'>(options, packages)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/PluginManager.js#L192-L204'><code>src/PluginManager.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Loads all Nxus pacakges for an application</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+ <strong>options</strong>
+          :
+          <div class='force-inline'>
+            <p>options to use to load the packages</p>
+
+          </div>
+        </li>
+        <li>packages
+ <strong>packages</strong>
+          :
+          <div class='force-inline'>
+            <p>the array of packages currently loaded by Nxus</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Module' class='mt0'>
+    Module<span class='gray'></span>
+  </h2>
+    <p>
+      Extends
+        <a href="#Dispatcher">Dispatcher</a>
+    </p>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L46-L192'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The core Module class. This provides a messaging proxy layer between modules and calling code.
+The main advantage of this proxy class is that missing modules won't cause exceptions in the code.</p>
+<p>Modules are accessed through the Application.get() method</p>
+
+    <h4>Examples</h4>
+
+    <pre class='overflow-auto'><span class="hljs-keyword">let</span> router = app.get(<span class="hljs-string">'router'</span>)
+
+Producer modules should register themselves <span class="hljs-keyword">with</span> the use() method, and define gather() and respond() handlers:</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'router'</span>).use(<span class="hljs-keyword">this</span>).gather(<span class="hljs-string">'route'</span>)</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'templater'</span>).use(<span class="hljs-keyword">this</span>).respond(<span class="hljs-string">'template'</span>)
+
+Consumer modules should get the <span class="hljs-built_in">module</span> they need to use and call provide or request</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'router'</span>).provide(<span class="hljs-string">'route'</span>, ...)</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'templater'</span>).request(<span class="hljs-string">'render'</span>, ...)
+
+Modules proxy event names <span class="hljs-keyword">as</span> methods to provide/request, so these are synomymous <span class="hljs-keyword">with</span> above:</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'router'</span>).route(...)</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'templater'</span>).render(...)
+
+Default implementations should be indicated by using <span class="hljs-keyword">default</span>() to occur before provide()
+Overriding another implementation can use replace() to occur after provide()</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'router'</span>).default(<span class="hljs-string">'route'</span>, GET<span class="hljs-string">', '</span>/<span class="hljs-string">', ...)</span></pre>
+
+    <pre class='overflow-auto'>app.get('router').replace('route', GET', '/', ...)
+
+Provide, default, and replace all return a proxy object if called with no arguments, so these are synonymous with above:</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'router'</span>).default().route(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'/'</span>, ...)</pre>
+
+    <pre class='overflow-auto'>app.get(<span class="hljs-string">'router'</span>).replace().route(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'/'</span>, ...)</pre>
+      <h4>Instance members</h4>
+        <div class='collapsible' id='Module.default'>
+          <a href='#Module.default'>
+            <code>
+              #default<span class='gray'>(name, args)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Provide default arguments to a delayed gather() call, before other provides</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.default' class='mt0'>
+    default<span class='gray'>(name, args)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L121-L123'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Provide default arguments to a delayed gather() call, before other provides</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the gather event</p>
+
+          </div>
+        </li>
+        <li>...
+Any
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>Arguments to provide to the gather event</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Resolves when the event is eventually handled</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Module.gather'>
+          <a href='#Module.gather'>
+            <code>
+              #gather<span class='gray'>(name, handler)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Receive arguments provided to a delayed gather() call.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.gather' class='mt0'>
+    gather<span class='gray'>(name, handler)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L163-L170'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Receive arguments provided to a delayed gather() call.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the gather event</p>
+
+          </div>
+        </li>
+        <li>callable
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>The handler for each provided value</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Module.provide'>
+          <a href='#Module.provide'>
+            <code>
+              #provide<span class='gray'>(name, args)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Provide arguments to a delayed gather() call.</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.provide' class='mt0'>
+    provide<span class='gray'>(name, args)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L137-L139'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Provide arguments to a delayed gather() call.</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the gather event</p>
+
+          </div>
+        </li>
+        <li>...
+Any
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>Arguments to provide to the gather event</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Resolves when the event is eventually handled</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Module.replace'>
+          <a href='#Module.replace'>
+            <code>
+              #replace<span class='gray'>(name, args)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Provide a replacement for a delayed gather() call (after others are provided)</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.replace' class='mt0'>
+    replace<span class='gray'>(name, args)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L148-L150'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Provide a replacement for a delayed gather() call (after others are provided)</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the gather event</p>
+
+          </div>
+        </li>
+        <li>...
+Any
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>Arguments to provide to the gather event</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Resolves when the event is eventually handled</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Module.request'>
+          <a href='#Module.request'>
+            <code>
+              #request<span class='gray'>(name, args)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Request the result of processing a named event</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.request' class='mt0'>
+    request<span class='gray'>(name, args)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L179-L181'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Request the result of processing a named event</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the request event</p>
+
+          </div>
+        </li>
+        <li>...
+Any
+ <strong>args</strong>
+          :
+          <div class='force-inline'>
+            <p>Arguments to provide to the responder</p>
+
+          </div>
+        </li>
+    </ul>
+      <h4>Returns</h4>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
+</code>
+      :
+      <div class='force-inline'>
+        <p>Resolves to the result of the event's handler</p>
+
+      </div>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Module.respond'>
+          <a href='#Module.respond'>
+            <code>
+              #respond<span class='gray'>(name, handler)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Respond to a named event</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.respond' class='mt0'>
+    respond<span class='gray'>(name, handler)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L189-L191'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Respond to a named event</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+ <strong>name</strong>
+          :
+          <div class='force-inline'>
+            <p>The name of the request event</p>
+
+          </div>
+        </li>
+        <li>callable
+ <strong>handler</strong>
+          :
+          <div class='force-inline'>
+            <p>The handler for the request</p>
+
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+        <div class='collapsible' id='Module.use'>
+          <a href='#Module.use'>
+            <code>
+              #use<span class='gray'>(instance)</span>
+            </code>
+            <div class='force-inline'>
+              <p>Let another instance use this module's events to reduce boilerplate calls</p>
+
+            </div>
+          </a>
+          <div class='collapser border px2'>
+<section class='py2 clearfix'>
+  <h2 id='Module.use' class='mt0'>
+    use<span class='gray'>(instance)</span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Module.js#L67-L85'><code>src/Module.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>Let another instance use this module's events to reduce boilerplate calls</p>
+
+    <h4>Parameters</h4>
+    <ul class='suppress-p-margin'>
+        <li> <strong>instance</strong>
+          :
+          <div class='force-inline'>
+            
+          </div>
+        </li>
+    </ul>
+</section>
+          </div>
+        </div>
+</section>
+</div><div class='py1'><section class='py2 clearfix'>
+  <h2 id='Watcher' class='mt0'>
+    Watcher<span class='gray'></span>
+  </h2>
+    <p><a href='https://github.com/nxus/core/blob/06193f677bab03ec54f1dfaf9724dff85f11f46a/src/Watcher.js#L14-L53'><code>src/Watcher.js</code></a></p>
+  
+  
+  
+  
+  
+  <p>The Watcher class monitors the project directory and restarts the application whenever
+there is a change in files detected. Useful for development.</p>
+
+</section>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

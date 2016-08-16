@@ -1,0 +1,678 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-pipeliner 3.0.0-0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-pipeliner</h3>
+          <div class='mb1'><code>3.0.0-0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#index'
+                  class="">
+                  index
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#pipeline'
+                  class="">
+                  pipeline
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#stages'
+                  class="">
+                  stages
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#task'
+                  class="">
+                  task
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getpipelines'
+                  class="">
+                  getPipelines
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getpipeline'
+                  class="">
+                  getPipeline
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#run'
+                  class="">
+                  run
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L51-L51'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/pipeliner"><img src="https://travis-ci.org/nxus/pipeliner.svg?branch=master" alt="Build Status"></a></p>
+<p>A framework for creating and running data pipelines.  Data pipelines have stages, which are made of an arbitrary number of tasks.  Stages and tasks are run in serial: once a task completes, the next task in the pipeline is executed.</p>
+<p>Pipelines take a data object as input, and each task operates on the object in some way.</p>
+<p>For an example of the Pipeliner in action, checkout the <a href="https://github.com/seabourne/nxus-static-site">nxus-static-site</a> module.</p>
+<h2>Installation</h2>
+<pre><code>&gt; npm install @nxus/pipeliner --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Step 1: Define a pipeline</h3>
+<pre><code>app.get(&#x27;pipeliner&#x27;).pipeline(&#x27;my-pipeline&#x27;)
+</code></pre>
+<h3>Step 1a: Define stages</h3>
+<p>By default, every pipeline is pre-configured with three stages: &#x27;collect&#x27;, &#x27;process&#x27;, &#x27;generate&#x27;.  However, you can define your own stages:</p>
+<pre><code>app.get(&#x27;pipliner&#x27;).stages(&#x27;my-pipeline&#x27;, [&#x27;stage1&#x27;, &#x27;stage2&#x27;, &#x27;stage3&#x27;])
+</code></pre>
+<h3>Step 2: Define tasks</h3>
+<p>A task is a javascript function that accepts any objects passed into the pipeline when it is run.</p>
+<pre><code>let myTask = (word) =&gt; {
+  word.toUpperCase();
+}
+
+app.get(&#x27;pipeliner&#x27;).task(&#x27;my-pipeline&#x27;, &#x27;process&#x27;, myTask)
+</code></pre>
+<h3>Step 3: Run a pipeline</h3>
+<p>Once all the tasks for a pipeline have been defined, the last step is to run the pipeline.</p>
+<pre><code>app.get(&#x27;pipeliner&#x27;).run(&#x27;my-pipeline&#x27;, someData)
+</code></pre>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='index'>
+      index
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L75-L162'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>index</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">let</span> myTask = (data) =&gt; {
+  data.word.toUpperCase()
+}
+<span class="hljs-keyword">let</span> data = {word: <span class="hljs-string">'hello'</span>}
+
+<span class="hljs-keyword">let</span> pipeliner = app.get(<span class="hljs-string">'pipeliner'</span>)
+
+pipeliner.pipeline(<span class="hljs-string">'capitalize'</span>)
+pipeliner.task(<span class="hljs-string">'capitalize'</span>, <span class="hljs-string">'process'</span>, myTask)
+pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data'</span>) <span class="hljs-comment">// {word: 'HELLO'}</span>
+})</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='pipeline'>
+      pipeline
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L96-L104'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Create a new pipeline.</p>
+
+
+  <div class='pre p1 fill-light mt0'>pipeline(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the pipeline to create
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='stages'>
+      stages
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L112-L115'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Define stages for a pipeline</p>
+
+
+  <div class='pre p1 fill-light mt0'>stages(stages: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>, pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): [type]</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>stages</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>)</code> An array of strings, each string being the name of a stage. Stages are executed in the order in the array.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the pipeline to use the stages.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>[type]</code>:
+        [description]
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='task'>
+      task
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L123-L128'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Defintes a task for a pipeline and a stage.</p>
+
+
+  <div class='pre p1 fill-light mt0'>task(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, stage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, job: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the pipeline
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>stage</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the string
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>job</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> A function which accepts data
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='getpipelines'>
+      getPipelines
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L134-L136'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Returns all pipelines which have been defined</p>
+
+
+  <div class='pre p1 fill-light mt0'>getPipelines(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        A hash of the pipelines.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='getpipeline'>
+      getPipeline
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L143-L145'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Returns a specific pipeline</p>
+
+
+  <div class='pre p1 fill-light mt0'>getPipeline(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of a pipeline to return.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        The pipeline object.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='run'>
+      run
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/aae37d53768d3fc07c442efb4df38295109d9cea/src/index.js#L153-L161'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Runs the specified pipeline, passing the arguments to each task.</p>
+
+
+  <div class='pre p1 fill-light mt0'>run(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, args: ...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> the pipeline to run
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Arguments to pass to the pipeline tasks
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        A promise that is executed when the pipeline completes.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
