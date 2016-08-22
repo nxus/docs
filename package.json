@@ -1,6 +1,6 @@
 {
-  "name": "@nxus/docs",
-  "version": "2.3.0",
+  "name": "nxus-docs",
+  "version": "3.0.0",
   "description": "Nxus Documentation",
   "main": "src/index.js",
   "scripts": {

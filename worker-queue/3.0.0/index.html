@@ -1,0 +1,496 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-worker-queue 3.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-worker-queue</h3>
+          <div class='mb1'><code>3.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#index'
+                  class="">
+                  index
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#worker'
+                  class="">
+                  worker
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#task'
+                  class="">
+                  task
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#clean'
+                  class="">
+                  clean
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#empty'
+                  class="">
+                  empty
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/worker-queue/blob/2c0682af3a12949632cb07a503fed79a735a85b9/src/index.js#L53-L53'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/worker-queue"><img src="https://travis-ci.org/nxus/worker-queue.svg?branch=master" alt="Build Status"></a></p>
+<p>Using Redis for pub/sub background tasks</p>
+<h2>Installation</h2>
+<pre><code>&gt; npm install nxus-worker-queue --save
+</code></pre>
+<h2>Usage</h2>
+<p>For each task, you need to define a unique task name.</p>
+<h3>Register a worker handler</h3>
+<pre><code>app.get(&#x27;worker-queue&#x27;).worker(&#x27;myBackgroundTask&#x27;, ({data}) =&gt; {
+  this.app.log.debug(&quot;Hello&quot;, data.hi)
+})
+</code></pre>
+<h3>Request task processing</h3>
+<p><code>app.get(&#x27;worker-queue&#x27;).task(&#x27;myBackgroundTask&#x27;, {hi: world})</code></p>
+<h3>Receive notifications of completed tasks</h3>
+<p>Register two tasks, one for processing and one for notifications, and trigger the second from within the first handler.</p>
+<pre><code>app.get(&#x27;worker-queue&#x27;).worker(&#x27;myBackgroundTask&#x27;, ({data}) =&gt; {
+  this.app.log.debug(&quot;Hello&quot;, data.hi)
+  app.get(&#x27;worker-queue&#x27;).task(&#x27;myBackgroundTask-complete&#x27;, {result: true})
+})
+app.get(&#x27;worker-queue&#x27;).worker(&#x27;myBackgroundTask-complete&#x27;, ({data}) =&gt; {
+  this.app.log.debug(&quot;Completed&quot;, data.result)
+})
+</code></pre>
+<p><code>app.get(&#x27;worker-queue&#x27;).task(&#x27;myBackgroundTask&#x27;, {hi: world})</code></p>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='index'>
+      index
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/worker-queue/blob/2c0682af3a12949632cb07a503fed79a735a85b9/src/index.js#L67-L161'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Worker Queue module for background tasks</p>
+
+
+  <div class='pre p1 fill-light mt0'>index</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='worker'>
+      worker
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/worker-queue/blob/2c0682af3a12949632cb07a503fed79a735a85b9/src/index.js#L107-L111'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Provide a task handler</p>
+
+
+  <div class='pre p1 fill-light mt0'>worker(taskName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, handler: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>taskName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Name of the task (channel) to listen for
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>handler</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> Handler for processing task requests
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>app.get(<span class="hljs-string">'worker-queue'</span>).worker(<span class="hljs-string">'backgroundJob'</span>, (msg) -&gt; {})</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='task'>
+      task
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/worker-queue/blob/2c0682af3a12949632cb07a503fed79a735a85b9/src/index.js#L120-L124'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Request handling of a background task</p>
+
+
+  <div class='pre p1 fill-light mt0'>task(taskName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>taskName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Name of the task (channel) to publish to
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>message</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Options for the task worker;
+must be JSON serializable
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>app.get(<span class="hljs-string">'worker-queue'</span>).task(<span class="hljs-string">'backgroundJob'</span>, {hi: <span class="hljs-string">'world'</span>})</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='clean'>
+      clean
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/worker-queue/blob/2c0682af3a12949632cb07a503fed79a735a85b9/src/index.js#L130-L143'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Cleans the current queue for the given taskName. Good idea to do this on occasion as Bull will keep all completed tasks in Redis.</p>
+
+
+  <div class='pre p1 fill-light mt0'>clean(taskName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>taskName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the queue to clean. If not provided, all queues are cleaned.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='empty'>
+      empty
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/worker-queue/blob/2c0682af3a12949632cb07a503fed79a735a85b9/src/index.js#L149-L160'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Emptys the current queue for the given taskName.</p>
+
+
+  <div class='pre p1 fill-light mt0'>empty(taskName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>taskName</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the queue to empty. If not provided, all queues are emptied.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

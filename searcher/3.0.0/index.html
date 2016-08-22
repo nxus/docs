@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-searcher 3.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-searcher</h3>
+          <div class='mb1'><code>3.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#index'
+                  class="">
+                  index
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#searchable'
+                  class="">
+                  searchable
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/searcher/blob/714dd460b54b01f54a788854727904ed56a8ee9f/src/index.js#L85-L85'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/searcher"><img src="https://travis-ci.org/nxus/searcher.svg?branch=master" alt="Build Status"></a></p>
+<p>The Searcher module enables easy searching of Nxus models using different adapters for Solr, ElasticSearch and others.</p>
+<h1>Installation</h1>
+<pre><code>&gt; npm install @nxus/searcher --save
+</code></pre>
+<h1>Usage</h1>
+<h2>Configuration</h2>
+<p>The Searcher module depends on @nxus/storage.  The first step is adding and configuring the search adapter you&#x27;d like to use.
+For example, if we want to enable ElasticSearch, we first install the waterline-elasticsearch adapter, then setup the configuration
+options in the Storage config.</p>
+<blockquote>
+<p>npm install waterline-elasticsearch --save</p>
+</blockquote>
+<p>then add to package.json</p>
+<p>&quot;storage&quot;: {
+&quot;adapters&quot;: {
+...
+&quot;searcher&quot;: &quot;waterline-elasticsearch&quot;
+},
+&quot;connections&quot;: {
+...
+&quot;searcher: {
+&quot;adapter&quot;: &quot;searcher&quot;,
+&quot;host&quot;: &quot;<host address>:9200&quot;,
+&quot;log&quot;: &quot;warning&quot;,
+&quot;index&quot;: &quot;searcher&quot;
+}
+}
+}</p>
+<h2>Register model</h2>
+<p>Now that the correct Storage adapters are configured, you&#x27;ll need to tell Searcher which models you want to enable
+search using the <code>searchable</code> method. Searchable accepts an identity for a model which has already been registered.</p>
+<p>app.get(&#x27;searcher&#x27;).searchable(&#x27;user&#x27;)</p>
+<p>By default, Searcher will look for a field named <code>title</code> or <code>name</code> to use as the search field. You can specify different, or
+multiple fields to search by specifying a second options parameter, with the <code>fields</code> key:</p>
+<p>app.get(&#x27;searcher&#x27;).searchable(&#x27;user&#x27;, {fields: &#x27;firstName&#x27;})
+app.get(&#x27;searcher&#x27;).searchable(&#x27;user&#x27;, {fields: [&#x27;firstName&#x27;, &#x27;lastName&#x27;]})</p>
+<h2>Routes</h2>
+<p>Based on the model identify, Searcher will create the following routes</p>
+<pre><code>/users/search
+</code></pre>
+<p>which accepts a search parameter <code>q</code>. So to search for the term &#x27;pizza&#x27;:</p>
+<pre><code>/users/search?q=mike
+</code></pre>
+<p>The search wil return a list of results using the views below.</p>
+<h2>Views</h2>
+<p>You can provide search specific views to be used for search results:</p>
+<ol>
+<li>search-user-list: the list view for returned search results.</li>
+<li>search-user-detail: the detail view for an individual search result.</li>
+</ol>
+<p>Alternatively, if no search templates are found, searcher will automatically use the <code>@nxus/base-ui</code> views for any model
+that is searchable (if they exist).</p>
+<ol>
+<li>view-user-list: the list view used to display search results.</li>
+<li>view-user-detail: the detail view linked to from the list view.</li>
+</ol>
+<p>Finally, searcher will use default list/detail views if no other templates are found.</p>
+<h1>API</h1>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='index'>
+      index
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/searcher/blob/714dd460b54b01f54a788854727904ed56a8ee9f/src/index.js#L95-L279'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The Search class enables automated searching of models using different adapters.</p>
+
+
+  <div class='pre p1 fill-light mt0'>index</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='searchable'>
+      searchable
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/searcher/blob/714dd460b54b01f54a788854727904ed56a8ee9f/src/index.js#L133-L204'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Register a model to be searchable.</p>
+
+
+  <div class='pre p1 fill-light mt0'>searchable(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, opts: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> the model identity
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</code> An optional hash of options.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

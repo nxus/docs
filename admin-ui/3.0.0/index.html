@@ -1,0 +1,1618 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-admin-ui 3.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-admin-ui</h3>
+          <div class='mb1'><code>3.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#adminbase'
+                  class=" toggle-sibling">
+                  AdminBase
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#AdminBase#ignore'
+                        class='regular pre-open'>
+                        #ignore
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#display'
+                        class='regular pre-open'>
+                        #display
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#base'
+                        class='regular pre-open'>
+                        #base
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#iconClass'
+                        class='regular pre-open'>
+                        #iconClass
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#templateDir'
+                        class='regular pre-open'>
+                        #templateDir
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#templatePrefix'
+                        class='regular pre-open'>
+                        #templatePrefix
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#displayName'
+                        class='regular pre-open'>
+                        #displayName
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#model'
+                        class='regular pre-open'>
+                        #model
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#modelPopulate'
+                        class='regular pre-open'>
+                        #modelPopulate
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#modelNames'
+                        class='regular pre-open'>
+                        #modelNames
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#uploadType'
+                        class='regular pre-open'>
+                        #uploadType
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminBase#uploadOptions'
+                        class='regular pre-open'>
+                        #uploadOptions
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#adminui'
+                  class=" toggle-sibling">
+                  AdminUI
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#AdminUI#modelAction'
+                        class='regular pre-open'>
+                        #modelAction
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminUI#instanceAction'
+                        class='regular pre-open'>
+                        #instanceAction
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminUI#getModelActions'
+                        class='regular pre-open'>
+                        #getModelActions
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminUI#getInstanceActions'
+                        class='regular pre-open'>
+                        #getInstanceActions
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminUI#adminPage'
+                        class='regular pre-open'>
+                        #adminPage
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminUI#adminRoute'
+                        class='regular pre-open'>
+                        #adminRoute
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminUI#adminModel'
+                        class='regular pre-open'>
+                        #adminModel
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='adminbase'>
+      AdminBase
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin-ui/blob/b3058c6e725de4931ffba24d8b5665c0e87d3d72/src/adminBase.js#L31-L353'>
+      <span>src/adminBase.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The AdminBase class provides a set of helper CRUD classes for defining Admin-UI based admin pages.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new AdminBase()</div>
+
+  
+    <p>
+      Extends
+      
+        HasModels
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoAdmin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AdminBase</span> </span>{
+ base () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'/todo'</span>
+  }
+ model () {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'todo'</span>
+  }
+ templateDir () {
+    <span class="hljs-keyword">return</span> __dirname+<span class="hljs-string">'/views'</span>
+  }
+}</pre>
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='AdminBase#ignore'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>ignore()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Fields in the model to ignore in the UI</p>
+
+
+  <div class='pre p1 fill-light mt0'>ignore(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#display'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>display()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Fields in the model to show</p>
+
+
+  <div class='pre p1 fill-light mt0'>display(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#base'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>base()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The base url for the Admin CRUD UI.</p>
+
+
+  <div class='pre p1 fill-light mt0'>base(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to 
+<code>/&lt;models&gt;</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#iconClass'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>iconClass()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The class to use for the nav icon.</p>
+
+
+  <div class='pre p1 fill-light mt0'>iconClass(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to 
+<code>fa fa-file</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#templateDir'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>templateDir()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The directory to find the templates.</p>
+
+
+  <div class='pre p1 fill-light mt0'>templateDir(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to null.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#templatePrefix'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>templatePrefix()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The prefix to use for the templates. Defaults to <code>admin-&lt;model&gt;-</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>templatePrefix(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#displayName'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>displayName()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>The display name for the model to use in the Admin UI</p>
+
+
+  <div class='pre p1 fill-light mt0'>displayName(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Defaults to 
+<code>&lt;model&gt;</code>
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#model'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>model()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Define the primary model for this admin module</p>
+
+
+  <div class='pre p1 fill-light mt0'>model(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#modelPopulate'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>modelPopulate()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Define any populated relationships for the model</p>
+
+
+  <div class='pre p1 fill-light mt0'>modelPopulate(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#modelNames'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>modelNames()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Returns a hash of currently used models.</p>
+
+
+  <div class='pre p1 fill-light mt0'>modelNames(): [type]</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>[type]</code>:
+        [description]
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#uploadType'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>uploadType()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Allow upload of models by this file type</p>
+
+
+  <div class='pre p1 fill-light mt0'>uploadType(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">return</span> <span class="hljs-string">'csv'</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminBase#uploadOptions'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>uploadOptions()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Options for data-loader on upload</p>
+
+
+  <div class='pre p1 fill-light mt0'>uploadOptions(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">return</span> {identityFields: [<span class="hljs-string">'name'</span>], mapping: {Name: <span class="hljs-string">'name'</span>}}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='adminui'>
+      AdminUI
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin-ui/blob/b3058c6e725de4931ffba24d8b5665c0e87d3d72/src/index.js#L175-L402'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/admin-ui"><img src="https://travis-ci.org/nxus/admin-ui.svg?branch=master" alt="Build Status"></a></p>
+<p>An Admin UI Framework for Nxus Apps.</p>
+<h2>Installation</h2>
+<pre><code>&gt; npm install nxus-admin-ui --save
+</code></pre>
+<h2>Optional Module Configuration</h2>
+<p>There are two configuration options you can specify in your package.json file to change the way the admin-ui module
+functions. All configuration should be under the <code>admin-ui</code> section of the <code>config</code> key.</p>
+<ul>
+<li><strong>basePath</strong>: the base path, defaults to /admin</li>
+<li><strong>adminTemplate</strong>: the admin template to use, defaults to &#x27;admin&#x27;</li>
+</ul>
+<p>For example:</p>
+<pre><code>&quot;config&quot;: {
+  &quot;admin-ui&quot;: {
+    &quot;basePath&quot;: &quot;/otherRoute&quot;,
+    &quot;adminTemplate&quot;: &quot;myAdmin&quot;
+  }
+}
+</code></pre>
+<h2>Usage</h2>
+<p>The Admin Interface is made up of pages and routes. Pages are rendered content displayed in the Admin Interface.
+Routes are callbacks that don&#x27;t render anything, but perform application logic (like a save handler).</p>
+<h3>Admin Pages</h3>
+<p>You can define pages in three ways using the <code>adminPage</code> provider.</p>
+<h4>A partial</h4>
+<p>If you supply a valid filepath, the Admin interface will use that partial to render the page content for display.</p>
+<pre><code>admin.adminPage(&#x27;Page Title&#x27;, &#x27;/partial&#x27;, {iconClass: &#x27;fa fa-file&#x27;}, __dirname+&quot;/views/page.ejs&quot;)
+</code></pre>
+<h4>A string</h4>
+<p>If you provide a string, the string will be passed to the admin page template as is.</p>
+<pre><code>admin.adminPage(&#x27;Page Title&#x27;, &#x27;/content&#x27;, {iconClass: &#x27;fa fa-file&#x27;}, (req, res) =&gt; {
+  return &quot;this is handler content&quot;
+})
+</code></pre>
+<h4>A callback</h4>
+<p>If you provide a callback, the return should either a string or a Promise for a string.</p>
+<pre><code>admin.adminPage(&#x27;Page Title&#x27;, &#x27;/function&#x27;, (req, res) =&gt; {
+  return Promise.resolve(&#x27;Some text&#x27;);
+})
+</code></pre>
+<h4>Page Configuration Options</h4>
+<ul>
+<li><strong>class</strong>: string</li>
+<li><strong>iconClass</strong>: string</li>
+<li><strong>nav</strong>: boolean</li>
+<li><strong>order</strong>: integer</li>
+</ul>
+<h3>Admin Routes</h3>
+<h4>A handler function</h4>
+<pre><code>admin.adminRoute(&#x27;get&#x27;, &#x27;/redirect&#x27;, (req, res) =&gt; {
+  res.redirect(&#x27;/admin&#x27;)
+})
+</code></pre>
+<h2>Actions</h2>
+<p>The Admin UI provides a set of convenience functions for defining administrative actions for models and model instances.</p>
+<h3>Instance Actions</h3>
+<p>Use the <code>instanceAction</code> gatherer to define actions that relate to a specific instance. For example, <code>view</code> could defined as:</p>
+<p>this.admin.instanceAction(this.model(), &#x27;view&#x27;, &#x27;view&#x27;, {iconClass:&quot;fa fa-eye&quot;, suffixName: true})</p>
+<p><strong>Default Instance Actions</strong></p>
+<p>The Admin UI module provides the &#x27;Edit&#x27; and &#x27;Delete&#x27; instance action for you automatically.</p>
+<h3>Model Actions</h3>
+<p>Use model actions to do something that applys to the entire class, or no specific instance.</p>
+<p>this.admin.modelAction(this.model(), &#x27;Delete All&#x27;, &#x27;deleteall&#x27;, {iconClass:&quot;fa fa-remove&quot;, suffixName: true})</p>
+<p><strong>Default Model Actions</strong></p>
+<p>The Admin UI module provides the &#x27;Create&#x27; model action for you automatically.</p>
+<h2>Model View helpers</h2>
+<p>The module provides a helper for generating list/detail views from a model:</p>
+<pre><code>app.get(&#x27;admin-ui&#x27;).adminModel(&#x27;user&#x27;, {base: &#x27;/users&#x27;, titleField: &#x27;email&#x27;})
+</code></pre>
+<p>You may pass in an options object, as in this example, or subclass of ViewBase, or a string path to a subclass of ViewBase.</p>
+<pre><code>import {AdminBase} from &#x27;@nxus/admin-ui&#x27;
+
+class UserView extends AdminBase {
+  model() {
+    return &#x27;user&#x27;
+  }
+  base() {
+    return &#x27;/users&#x27;
+  }
+  titleField() {
+    return &#x27;email
+  }
+}
+
+app.get(&#x27;admin-ui&#x27;).adminModel(UserView)
+</code></pre>
+<h3>Customizing</h3>
+<p>If you want to provide your own 404 or 500 page, define the relevant new template. Base-ui will use these to handle the routes above.</p>
+<h4>List and Detail View</h4>
+<p>You can specify your own list view template to use instead of the default. The base-ui module looks for a template matching the following
+pattern: <code>admin-&lt;model&gt;-list</code> and <code>admin-&lt;model&gt;-detail</code>.</p>
+<p>Each template will be passed either a model instance (for detail view) or an array of models (for list view), using the model name.</p>
+<p>So using the examples above:</p>
+<pre><code>app.get(&#x27;templater&#x27;).templateFunction(&#x27;admin-user-list&#x27;, (opts) =&gt; {
+  return app.get(&#x27;renderer&#x27;).render(&quot;ejs&quot;, &quot;&lt;% users.forEach(function(user){ .... }) %&gt;&quot;, opts)
+})
+
+app.get(&#x27;templater&#x27;).template(&#x27;admin-user-detail&#x27;, &#x27;ejs&#x27;, () =&gt; {
+  return app.get(&#x27;renderer&#x27;).render(&quot;ejs&quot;, &quot;Email: &lt;%= user.email %&gt;&quot;, opts)
+})
+</code></pre>
+
+
+  <div class='pre p1 fill-light mt0'>new AdminUI()</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>app.get('admin-ui')
+
+# API
+-----</pre>
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='AdminUI#modelAction'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>modelAction(model, label, subURL, opts)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Register an action for the model list page</p>
+
+
+  <div class='pre p1 fill-light mt0'>modelAction(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, subURL: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The model identity to include this action, or &#x27;*&#x27;
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>label</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The button label for this action
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>subURL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The url for this action (register this as an adminPage separately)
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Additional options: class, iconClass, suffixName
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminUI#instanceAction'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>instanceAction(model, label, subURL, opts)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Register an action for the model detail page</p>
+
+
+  <div class='pre p1 fill-light mt0'>instanceAction(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, subURL: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The model identity to include this action, or &#x27;*&#x27;
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>label</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The button label for this action
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>subURL</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The url for this action (register this as an adminPage separately)
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Additional options: class, iconClass, suffixName
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminUI#getModelActions'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getModelActions(model)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Get the registered actions for model</p>
+
+
+  <div class='pre p1 fill-light mt0'>getModelActions(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The model identity
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminUI#getInstanceActions'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getInstanceActions(model)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Get the registered actions for model instances</p>
+
+
+  <div class='pre p1 fill-light mt0'>getInstanceActions(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The model identity
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminUI#adminPage'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>adminPage(title, path, opts, handler)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Register a page for inclusion in the admin site and navigation
+Page template will receive (and can set in opts):</p>
+<ul>
+<li>class: string</li>
+<li>iconClass: string</li>
+<li>nav: boolean</li>
+<li>order: integer</li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>adminPage(title: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>, handler: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | template-partial | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>))</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>title</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The title of the page, and navigation link
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The url path for the page
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Additional options for the rendering of this page
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>handler</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | template-partial | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>))</code> for rendering this page
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminUI#adminRoute'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>adminRoute(method, path, handler)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Register a raw route for inclusion in the admin site</p>
+
+
+  <div class='pre p1 fill-light mt0'>adminRoute(method: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, handler: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>method</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The HTTP method to handle
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>path</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The url path for the page
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>handler</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> for rendering this page
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminUI#adminModel'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>adminModel(model, [opts])</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Creates a CRUD UI for the specified model, including all routes and views.  You can pass in the following combinations:</p>
+<ol>
+<li>a model name and opts hash.</li>
+<li>a path to a file which is a subclass of AdminBase</li>
+<li>a class which is a subclass of AdminBase</li>
+</ol>
+<p>Routes created are:</p>
+<ul>
+<li><code>/admin/&lt;base&gt;</code>: list page </li>
+<li><code>/admin/&lt;base&gt;/create</code>: create new instance </li>
+<li><code>/admin/&lt;base&gt;/edit/:id</code>: edit existing instance </li>
+<li><code>/admin/&lt;base&gt;/destroy/:id</code>: destroy existing instance </li>
+</ul>
+<p>Views which can be overriden are:</p>
+<ul>
+<li><code>admin-&lt;model&gt;-form</code>: the create/edit form</li>
+<li><code>admin-&lt;model&gt;-list</code>: the list page view</li>
+</ul>
+<p>The generated form for edit/create currently handles simple types (string, float, boolean, etc) and foreign key fields as a dropdown of all the related models.</p>
+<p>Options available are:</p>
+<ul>
+<li><code>base</code>: the url at which the CRUD paths are created. For example, &#x27;/users&#x27;.</li>
+<li><code>iconClass</code>: the icon class to use in the Nav. Used in <i> tag.</li>
+<li><code>templatePrefix</code>: a custom prefix for generated templates. Defaults to <code>admin-&lt;model&gt;</code>.</li>
+<li><code>ignore</code>: an array of model fields to ignore in the UI. Defaults to <code>[&#x27;id&#x27;, &#x27;createdAt&#x27;, &#x27;updatedAt&#x27;]</code></li>
+<li><code>templateDir</code>: a directory containing the list/form templates for the model. Defaults to none.</li>
+<li><code>displayName</code>: an alternate name to use for the display in the Admin UI. Defaults to <code>model</code>.</li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>adminModel(model: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | class), opts: [<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | class))</code> Can either be a model name, a path to a file or an AdminBase Subclass.
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>([<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>](default {}))</code> An options hash, wich is used to configure the CRUD UI.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

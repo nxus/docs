@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-clientjs 3.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-clientjs</h3>
+          <div class='mb1'><code>3.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#bundle'
+                  class="">
+                  bundle
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/clientjs/blob/1b41487d1e3c3675cea3bb9229b87039cb0028d4/src/index.js#L65-L65'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/clientjs"><img src="https://travis-ci.org/nxus/clientjs.svg?branch=master" alt="Build Status"></a></p>
+<p>Compacts, processes and bundles code for inclusion in the browser.  Uses browserify and babel to process source files, and makes
+the processed file available via a static route.</p>
+<h2>Installation</h2>
+<pre><code>npm install nxus-clientjs --save
+</code></pre>
+<h2>Configuration Options</h2>
+<pre><code>&quot;config&quot;: {
+  &quot;clientjs&quot;: {
+    &quot;watchify&quot;: true,
+    &quot;routePrefix&quot;: &quot;/url/prefix/for/generated&quot;, //optional additional prefix, defaults to &#x27;&#x27;
+    &quot;assetFolder&quot;: &quot;/local/output/folder&quot;, //optional output folder, defaults to .tmp within your project directory
+    &quot;entries&quot;: { //manually specify static files to be created
+      &quot;/path/source/file.js&quot;: &quot;/path/output/bundle.js&quot;
+    }
+  }
+}
+</code></pre>
+<h2>Usage</h2>
+<p>To use the module, there are two steps: 1) create the bundle, and 2) include/inject the source into your page.</p>
+<h3>Creating the bundle</h3>
+<pre><code>app.get(&#x27;clientjs&#x27;).bundle(&#x27;/my/local/file.js&#x27;, &#x27;/browser/path/to/file.js&#x27;)
+</code></pre>
+<h3>Include/inject the source file</h3>
+<p>You can either include the output path as specified when you creatd the bundle</p>
+<pre><code>&lt;script source=&quot;/browser/path/to/file.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Or using Nxus Templater, you can inject the script by passing the output path to the <code>script</code> key on render or using the Templater
+lifecycle events.</p>
+<pre><code>app.get(&#x27;templater&#x27;).render(&#x27;my-template&#x27;, {scripts: [&#x27;/browser/path/to/file.js&#x27;]})
+</code></pre>
+<p>Or</p>
+<pre><code>app.get(&#x27;templater&#x27;).on(&#x27;renderContext.my-template&#x27;, () =&gt; {
+     return {scripts: [&#x27;/browser/path/to/file.js&#x27;]}
+})
+</code></pre>
+<h3>Using ClientJS with React (or other babel transforms)</h3>
+<p>You will need to install the necessary babel presets in your application, and add the config option <code>babelPresets</code>, like:</p>
+<pre><code>npm install --save babel-preset-es2015 babel-preset-react
+
+&quot;config&quot;: {
+  &quot;clientjs&quot;: {
+    &quot;babel&quot;: {
+      &quot;presets&quot;: [&quot;es2015&quot;, &quot;react&quot;]
+    }
+  }
+</code></pre>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='bundle'>
+      bundle
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/clientjs/blob/1b41487d1e3c3675cea3bb9229b87039cb0028d4/src/index.js#L105-L143'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Create a clientjs bundle that can be injected into a rendered page.</p>
+
+
+  <div class='pre p1 fill-light mt0'>bundle(entry: [type], output: [type])</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>entry</span> <code class='quiet'>([type])</code> the source file to bundle
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>output</span> <code class='quiet'>([type])</code> the output path to use in the browser to access the bundled source
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
