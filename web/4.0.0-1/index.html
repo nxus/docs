@@ -1,0 +1,644 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-web 4.0.0-1 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-web</h3>
+          <div class='mb1'><code>4.0.0-1</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#editcontroller'
+                  class=" toggle-sibling">
+                  EditController
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#EditController#edit'
+                        class='regular pre-open'>
+                        #edit
+                      </a></li>
+                      
+                      <li><a
+                        href='#EditController#create'
+                        class='regular pre-open'>
+                        #create
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#regex_file'
+                  class="">
+                  REGEX_FILE
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#viewcontroller'
+                  class=" toggle-sibling">
+                  ViewController
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#ViewController#list'
+                        class='regular pre-open'>
+                        #list
+                      </a></li>
+                      
+                      <li><a
+                        href='#ViewController#detail'
+                        class='regular pre-open'>
+                        #detail
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='editcontroller'>
+      EditController
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/web/blob/af1814afceb0c80e4a734179da9fee402812cf1e/src/EditController.js#L22-L114'>
+      <span>src/EditController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>A base class for CRUD routes and templates for a model</p>
+<h1>Parameters</h1>
+<p>See Controller docs</p>
+<h1>Implement Routes</h1>
+<p>The default implementation of the routes handles querying for the model instance, pagination, and the template rendering. See the specific method documentation for each public view function.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new EditController()</div>
+
+  
+    <p>
+      Extends
+      
+        <a href="#viewcontroller">ViewController</a>
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='EditController#edit'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>edit(req, res, query)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Implement the edit route. Resolve the passed query and return the context for template <code>templatePrefix-edit</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>edit(req: <a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>, res: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code> The express request object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>)</code> The express response object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>query</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> A query that can be further filtered or populated before resolution
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        The context for template rendering.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='EditController#create'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>create(req, res, object)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Implement the create route. Return the context for template <code>templatePrefix-create</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>create(req: <a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>, res: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>, object: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code> The express request object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>)</code> The express response object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>object</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> An empty object for setting defaults for the template
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        The context for template rendering.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='regex_file'>
+      REGEX_FILE
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/web/blob/af1814afceb0c80e4a734179da9fee402812cf1e/src/MVCModule.js#L24-L24'>
+      <span>src/MVCModule.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>A base class for common application module organization</p>
+<p>Automatically registers:</p>
+<ul>
+<li>Templates from <code>./templates</code></li>
+<li>Models from <code>./models</code> - these files should extend <code>nxus-storage.BaseModel</code>)</li>
+<li>Controllers from <code>./controllers</code> - you may want to extend <code>nxus-web.ViewController</code></li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>REGEX_FILE</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='viewcontroller'>
+      ViewController
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/web/blob/af1814afceb0c80e4a734179da9fee402812cf1e/src/ViewController.js#L34-L262'>
+      <span>src/ViewController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>A base class for CRUD routes and templates for a model</p>
+<h1>Parameters</h1>
+<p>You can define getters on your subclass for the following settings:</p>
+<ul>
+<li><code>modelIdentity</code> - defaults to name of class, underscored, e.g. <code>todo_item</code></li>
+<li><code>prefix</code> - defaults to name of class, dashed, e.g. <code>todo-item</code></li>
+<li><code>templatePrefix</code> - defaults to parent containing directory (module) + <code>prefix</code>, e.g. <code>mymodule-todo-item-</code></li>
+<li><code>routePrefix</code> - defaults to &quot;/&quot;+<code>prefix</code></li>
+<li><code>displayName</code> - defaults to class name</li>
+<li><code>instanceTitleField</code> - defaults to first attribute</li>
+<li><code>paginationOptions</code> - object with <code>sortField</code>, <code>sortDirection</code>, and <code>itemsPerPage</code> keys.</li>
+<li><code>ignoreFields</code> - blacklist of fields to ignore in display</li>
+<li><code>displayFields</code> - whitelist of fields to display</li>
+<li><code>idField</code> - field to use for id in routes</li>
+</ul>
+<h1>Implement Routes</h1>
+<p>The default implementation of the routes handles querying for the model instance, pagination, and the template rendering. See the specific method documentation for each public view function.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new ViewController()</div>
+
+  
+    <p>
+      Extends
+      
+        HasModels
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='ViewController#list'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>list(req, res, query)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Implement the list route. Resolve the passed query and return the context for template <code>templatePrefix-list</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>list(req: <a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>, res: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code> The express request object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>)</code> The express response object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>query</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> A query that can be further filtered or populated before resolution
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        The context for template rendering. Include 
+<code>pagination: this.paginationOptions</code>
+ by default
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='ViewController#detail'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>detail(req, res, query)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Implement the view/detail route. Resolve the passed query and return the
+context for template <code>templatePrefix-view</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>detail(req: <a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>, res: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>req</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/request">Request</a>)</code> The express request object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>res</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">Response</a>)</code> The express response object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>query</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> A query for one object that can be further populated before resolution
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        The context for template rendering.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

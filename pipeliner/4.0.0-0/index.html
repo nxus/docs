@@ -1,0 +1,576 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-pipeliner 4.0.0-0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-pipeliner</h3>
+          <div class='mb1'><code>4.0.0-0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#pipeliner'
+                  class=" toggle-sibling">
+                  Pipeliner
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#Pipeliner#pipeline'
+                        class='regular pre-open'>
+                        #pipeline
+                      </a></li>
+                      
+                      <li><a
+                        href='#Pipeliner#task'
+                        class='regular pre-open'>
+                        #task
+                      </a></li>
+                      
+                      <li><a
+                        href='#Pipeliner#getPipelines'
+                        class='regular pre-open'>
+                        #getPipelines
+                      </a></li>
+                      
+                      <li><a
+                        href='#Pipeliner#getPipeline'
+                        class='regular pre-open'>
+                        #getPipeline
+                      </a></li>
+                      
+                      <li><a
+                        href='#Pipeliner#run'
+                        class='regular pre-open'>
+                        #run
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/c84ca342228e01a96bed0e98235f9a4cec2668a3/src/index.js#L51-L51'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <h1>Pipeliner Module</h1>
+<p><a href="https://travis-ci.org/nxus/pipeliner"><img src="https://travis-ci.org/nxus/pipeliner.svg?branch=master" alt="Build Status"></a></p>
+<p>A framework for creating and running data pipelines.  Data pipelines have stages, which are made of an arbitrary number of tasks.  Stages and tasks are run in serial: once a task completes, the next task in the pipeline is executed.<br>
+A task may complete synchronously, or asynchronously through use of a promise.</p>
+<p>Pipelines take a data object as input, and each task operates on the object in some way.</p>
+<p>For an example of the Pipeliner in action, checkout the <a href="https://github.com/seabourne/nxus-static-site">nxus-static-site</a> module.</p>
+<h2>Installation</h2>
+<pre><code>&gt; npm install nxus-pipeliner --save
+</code></pre>
+<h2>Usage</h2>
+<h3>Step 1: Define a pipeline</h3>
+<pre><code>import {pipeliner} from &#x27;nxus-pipeline&#x27;
+
+pipeliner.pipeline(&#x27;my-pipeline&#x27;)
+</code></pre>
+<h3>Step 2: Define tasks</h3>
+<p>A task is a javascript function that accepts any objects passed into the pipeline when it is run. Tasks are run serially in FIFO order.</p>
+<pre><code>let myTask = (word) =&gt; {
+  word.toUpperCase();
+}
+
+app.get(&#x27;pipeliner&#x27;).task(&#x27;my-pipeline&#x27;, myTask)
+</code></pre>
+<h3>Step 3: Run a pipeline</h3>
+<p>Once all the tasks for a pipeline have been defined, the last step is to run the pipeline.</p>
+<pre><code>app.get(&#x27;pipeliner&#x27;).run(&#x27;my-pipeline&#x27;, someData)
+</code></pre>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='pipeliner'>
+      Pipeliner
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/pipeliner/blob/c84ca342228e01a96bed0e98235f9a4cec2668a3/src/index.js#L76-L138'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  
+
+  <div class='pre p1 fill-light mt0'>new Pipeliner()</div>
+
+  
+    <p>
+      Extends
+      
+        NxusModule
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">let</span> myTask = (data) =&gt; {
+  data.word.toUpperCase()
+}
+<span class="hljs-keyword">let</span> data = {word: <span class="hljs-string">'hello'</span>}
+
+<span class="hljs-keyword">let</span> pipeliner = app.get(<span class="hljs-string">'pipeliner'</span>)
+
+pipeliner.pipeline(<span class="hljs-string">'capitalize'</span>)
+pipeliner.run(<span class="hljs-string">'capitalize'</span>, data).then(() =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data'</span>) <span class="hljs-comment">// {word: 'HELLO'}</span>
+})</pre>
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='Pipeliner#pipeline'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>pipeline(pipeline)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Create a new pipeline
+configured with three stages: &#x27;collect&#x27;, &#x27;process&#x27;, and &#x27;generate&#x27;.
+Does nothing if the named pipeline already exists.</p>
+
+
+  <div class='pre p1 fill-light mt0'>pipeline(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the pipeline to create
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Pipeliner#task'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>task(pipeline, job)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Defines a task for a pipeline and a stage.
+Creates the pipeline if it does not already exist;
+adds the stage if it does not already exist.
+If multiple tasks are defined for a stage, they are run in the order defined.</p>
+
+
+  <div class='pre p1 fill-light mt0'>task(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, job: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the pipeline
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>job</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> A function which accepts data
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Pipeliner#getPipelines'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getPipelines()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Returns all pipelines which have been defined.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getPipelines(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        A hash of the pipelines.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Pipeliner#getPipeline'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getPipeline(pipeline)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Returns a specific pipeline.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getPipeline(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of a pipeline to return.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        The pipeline object.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Pipeliner#run'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>run(pipeline, args)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Runs the specified pipeline, passing the arguments to each task.</p>
+
+
+  <div class='pre p1 fill-light mt0'>run(pipeline: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, args: ...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>pipeline</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> The name of the pipeline to run
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>args</span> <code class='quiet'>(...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> Arguments to pass to the pipeline tasks
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        A promise that is fulfilled when the pipeline completes; it is rejected if any task in the pipeline fails (throws an error or returns a promise that is rejected)
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
