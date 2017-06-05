@@ -1,0 +1,1149 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-storage 4.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-storage</h3>
+          <div class='mb1'><code>4.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#geomodel'
+                  class=" toggle-sibling">
+                  GeoModel
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#GeoModel.createGeoIndex'
+                        class='regular pre-open'>
+                        .createGeoIndex
+                      </a></li>
+                    
+                      <li><a
+                        href='#GeoModel.findWithin'
+                        class='regular pre-open'>
+                        .findWithin
+                      </a></li>
+                    
+                      <li><a
+                        href='#GeoModel.findIntersects'
+                        class='regular pre-open'>
+                        .findIntersects
+                      </a></li>
+                    
+                      <li><a
+                        href='#GeoModel.getGeometry'
+                        class='regular pre-open'>
+                        .getGeometry
+                      </a></li>
+                    
+                      <li><a
+                        href='#GeoModel.getCentroid'
+                        class='regular pre-open'>
+                        .getCentroid
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#hasmodels'
+                  class=" toggle-sibling">
+                  HasModels
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#HasModels#modelNames'
+                        class='regular pre-open'>
+                        #modelNames
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#undefined'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#storage'
+                  class=" toggle-sibling">
+                  Storage
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#Storage#model'
+                        class='regular pre-open'>
+                        #model
+                      </a></li>
+                      
+                      <li><a
+                        href='#Storage#getModel'
+                        class='regular pre-open'>
+                        #getModel
+                      </a></li>
+                      
+                      <li><a
+                        href='#Storage#modelDir'
+                        class='regular pre-open'>
+                        #modelDir
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                </div>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='geomodel'>
+      GeoModel
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/storage/blob/8ebea370577a8e35ea8a8321d516d1ba6594eae1/src/GeoModel.js#L172-L306'>
+      <span>src/GeoModel.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Base for Waterline models containing a GeoJSON geographic field.</p>
+<p>It provides methods for performing geo queries on the GeoJSON field
+&ndash; <code>findWithin()</code> selects records that lie within specified
+coordinates, and <code>findIntersects()</code> selects records that intersect.</p>
+<p>To implement the geo queries, the GeoJSON data must be indexed. And
+because the MongoDB 2dsphere index can handle only GeoJSON geometry
+features, the index is applied to a derived <em>features</em> field that
+contains just the geometry features from the primary GeoJSON field.</p>
+<p>The <code>GeoModel</code> provides the machinery for keeping the features field
+synchronized with the primary GeoJSON field. It also attempts to
+ensure the features field is well-formed and has a consistent
+organization. For Polygon objects, it discards duplicate points,
+closes open paths and ensures clockwise winding order. It combines
+Geometry objects so there is at most one of each geometry type:
+Polygon/MultiPolygon, Point/MultiPoint and
+LineString/MultiLineString.</p>
+<p>The <code>createGeoIndex()</code> method should be invoked to ensure the index
+is created. Typically, after the startup lifecycle phase.</p>
+<p>Configuration is through these model properties:</p>
+<ul>
+<li><code>geometryField</code> (string) - Name of the primary GeoJSON field (default is <code>geo</code>).</li>
+<li><code>geometryFeatureField</code> (string) - Name of the geometry features field (default is <code>geoFeatures</code>).
+Both of these fields must also be defined as model attributes with
+type <code>json</code>.</li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>GeoModel</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='GeoModel.createGeoIndex'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>createGeoIndex()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Ensures index is defined for geographic field.
+(Actually, on the field specified by <code>geometryFeatureField</code>.)</p>
+
+
+  <div class='pre p1 fill-light mt0'>createGeoIndex(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        A promise that resolves or rejects when index
+creation completes. It&#x27;s worthwhile attaching a 
+<code>.catch()</code>
+
+clause to this promise to log errors; index creation can fail
+for a variety of reasons, including invalid data in the
+geometry feature field.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='GeoModel.findWithin'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>findWithin(coordinates)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Finds records within specified geographic coordinates.</p>
+<p>The method goes through some odd gyrations in order to mesh the
+MongoDB geographic query with Waterline query handling.</p>
+<p>First, it <em>indirectly</em> returns a Waterline query, by returning a
+promise that resolves to a function that evaluates to the query.
+This due to the fact that the query has promise semantics.
+Returning it indirectly defers evaluation, allowing you to refine
+it (using the chainable methods such as .populate()<code>,</code>.where()<code>, and</code>.sort()&#x60;) before evaluating it.</p>
+<p>Second, it actually evaluates the MongoDB geographic query to
+produce a list of matching record ids, and the returned Waterline
+query is a second query based on these ids. Again, this to allow
+you to refine the query before evaluation. Be aware that this
+won&#x27;t scale well to huge record sets, but should work for any of
+moderate size.</p>
+
+
+  <div class='pre p1 fill-light mt0'>findWithin(coordinates: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>coordinates</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> A GeoJSON geometry object
+specifying the geographic region to select; it must be of type
+
+<code>Polygon</code>
+ or 
+<code>MultiPolygon</code>
+.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        A promise that resolves to a function that
+returns a Waterline query for the specified coordinates.
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-string">``</span><span class="hljs-string">`
+  model.findWithin({ 'type': 'Polygon', 'coordinates': ... }).then((query) =&gt; {
+    return query().where(...).populate(...)
+  }).then((records) =&gt; {
+    ...
+  })
+  `</span><span class="hljs-string">``</span></pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='GeoModel.findIntersects'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>findIntersects(coordinates)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Finds records intersecting specified geographic coordinates.</p>
+
+
+  <div class='pre p1 fill-light mt0'>findIntersects(coordinates: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>coordinates</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> A GeoJSON geometry object
+specifying the geographic region to select.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        A promise that resolves to a function that
+returns a Waterline query for the specified coordinates. See
+
+<code>findWithin()</code>
+ for further explanation.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='GeoModel.getGeometry'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getGeometry(record, types)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Gets GeoJSON geometry object from the GeoJSON geographic field.
+Typical use is to extract <code>Polygon</code> geometry objects for use as
+coordinates for the <code>findWithin()</code> or <code>findIntersects()</code> methods.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getGeometry(record: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, types: ...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>record</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> <code>GeoModel</code>
+ record containing geographic field
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>types</span> <code class='quiet'>(...<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> geometry types to include (default is
+all types: 
+<code>Polygon</code>
+, 
+<code>Point</code>
+ and 
+<code>LineString</code>
+)
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        GeoJSON geometry object; undefined if no
+matching geometry objects were present
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='GeoModel.getCentroid'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getCentroid(record)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Gets the centroid of the GeoJSON geographic field.</p>
+
+
+  <div class='pre p1 fill-light mt0'>getCentroid(record: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>record</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code> <code>GeoModel</code>
+ record containing geographic field
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        GeoJSON Point object; undefined if no
+geometry objects were present from which to derive a centroid
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='hasmodels'>
+      HasModels
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/storage/blob/8ebea370577a8e35ea8a8321d516d1ba6594eae1/src/HasModels.js#L15-L50'>
+      <span>src/HasModels.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The HasModels class is a Base class for defining helper classes with Models.
+All models contained in a <code>./models</code> directory will be registered automatically, and are the
+default list of model identities made available in the <code>this.models</code> object.
+You may override or extend this list of model identities, or a mapping of model identities to variable names,
+by overriding <code>.modelNames()</code></p>
+
+
+  <div class='pre p1 fill-light mt0'>new HasModels()</div>
+
+  
+    <p>
+      Extends
+      
+        NxusModule
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='HasModels#modelNames'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>modelNames()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Deprecated: Override to define the model names to access</p>
+
+
+  <div class='pre p1 fill-light mt0'>modelNames(): (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>:
+        Model identities to add to this.models, or object of {identity: name}
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>modelNames() { 
+  <span class="hljs-keyword">return</span> [<span class="hljs-string">'user'</span>]
+}</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='undefined'>
+      
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/storage/blob/8ebea370577a8e35ea8a8321d516d1ba6594eae1/src/index.js#L83-L83'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <h1>Storage Module</h1>
+<p><a href="https://travis-ci.org/nxus/storage"><img src="https://travis-ci.org/nxus/storage.svg?branch=master" alt="Build Status"></a></p>
+<p>A storage framework for Nxus applications using <a href="https://github.com/balderdashy/waterline">waterline</a>.</p>
+<h1>Configuration</h1>
+<pre><code>&quot;config&quot;: {
+  &quot;storage&quot;: {
+    &quot;adapter&quot;: {
+      &quot;default&quot;: &quot;sails-mongo&quot;
+    },
+    &quot;connections&quot;: {
+      &quot;default&quot;: {
+        &quot;adapter&quot;: &quot;default&quot;,
+        &quot;url&quot;: &quot;mongodb://....&quot;
+      }
+    },
+    &quot;modelsDir&quot;: &quot;./src/models&quot;
+  }
+}
+</code></pre>
+<h1>Creating models</h1>
+<p>Inherit your models from BaseModel</p>
+<pre><code>import {BaseModel} from &#x27;@nxus/storage&#x27;
+
+var User = BaseModel.extend({
+  identity: &#x27;user&#x27;,
+  attributes: {
+    name: &#x27;string&#x27;
+  }
+})
+</code></pre>
+<h1>Register models</h1>
+<p>Either import your model class and pass it to <code>model()</code>:</p>
+<pre><code>storage.model(modelClass)
+</code></pre>
+<p>Or register all models in a directory with <code>modelDir()</code>:</p>
+<pre><code>storage.modelDir(__dirname+&quot;/models&quot;)
+</code></pre>
+<h1>Model events</h1>
+<p>The storage model emits events for create, update, and destroy, you can register a handler for all events:</p>
+<pre><code>  storage.on(&#x27;model.create&#x27;, (identity, record) =&gt; {})
+  storage.on(&#x27;model.update&#x27;, (identity, record) =&gt; {})
+  storage.on(&#x27;model.destroy&#x27;, (identity, record) =&gt; {})
+</code></pre>
+<p>Or just a specific model identity:</p>
+<pre><code>  storage.on(&#x27;model.create.user&#x27;, (identity, record) =&gt; {})
+  storage.on(&#x27;model.update.user&#x27;, (identity, record) =&gt; {})
+  storage.on(&#x27;model.destroy.user&#x27;, (identity, record) =&gt; {})
+</code></pre>
+<h1>Lifecycle notes</h1>
+<ul>
+<li>
+<p><code>load</code></p>
+<ul>
+<li>Models should be registered during <code>load</code>, e.g.
+var User = BaseModel.extend({
+identity: &#x27;user&#x27;,
+...
+});
+application.get(&#x27;storage&#x27;).model(User)</li>
+</ul>
+</li>
+<li>
+<p><code>startup</code></p>
+<ul>
+<li>
+<p>The configured database is connected during <code>load.after</code></p>
+</li>
+<li>
+<p>You can query models from <code>startup</code> and beyond, retrieve the model by the &#x27;identity&#x27;:</p>
+<pre><code>application.get(&#x27;storage&#x27;).getModel(&#x27;user&#x27;).then((User) =&gt; {
+    User.create(...);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    <h3 class='fl m0' id='storage'>
+      Storage
+    </h3>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/storage/blob/8ebea370577a8e35ea8a8321d516d1ba6594eae1/src/index.js#L107-L264'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Storage provides a common interface for defining models.  Uses the Waterline ORM.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new Storage()</div>
+
+  
+    <p>
+      Extends
+      
+        NxusModule
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='Storage#model'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>model(model)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Register a model</p>
+
+
+  <div class='pre p1 fill-light mt0'>model(model: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>model</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code> A Waterline-compatible model class
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>storage.model(...)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Storage#getModel'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getModel(id)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Request a model based on its identity (name)</p>
+
+
+  <div class='pre p1 fill-light mt0'>getModel(id: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>)): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>id</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">array</a>))</code> The identity of a registered model, or array of identities
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        The model class(es)
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>storage.getModel(<span class="hljs-string">'user'</span>)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Storage#modelDir'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>modelDir(dir)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Register all models in a directory</p>
+
+
+  <div class='pre p1 fill-light mt0'>modelDir(dir: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+
+  
+
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>dir</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code> Directory containing model files
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        Array of model identities
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'>application.get(<span class="hljs-string">'storage'</span>).model(...)</pre>
+    
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
