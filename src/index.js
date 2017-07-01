@@ -19,6 +19,18 @@ function collectNames(dir) {
   return names
 }
 
+// prune and order version list, removing pre-release versions superseded by release
+function pruneVersions(versions) {
+  let ordered = versions.slice().sort(semver.compare),
+      pruned = [], prev = ordered.shift()
+  for (let curr of ordered) {
+    if (semver.diff(prev, curr) !== 'prerelease') pruned.unshift(prev)
+    prev = curr
+  }
+  pruned.unshift(prev)
+  return pruned
+}
+
 function trace(str, prefix = "") {
     str = str.split('\n').map(line => prefix + line ).join('\n')
     console.log(str)
@@ -51,7 +63,7 @@ Promise.map(modules, (module) => {
   try {
     fs.unlinkSync(mod_doc_latest)
   } catch(e) {}
-  var versions = collectNames(mod_doc_dir).sort((a, b) => semver.gt(a, b) ? -1 : 1 )
+  var versions = pruneVersions(collectNames(mod_doc_dir))
   fs.symlinkSync(versions[0], mod_doc_latest, 'dir')
   versions.unshift('latest')
   return {
