@@ -24,6 +24,39 @@ To build a new local copy of the docs:
 > npm run build-docs
 ```
 
+This will build the documentation for each module in the `modules`
+folder and place the output in a subfolder of the `docs` folder.
+
+If the module's `package.json` file defines a `build-shared-docs`
+script, it will be used to build the documentation for the module.
+If no script is defined, `documentation` will be invoked directly to
+build the documentation.
+
+These environment variables are available to the script:
+*   `MODULE` - the module subfolder name
+*   `NAME` - the module name (from `name` in `package.json`)
+*   `VERSION` - the module version (from `version` in `package.json`)
+*   `OUTPUT` - the `docs` subfolder output path (where the script should place the documentation)
+
+Here's the default documentation build script:
+```
+documentation build src/*.js --github --format html --output ${OUTPUT} \
+    --name ${NAME} --project-version ${VERSION} --external nxus-*
+```
+
+Here's an example documentation build command you might specify for
+`build-shared-docs` if you'd defined a `documentation.yml` file to
+organize the documentation:
+```
+NAME=${NAME:-"$(npm view . name)"} VERSION=${VERSION:-"$(npm view . version)"} OUTPUT=${OUTPUT:-"./docs"} && \
+    documentation build src/*.js --github --format html --output ${OUTPUT} \
+    --name ${NAME} --project-version ${VERSION} --config documentation.yml
+```
+The conditional definitions of `NAME`, `VERSION` and `OUTPUT` allow the
+script to also be invoked directly using `npm run build-shared-docs`.
+(To specify this command as a `package.json` script, you'd need to
+remove the line breaks and escape the quotes.)
+
 ### Serve the docs
 
 ```
