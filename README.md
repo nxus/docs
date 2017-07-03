@@ -48,14 +48,14 @@ Here's an example documentation build command you might specify for
 `build-shared-docs` if you'd defined a `documentation.yml` file to
 organize the documentation:
 ```
-NAME=${NAME:-"$(npm view . name)"} VERSION=${VERSION:-"$(npm view . version)"} OUTPUT=${OUTPUT:-\"./docs\"} && \
+NAME=${NAME:-"$(npm view . name)"} VERSION=${VERSION:-"$(npm view . version)"} OUTPUT=${OUTPUT:-"./docs"} && \
     documentation build src/*.js --github --format html --output ${OUTPUT} \
     --name ${NAME} --project-version ${VERSION} --config documentation.yml
 ```
-The conditional definitions of `NAME`, `VERSION` and `OUTPUT` allow it
-to also be invoked directly using `npm run build-shared-docs`. (To use
-this as a script, you'd need to remove the line breaks and escape the
-quotes.)
+The conditional definitions of `NAME`, `VERSION` and `OUTPUT` allow the
+script to also be invoked directly using `npm run build-shared-docs`.
+(To specify this command as a `package.json` script, you'd need to
+remove the line breaks and escape the quotes.)
 
 ### Serve the docs
 
