@@ -48,7 +48,7 @@ Here's an example documentation build command you might specify for
 `build-shared-docs` if you'd defined a `documentation.yml` file to
 organize the documentation:
 ```
-NAME=${NAME:-"$(npm view . name)"} VERSION=${VERSION:-"$(npm view . version)"} OUTPUT=${OUTPUT:-"./docs"} && \
+NAME="${NAME:-$npm_package_name}" VERSION="${VERSION:-$npm_package_version}" OUTPUT="${OUTPUT:-./docs}" && \
     documentation build src/*.js --github --format html --output ${OUTPUT} \
     --name ${NAME} --project-version ${VERSION} --config documentation.yml
 ```
