@@ -25,6 +25,52 @@
               
                 
                 <li><a
+                  href='#admincontroller'
+                  class=" toggle-sibling">
+                  AdminController
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#AdminController#addNav'
+                        class='regular pre-open'>
+                        #addNav
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminController#addAction'
+                        class='regular pre-open'>
+                        #addAction
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminController#addInstanceAction'
+                        class='regular pre-open'>
+                        #addInstanceAction
+                      </a></li>
+                      
+                      <li><a
+                        href='#AdminController#_formatDownloadRecord'
+                        class='regular pre-open'>
+                        #_formatDownloadRecord
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
                   href='#admin'
                   class=" toggle-sibling">
                   Admin
@@ -38,9 +84,21 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
+                        href='#Admin#getAdminUrl'
+                        class='regular pre-open'>
+                        #getAdminUrl
+                      </a></li>
+                      
+                      <li><a
                         href='#Admin#page'
                         class='regular pre-open'>
                         #page
+                      </a></li>
+                      
+                      <li><a
+                        href='#Admin#addNav'
+                        class='regular pre-open'>
+                        #addNav
                       </a></li>
                       
                       <li><a
@@ -50,6 +108,7 @@
                       </a></li>
                       
                     </ul>
+                  
                   
                   
                 </div>
@@ -70,11 +129,455 @@
 
   
   <div class='clearfix'>
+    
+    <h3 class='fl m0' id='admincontroller'>
+      AdminController
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/AdminController.js#L29-L217'>
+      <span>src/AdminController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>A base class for admin model controllers. Overrides the EditController options defaults
+to provide admin prefixes for routes ("/admin/model-identity") and templates ("model-identity-admin"), and by default wraps templates in 'admin-page' rather than 'page'.</p>
+<h1>Parameters (in addition to EditController parameters)</h1>
+<ul>
+<li><code>icon</code> - icon class for nav - defaults to fa-files-o</li>
+<li><code>order</code> - optional ordering for nav</li>
+<li><code>uploadType</code> - dataManager import type (e.g. csv, json), if set an Import action is available.</li>
+<li><code>uploadOptions</code> - options to pass to dataManager parser</li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>new AdminController(opts: any)</div>
+  
+  
+    <p>
+      Extends
+      
+        EditController
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='AdminController#addNav'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addNav(label, route, opts)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/AdminController.js#L100-L102'>
+      <span>src/AdminController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Register an admin nav menu item under this model</p>
+
+
+  <div class='pre p1 fill-light mt0'>addNav(label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>label</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Label for nav item
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Either a relative (joined with adminUrl) or absolute URL to link to
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    nav menu options for web-nav, e.g. icon, order
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminController#addAction'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addAction(page, label, route, opts)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/AdminController.js#L112-L114'>
+      <span>src/AdminController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Register an admin action item for this model, wrapping web-actions</p>
+
+
+  <div class='pre p1 fill-light mt0'>addAction(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>page</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Template suffix: 'list', 'edit', 'create', 'detail'
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>label</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Label for action
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Sub-route for action
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    options for web-actions, e.g. icon, template
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminController#addInstanceAction'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addInstanceAction(label, route, opts)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/AdminController.js#L123-L125'>
+      <span>src/AdminController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Register an admin instance action item for this model's list page, wrapping web-actions</p>
+
+
+  <div class='pre p1 fill-light mt0'>addInstanceAction(label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>label</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Label for action
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Sub-route for action
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    options for web-actions, e.g. icon, template
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='AdminController#_formatDownloadRecord'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>_formatDownloadRecord(record, attrs)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/AdminController.js#L184-L195'>
+      <span>src/AdminController.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Override in subclass to do additional formatting of records for download</p>
+
+
+  <div class='pre p1 fill-light mt0'>_formatDownloadRecord(record: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, attrs: any): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>record</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>attrs</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        formatted record
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
     <h3 class='fl m0' id='admin'>
       Admin
     </h3>
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/80568bbf675dcf2ee5be6f44fd0ef812910ff7d6/src/index.js#L11-L41'>
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/index.js#L18-L158'>
       <span>src/index.js</span>
       </a>
     
@@ -85,7 +588,7 @@
 
 
   <div class='pre p1 fill-light mt0'>new Admin()</div>
-
+  
   
     <p>
       Extends
@@ -95,6 +598,7 @@
     </p>
   
 
+  
   
   
   
@@ -117,25 +621,114 @@
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
-    <div class='border-bottom' id='Admin#page'>
+    <div class='border-bottom' id='Admin#getAdminUrl'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>page(route, opts, handler)</span>
+            <span class='code strong strong truncate'>getAdminUrl()</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
         <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
-
-  <p>Register a raw route for inclusion in the admin site</p>
-
-
-  <div class='pre p1 fill-light mt0'>page(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: any, handler: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</div>
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/index.js#L50-L52'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
 
   
 
+  <div class='pre p1 fill-light mt0'>getAdminUrl(): <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>:
+        the root Url where the admin interface is available.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Admin#page'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>page(opts, responder)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/index.js#L83-L94'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Registers a page with the admin interface.  Pages can be defined two different ways.</p>
+<h2>Template Partials</h2>
+<p><code>admin.page('/route', 'partial-name')</code></p>
+<h2>Route Handlers</h2>
+<p><code>admin.page('/route', (req, res) => {...})</code></p>
+<h2>Options</h2>
+<p>The first argument can either be a string or an options hash.  If an options hash, it
+must include a <code>route</code> attribute.</p>
+<p>Other options include:</p>
+<ul>
+<li><code>route</code>: Required. The route to the page.</li>
+<li><code>method</code>: the HTTP method to use for the route.</li>
+<li><code>label</code>: the nav label to use. Defaults to a title version of the route.</li>
+<li><code>nav</code>: set to <code>false</code> to skip creating a nav item: useful for routes with no display.</li>
+<li><code>directHandler</code>: if true, the handler is a full route handler. Otherwise, wrapped to send reponse</li>
+<li><code>order</code>: the order of the nav menu.</li>
+<li><code>icon</code>: the icon class to use for the page in the nav and other places.</li>
+</ul>
+
+
+  <div class='pre p1 fill-light mt0'>page(opts: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>), responder: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">Function</a>))</div>
+  
+  
+
+  
   
   
   
@@ -148,7 +741,8 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code> The url path for the page
+            <span class='code bold'>opts</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>))</code>
+	    The route or options for the page
 
           </div>
           
@@ -156,16 +750,96 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>opts</span> <code class='quiet'>(any
-            (default <code>{}</code>)
-            )</code> 
+            <span class='code bold'>responder</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">Function</a>))</code>
+	    The string partial name or handler function for the route
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='Admin#addNav'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addNav(label, route, opts)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/index.js#L143-L145'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Register an admin nav menu item, wraps web-nav for relative URls and menu name</p>
+
+
+  <div class='pre p1 fill-light mt0'>addNav(label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>, opts: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>label</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Label for nav item
+
           </div>
           
         </div>
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>handler</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a>)</code> for rendering this page
+            <span class='code bold'>route</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>)</code>
+	    Either a relative (joined with adminUrl) or absolute URL to link to
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    nav menu options for web-nav, e.g. icon, order
 
           </div>
           
@@ -196,20 +870,32 @@
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>manage(Object, model)</span>
+            <span class='code strong strong truncate'>manage(opts)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
         <section class='p2 mb2 clearfix bg-white minishadow'>
 
   
-
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/admin/blob/4b5824752d77b7f7e84f03576fbc42474b1afd4b/src/index.js#L153-L157'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
   
 
-  <div class='pre p1 fill-light mt0'>manage(Object: any, model: any): [type]</div>
+  <p>Create an AdminController for a given model. Takes either the model identity, or an
+object to pass to the constructor of AdminController with at least {model: 'identity'}</p>
 
+
+  <div class='pre p1 fill-light mt0'>manage(opts: (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>))</div>
+  
   
 
+  
   
   
   
@@ -222,14 +908,10 @@
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>Object</span> <code class='quiet'>(any)</code> 
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>model</span> <code class='quiet'>(any)</code> 
+            <span class='code bold'>opts</span> <code class='quiet'>((<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)
+            = <code>{}</code>)</code>
+	    The model identity or options object.
+
           </div>
           
         </div>
@@ -239,13 +921,6 @@
 
   
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>[type]</code>:
-        
-      
-    
   
 
   

@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>nxus-users 4.0.0 | Documentation</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='max-width-4 mx-auto'>
+    <div class='clearfix md-mxn2'>
+      <div class='fixed xs-hide fix-3 overflow-auto max-height-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>nxus-users</h3>
+          <div class='mb1'><code>4.0.0</code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#'
+                  class="">
+                  
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#users'
+                  class="">
+                  Users
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#userspermissions'
+                  class="">
+                  UsersPermissions
+                  
+                </a>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='http://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div class='fix-margin-3'>
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id=''>
+      
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/users/blob/7571f11ae6707bb9a6d9bbefbc27f1a40ab9ac8e/src/index.js#L85-L85'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p><a href="https://travis-ci.org/nxus/users"><img src="https://travis-ci.org/nxus/users.svg?branch=master" alt="Build Status"></a></p>
+<p>User management module for Nxus apps.  Users provides a complete framework for managing users, authenticating routes and sessions.</p>
+<h2>Install</h2>
+<pre><code>> npm install nxus-users --save
+</code></pre>
+<h2>Quickstart</h2>
+<p>Once Users is installed in your app, you are ready to go.  It includes the following components:</p>
+<ul>
+<li>user/team models</li>
+<li>login/logout routes</li>
+<li>authentication/session middleware</li>
+</ul>
+<h2>Models</h2>
+<p>Uses defines a set of common models you can use to build your application, using the @nxus/storage module (which uses Waterline to provide common ORM functionality).</p>
+<h3>User</h3>
+<p>Accessing the user model:</p>
+<pre><code>storage.getModel('users-user').then((User) => {
+  ...
+});
+</code></pre>
+<p><strong>Fields</strong></p>
+<ul>
+<li>email: string</li>
+<li>password: string</li>
+<li>nameFirst: string</li>
+<li>nameLast: string</li>
+<li>position: string</li>
+<li>enabled: boolean</li>
+<li>admin: boolean</li>
+<li>lastLogin: datetime</li>
+<li>metadata: JSON</li>
+<li>team: relation to Team model</li>
+</ul>
+<p><strong>Convenience Methods</strong></p>
+<ul>
+<li>name(): first + last name</li>
+<li>isAdmin(): boolean if user is an Admin</li>
+<li>validPassword(pass): returns true if the password is valid</li>
+</ul>
+<h2>Templates</h2>
+<p>Users defines a set of common templates you can use in your app</p>
+<h3>login</h3>
+<p>A login form preconfigured to work with the login/logout routes. Markup supports basic Bootstrap 3 CSS.</p>
+<pre><code>templater.render('users-login').then((content) => {
+  ...
+}
+</code></pre>
+<h2>Routes</h2>
+<p>The Users module defines some convience routes for handling basic user functionality.</p>
+<h3>/login</h3>
+<p><strong>Params</strong>
+Expects to recieve a POSTed form with the values <code>username</code>, <code>password</code> and <code>redirect</code>. <code>redirect</code> should be a url to redirect the user to on success.  On login failure, the user will be redirected back to /login.</p>
+<h3>/logout</h3>
+<p><strong>Params</strong>
+Expects to recieve a GET request with the param <code>redirect</code>, which is a url where the user will be redirected on successful logout.</p>
+<h1>API</h1>
+<hr>
+
+
+  <div class='pre p1 fill-light mt0'></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='users'>
+      Users
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/users/blob/7571f11ae6707bb9a6d9bbefbc27f1a40ab9ac8e/src/index.js#L98-L179'>
+      <span>src/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The Users Module provides a complete user authentication and authorization system.</p>
+
+
+  <div class='pre p1 fill-light mt0'>new Users()</div>
+  
+  
+    <p>
+      Extends
+      
+        HasModels
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='userspermissions'>
+      UsersPermissions
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/nxus/users/blob/7571f11ae6707bb9a6d9bbefbc27f1a40ab9ac8e/src/modules/users-permissions/index.js#L66-L233'>
+      <span>src/modules/users-permissions/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Permissions system</p>
+<p>This module provides a role &#x26; permission list approach to managing user access in Nxus.
+Routes (or other guarded functionality) is associated with a Permission name, and permissions
+are assigned to Roles. A User may have multiple roles, and a permission may belong to multiple roles.</p>
+<p>Permissions and roles can also be scoped to specific model objects, allowing users access to just those objects
+they own or have been given a role in managing. </p>
+<h2>Usage</h2>
+<p>`import {permissions} from 'nxus-users'</p>
+<h3>Registering permissions and roles</h3>
+<p>`permissions.register('permission-name', ['Default Role'])</p>
+<h3>Guarding routes and handlers</h3>
+<p>`permissions.guard('/my/route', 'permission-name')</p>
+<p>`permissions.guardHandler(::this._myRoute, 'permission-name').then((handler) => { router.route('/my/route', handler) })</p>
+<h3>Checking for user permissions in handlers/templates</h3>
+<p><code>req.user.permissions.allows('permission-name')</code>req.user.permissions.allows('permission-name', object)</p>
+<h3>Object-level permissions</h3>
+<p>Object role assignments need a collection object that subclasses ObjectRoleModel and overrides the <code>object</code> attribute:</p>
+<pre><code>import {ObjectRoleModel} from 'nxus-users'
+export default ObjectRoleModel.extend{{
+identity: 'my-object-roles',
+attributes: { object: { model: 'my-object'}}
+}}
+</code></pre>
+<p>The permissions should be registered with an extra argument naming this model collection:</p>
+<p>`permissions.register('my-object-permission', ['Object Editor'], 'my-object-roles')</p>
+<p>Alternatively, this may be a function that accepts <code>(objectId, user)</code> and returns the roles assigned -
+This can implement traversing the object model to reach a parent with the permissions, or entirely override
+how and where role assignments are stored.</p>
+<p>Guards should be set with the extra argument naming the URL param to use as objectId to lookup.</p>
+<p>`permissions.guard('/edit/:id', 'my-object-permission', 'id')</p>
+
+
+  <div class='pre p1 fill-light mt0'>new UsersPermissions(opts: any)</div>
+  
+  
+    <p>
+      Extends
+      
+        HasModels
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>opts</span> <code class='quiet'>(any
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>
