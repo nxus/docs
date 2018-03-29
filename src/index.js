@@ -7,7 +7,7 @@ var _ = require('underscore')
 var semver = require('semver')
 
 const docBin = path.resolve('./node_modules/.bin')
-const docBuild = "documentation build src/*.js --github --format html --output ${OUTPUT} --name ${NAME} --project-version ${VERSION} --external nxus-*"
+const docBuild = "documentation build src/*.js --github --format html --output ${OUTPUT} --project-name ${NAME} --project-version ${VERSION} --external nxus-*"
 const npmBuild = "npm run build-shared-docs"
 
 // collect subdirectory names (exclude non-directories and names beginning with '.')
